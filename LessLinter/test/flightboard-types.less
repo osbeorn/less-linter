@@ -1,0 +1,21 @@
+@import "types";
+
+.progressbar(@height: 40px, @padding: 4px) {
+    .border-box;
+    
+    position         : relative;
+    display          : inline-block;
+    width            : 100%;
+    background-color : #000000;
+    border           : 1px solid #333333;
+    text-align       : left;
+    height           : @height;
+    padding          : @padding;
+    
+    & > div {
+        .border-box;
+        display          : block;
+        height           : 100%;
+        background-color : #98d235;
+    }
+}
