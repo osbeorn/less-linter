@@ -90,7 +90,11 @@ Color
 
 // Whitespace -- ignored
 WS
-  : (' '|'\t'|'\n'|'\r'|'\r\n')+ -> skip
+  : ' '+ -> channel(HIDDEN)
+  ;
+
+NL
+  : ('\t'|'\n'|'\r'|'\r\n')+ -> channel(HIDDEN)
   ;
 
 // Single-line comments -ignored
@@ -110,9 +114,9 @@ UrlEnd			: RPAREN -> popMode;
 Url             :	STRING | (~(')' | '\n' | '\r' | ';'))+;
 
 mode IDENTIFY;
-SPACE           : WS -> popMode, skip;
+SPACE_ID        : WS -> popMode, type(WS), channel(HIDDEN);
+NEW_LINE_ID     : NL -> popMode, type(NL), channel(HIDDEN);
 DOLLAR_ID       : DOLLAR -> type(DOLLAR);
-
 
 InterpolationStartAfter  : InterpolationStart;
 InterpolationEnd_ID    : BlockEnd -> type(BlockEnd);

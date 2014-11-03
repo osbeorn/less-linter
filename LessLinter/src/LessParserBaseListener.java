@@ -1,5 +1,3 @@
-package si.fri.celtra.lesslinter.antlr;
-
 // Generated from LessParser.g4 by ANTLR 4.4
 
 import org.antlr.v4.runtime.ParserRuleContext;

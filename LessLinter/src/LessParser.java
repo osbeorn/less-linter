@@ -1,5 +1,3 @@
-package si.fri.celtra.lesslinter.antlr;
-
 // Generated from LessParser.g4 by ANTLR 4.4
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -18,21 +16,21 @@ public class LessParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		DOLLAR=20, LT=15, LBRACK=11, UrlEnd=46, InterpolationStart=6, Url=47, 
-		AND=22, SPACE=48, Identifier=39, LPAREN=7, AT=21, RPAREN=8, IMPORT=37, 
-		IN=2, Number=41, COMMA=18, TIL=14, Ellipsis=5, TILD_EQ=35, Color=42, PLUS=25, 
-		EQ=33, DOT=19, COMMENT=45, PIPE_EQ=34, BlockStart=9, IdentifierAfter=50, 
-		UrlStart=30, EQEQ=31, RBRACK=12, InterpolationStartAfter=49, BlockEnd=10, 
-		NULL=1, Unit=3, HASH=23, FONTFACE=38, MINUS=28, SEMI=17, COLON=16, StringLiteral=40, 
-		COLONCOLON=24, NOTEQ=32, WS=43, PERC=29, WHEN=36, SL_COMMENT=44, GT=13, 
-		DIV=27, TIMES=26, COMBINE_COMPARE=4;
+		DOLLAR=20, LT=15, LBRACK=11, UrlEnd=47, InterpolationStart=6, Url=48, 
+		AND=22, Identifier=39, LPAREN=7, AT=21, RPAREN=8, IMPORT=37, IN=2, Number=41, 
+		COMMA=18, TIL=14, Ellipsis=5, TILD_EQ=35, Color=42, PLUS=25, NL=44, EQ=33, 
+		DOT=19, COMMENT=46, PIPE_EQ=34, BlockStart=9, IdentifierAfter=50, UrlStart=30, 
+		EQEQ=31, RBRACK=12, InterpolationStartAfter=49, BlockEnd=10, NULL=1, Unit=3, 
+		HASH=23, FONTFACE=38, MINUS=28, SEMI=17, COLON=16, StringLiteral=40, COLONCOLON=24, 
+		NOTEQ=32, WS=43, PERC=29, WHEN=36, SL_COMMENT=45, GT=13, DIV=27, TIMES=26, 
+		COMBINE_COMPARE=4;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'null'", "'in'", "Unit", "COMBINE_COMPARE", "'...'", "InterpolationStart", 
 		"'('", "')'", "'{'", "'}'", "'['", "']'", "'>'", "'~'", "'<'", "':'", 
 		"';'", "','", "'.'", "'$'", "'@'", "'&'", "'#'", "'::'", "'+'", "'*'", 
 		"'/'", "'-'", "'%'", "UrlStart", "'=='", "'!='", "'='", "'|='", "'~='", 
 		"'when'", "'@import'", "'@font-face'", "Identifier", "StringLiteral", 
-		"Number", "Color", "WS", "SL_COMMENT", "COMMENT", "UrlEnd", "Url", "SPACE", 
+		"Number", "Color", "WS", "NL", "SL_COMMENT", "COMMENT", "UrlEnd", "Url", 
 		"InterpolationStartAfter", "IdentifierAfter"
 	};
 	public static final int
@@ -2269,7 +2267,7 @@ public class LessParser extends Parser {
 		"\u0088\u0089\7\23\2\2\u0089\27\3\2\2\2\u008a\u008b\7\'\2\2\u008b\u008d"+
 		"\5\32\16\2\u008c\u008e\5\34\17\2\u008d\u008c\3\2\2\2\u008d\u008e\3\2\2"+
 		"\2\u008e\u008f\3\2\2\2\u008f\u0090\7\23\2\2\u0090\31\3\2\2\2\u0091\u0096"+
-		"\7*\2\2\u0092\u0093\7 \2\2\u0093\u0094\7\61\2\2\u0094\u0096\7\60\2\2\u0095"+
+		"\7*\2\2\u0092\u0093\7 \2\2\u0093\u0094\7\62\2\2\u0094\u0096\7\61\2\2\u0095"+
 		"\u0091\3\2\2\2\u0095\u0092\3\2\2\2\u0096\33\3\2\2\2\u0097\u009c\7)\2\2"+
 		"\u0098\u0099\7\24\2\2\u0099\u009b\7)\2\2\u009a\u0098\3\2\2\2\u009b\u009e"+
 		"\3\2\2\2\u009c\u009a\3\2\2\2\u009c\u009d\3\2\2\2\u009d\35\3\2\2\2\u009e"+
@@ -2318,7 +2316,7 @@ public class LessParser extends Parser {
 		"\2\2\2\u0120\u011c\3\2\2\2\u0121;\3\2\2\2\u0122\u0127\5\16\b\2\u0123\u0124"+
 		"\7\24\2\2\u0124\u0126\5\16\b\2\u0125\u0123\3\2\2\2\u0126\u0129\3\2\2\2"+
 		"\u0127\u0125\3\2\2\2\u0127\u0128\3\2\2\2\u0128=\3\2\2\2\u0129\u0127\3"+
-		"\2\2\2\u012a\u012b\7 \2\2\u012b\u012c\7\61\2\2\u012c\u012d\7\60\2\2\u012d"+
+		"\2\2\2\u012a\u012b\7 \2\2\u012b\u012c\7\62\2\2\u012c\u012d\7\61\2\2\u012d"+
 		"?\3\2\2\2\u012e\u0130\7+\2\2\u012f\u0131\7\5\2\2\u0130\u012f\3\2\2\2\u0130"+
 		"\u0131\3\2\2\2\u0131A\3\2\2\2\u0132\u0133\7)\2\2\u0133\u0135\7\t\2\2\u0134"+
 		"\u0136\5<\37\2\u0135\u0134\3\2\2\2\u0135\u0136\3\2\2\2\u0136\u0137\3\2"+
