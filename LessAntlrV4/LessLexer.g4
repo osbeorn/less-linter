@@ -87,14 +87,12 @@ Color
 	:	'#' ('0'..'9'|'a'..'f'|'A'..'F')+
 	;
 
-
-// Whitespace -- ignored
 WS
-  : ' '+ -> channel(HIDDEN)
+  : (' '|'\t')+ -> channel(HIDDEN)
   ;
 
 NL
-  : ('\t'|'\n'|'\r'|'\r\n')+ -> channel(HIDDEN)
+  : ('\n'|'\r'|'\r\n')+ -> channel(HIDDEN)
   ;
 
 // Single-line comments -ignored
@@ -111,7 +109,7 @@ COMMENT
 
 mode URL_STARTED;
 UrlEnd			: RPAREN -> popMode;
-Url             :	STRING | (~(')' | '\n' | '\r' | ';'))+;
+Url             : STRING | (~(')' | '\n' | '\r' | ';'))+;
 
 mode IDENTIFY;
 SPACE_ID        : WS -> popMode, type(WS), channel(HIDDEN);

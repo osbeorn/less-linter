@@ -1,0 +1,455 @@
+
+/***
+    Border box
+***/
+.border-box {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+/***
+    Border helper
+***/
+
+.border (@widths, @colors, @styles: solid) { border-width: @widths; border-color: @colors; border-style: @styles; }
+
+/***
+    Shadow helper
+***/
+
+.shadow (@width, @color, @top: 0, @left: 0) {
+    -webkit-box-shadow: @left @top @width @color;
+    -moz-box-shadow:    @left @top @width @color;
+    box-shadow:         @left @top @width @color;
+}
+
+/***
+    Transforms
+***/
+
+.transform (@param) {
+    -webkit-transform: @param;
+       -moz-transform: @param;
+            transform: @param;
+}
+
+.transform-origin (@origin) {
+    -webkit-transform-origin: @origin;
+       -moz-transform-origin: @origin;
+            transform-origin: @origin;
+}
+
+/***
+    Border image
+***/
+
+.border-image (@url, @iwidth, @bwidth) {
+    -webkit-border-image : @url @iwidth repeat;
+    -moz-border-image    : @url @iwidth repeat;
+    border-image         : @url @iwidth repeat;
+    border-width         : @bwidth;
+    background-clip      : padding-box;
+    border-style         : solid;
+}
+
+/***
+    Inset shadow helper
+***/
+
+.inset-shadow (@width, @color, @top: 0, @left: 0) {
+    -webkit-box-shadow: inset @left @top @width @color;
+       -moz-box-shadow: inset @left @top @width @color;
+            box-shadow: inset @left @top @width @color;
+}
+
+/***
+    Rounded corners
+***/
+
+.rounded-corners (@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}
+
+/***
+    Rotation
+***/
+
+.rotate (@radius) {
+    -webkit-transform: rotate(@radius);
+       -moz-transform: rotate(@radius);
+            transform: rotate(@radius);
+}
+
+/***
+    Circles
+***/
+
+.round() {
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+}
+
+/***
+    Gradient A.K.A. I NEED TO DO LESS TO SCORE WITH MY WIFE ON A MONDAY NIGHT
+***/
+.gradient (@top_color, @bottom_color, @start: 0%, @stop: 100%, @position: top, @w3c_position: to bottom) {
+    background-image: -moz-linear-gradient(@position, @top_color @start, @bottom_color @stop); // FF3.6+
+    background-image: -webkit-gradient(linear, left @position, left bottom, color-stop(@start, @top_color), color-stop(@stop, @bottom_color)); // Chrome,Safari4+
+    background-image: -webkit-linear-gradient(@position, @top_color @start, @bottom_color @stop); // Chrome10+,Safari5.1+
+    background-image: linear-gradient(@w3c_position, @top_color @start, @bottom_color @stop); // W3C
+    background-repeat: no-repeat;
+}
+
+/***
+    Text features
+***/
+.ellipsis {
+    white-space   : nowrap;
+    text-overflow : ellipsis;
+    overflow      : hidden;
+}
+
+.hide-text {
+    text-indent : 100%;
+    white-space : nowrap;
+    overflow    : hidden;
+}
+
+/***
+    Transparency
+***/
+
+.transparent (@percentage) { -moz-opacity: @percentage; -webkit-opacity: @percentage; opacity: @percentage; }
+
+/***
+    A fixed-size element which shows a background image and hides all content
+***/
+
+.image (@url: none) { background-image: @url; background-repeat: no-repeat; background-position: center center; text-align: left; text-indent: -9999px; overflow: hidden; }
+
+/***
+    Double border box
+
+    FIXME: This can be refactored into outline+border
+***/
+
+.double-border-box {
+    border  : solid 1px rgba(0, 0, 0, .2);
+    outline : none;
+    
+    > *:not(form) {
+        border           : solid 1px #333333;
+        background-color : #ffffff;
+    }
+
+    &:after { outline: none; }
+}
+
+/***
+    Right arrow down
+***/
+
+.right-arrow (@color: #000, @size: 8px, @right: 0) {
+    position: relative;
+    
+    &:after {
+        position: absolute;
+        top: 50%;
+        right: @right;
+        content: "";
+        width: 0;
+        height: 0;
+        margin: (-@size/2) 0 0;
+        border-left: @size solid transparent;
+        border-right: @size solid transparent;
+
+        border-top: @size solid @color;
+    }
+}
+
+.left-arrow (@color: #000, @size: 8px, @right: 0) {
+    position: relative;
+    
+    &:after {
+        position: absolute;
+        top: 50%;
+        left: @right;
+        content: "";
+        width: 0;
+        height: 0;
+        margin: (-@size/2) 0 0;
+        border-top: @size solid transparent;
+        border-bottom: @size solid transparent;
+
+        border-right: @size solid @color;
+    }
+}
+
+/***
+    Menu items
+***/
+.menu-item { float: left; text-align: center; }
+
+/***
+    Tab
+***/
+.tab { .menu-item; text-decoration: none; padding: 10px 0; }
+
+/***
+    Transition animations
+***/
+
+.transition (@params) {
+    -webkit-transition: @params;
+       -moz-transition: @params;
+         -o-transition: @params;
+            transition: @params;
+}
+
+.hw-accelerate () {
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+         -o-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.animation-duration (@duration) {
+    -webkit-animation-duration : @duration;
+       -moz-animation-duration : @duration;
+        -ms-animation-duration : @duration;
+         -o-animation-duration : @duration;
+            animation-duration : @duration;
+}
+
+.animation-name (@name) {
+    -webkit-animation-name: @name;
+       -moz-animation-name: @name;
+        -ms-animation-name: @name;
+         -o-animation-name: @name;
+            animation-name: @name;
+}
+
+.animation-iteration-count (@count) {
+    -webkit-animation-iteration-count: @count;
+       -moz-animation-iteration-count: @count;
+        -ms-animation-iteration-count: @count;
+         -o-animation-iteration-count: @count;
+            animation-iteration-count: @count;
+}
+
+.animation-timing-function (@easing) {
+    -webkit-animation-timing-function: @easing;
+       -moz-animation-timing-function: @easing;
+        -ms-animation-timing-function: @easing;
+         -o-animation-timing-function: @easing;
+            animation-timing-function: @easing;
+}
+
+.animation-fill-mode (@mode) {
+    -webkit-animation-fill-mode: @mode;
+       -moz-animation-fill-mode: @mode;
+        -ms-animation-fill-mode: @mode;
+         -o-animation-fill-mode: @mode;
+            animation-fill-mode: @mode;
+}
+
+.rounded-corners (@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}
+
+.animation-fadeInRight () {
+    0% {
+        .transparent(0);
+        -webkit-transform: translateX(150px);
+           -moz-transform: translateX(150px);
+            -ms-transform: translateX(150px);
+             -o-transform: translateX(150px);
+                transform: translateX(150px);
+    }
+
+    100% {
+        .transparent(100);
+        -webkit-transform: translateX(0);
+           -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+             -o-transform: translateX(0);
+                transform: translateX(0);
+    }
+}
+
+.animation-fadeOutRight () {
+    0% {
+        .transparent(100);
+        -webkit-transform: translateX(0);
+           -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+             -o-transform: translateX(0);
+                transform: translateX(0);
+    }
+
+    100% {
+        .transparent(0);
+        -webkit-transform: translateX(150px);
+           -moz-transform: translateX(150px);
+            -ms-transform: translateX(150px);
+             -o-transform: translateX(150px);
+                transform: translateX(150px);
+    }
+}
+
+.animation-fadeInLeft () {
+    0% {
+        .transparent(0);
+        -webkit-transform: translateX(-150px);
+           -moz-transform: translateX(-150px);
+            -ms-transform: translateX(-150px);
+             -o-transform: translateX(-150px);
+                transform: translateX(-150px);
+    }
+
+    100% {
+        .transparent(100);
+        -webkit-transform: translateX(0);
+           -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+             -o-transform: translateX(0);
+                transform: translateX(0);
+    }
+}
+
+.animation-fadeOutLeft () {
+    0% {
+        .transparent(100);
+        -webkit-transform: translateX(0);
+           -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+             -o-transform: translateX(0);
+                transform: translateX(0);
+    }
+
+    100% {
+        .transparent(0);
+        -webkit-transform: translateX(-150px);
+           -moz-transform: translateX(-150px);
+            -ms-transform: translateX(-150px);
+             -o-transform: translateX(-150px);
+                transform: translateX(-150px);
+    }
+}
+
+.animation-expandFrom70to100 {
+    from {
+        -webkit-transform: scale(0.7, 1);
+           -moz-transform: scale(0.7, 1);
+            -ms-transform: scale(0.7, 1);
+             -o-transform: scale(0.7, 1);
+                transform: scale(0.7, 1);
+    }
+
+    to {
+        -webkit-transform: scale(1, 1);
+           -moz-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+             -o-transform: scale(1, 1);
+                transform: scale(1, 1);
+    }
+}
+
+.reverse-animation-expandFrom70to100 {
+    from {
+        -webkit-transform: scale(1.42, 1);
+           -moz-transform: scale(1.42, 1);
+            -ms-transform: scale(1.42, 1);
+                transform: scale(1.42, 1);
+    }
+
+    to {
+        -webkit-transform: scale(1, 1);
+           -moz-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+                transform: scale(1, 1);
+    }
+}
+
+@-webkit-keyframes fadeInRight { .animation-fadeInRight; }
+@-moz-keyframes    fadeInRight { .animation-fadeInRight; }
+@-o-keyframes      fadeInRight { .animation-fadeInRight; }
+@keyframes         fadeInRight { .animation-fadeInRight; }
+
+@-webkit-keyframes fadeOutRight { .animation-fadeOutRight; }
+@-moz-keyframes    fadeOutRight { .animation-fadeOutRight; }
+@-o-keyframes      fadeOutRight { .animation-fadeOutRight; }
+@keyframes         fadeOutRight { .animation-fadeOutRight; }
+
+@-webkit-keyframes fadeInLeft { .animation-fadeInLeft; }
+@-moz-keyframes    fadeInLeft { .animation-fadeInLeft; }
+@-o-keyframes      fadeInLeft { .animation-fadeInLeft; }
+@keyframes         fadeInLeft { .animation-fadeInLeft; }
+
+@-webkit-keyframes fadeOutLeft { .animation-fadeOutLeft; }
+@-moz-keyframes    fadeOutLeft { .animation-fadeOutLeft; }
+@-o-keyframes      fadeOutLeft { .animation-fadeOutLeft; }
+@keyframes         fadeOutLeft { .animation-fadeOutLeft; }
+
+@-webkit-keyframes expandFrom70to100 { .animation-expandFrom70to100; }
+@-moz-keyframes    expandFrom70to100 { .animation-expandFrom70to100; }
+@-o-keyframes      expandFrom70to100 { .animation-expandFrom70to100; }
+@keyframes         expandFrom70to100 { .animation-expandFrom70to100; }
+
+@-webkit-keyframes reverse-expandFrom70to100 { .reverse-animation-expandFrom70to100; }
+@-moz-keyframes    reverse-expandFrom70to100 { .reverse-animation-expandFrom70to100; }
+@-o-keyframes      reverse-expandFrom70to100 { .reverse-animation-expandFrom70to100; }
+@keyframes         reverse-expandFrom70to100 { .reverse-animation-expandFrom70to100; }
+
+.animated {
+    &.fadeInRight  { .animation-name(fadeInRight);  }
+    &.fadeOutRight { .animation-name(fadeOutRight); }
+
+    &.fadeInLeft  { .animation-name(fadeInLeft);  }
+    &.fadeOutLeft { .animation-name(fadeOutLeft); }
+}
+
+.tabs {
+    .box; .whole;
+    height  : 100%;
+    z-index : 1;
+
+    menu {
+        .left; .bottom;
+        height: 40px;
+
+        a {
+            .animate-transition();
+            float               : left;
+            min-width           : 98px;
+            height              : 38px;
+            margin-right        : -1px;
+            padding             : 0 10px;
+            color               : #777777;
+            border              : solid 1px #cccccc;
+            border-bottom-color : transparent;
+            font-size           : 13px;
+            font-family         : 'Avenir Next LT Pro Regular';
+            text-align          : center;
+            line-height         : 38px;
+            text-transform      : uppercase;
+            text-decoration     : none;
+
+            &.selected {
+                height     : 40px;
+                margin-top : -1px;
+                background : #ffffff;
+                color      : #222222;
+            }
+
+            &:hover { color: #222222; }
+        }
+    }
+}

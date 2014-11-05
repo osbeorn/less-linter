@@ -1,91 +1,96 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileReader;
 import java.util.BitSet;
+import java.util.concurrent.Future;
+
+import javax.swing.JDialog;
 
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.misc.Nullable;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-/**
- * 
- * @author Benjamin
- *
- */
-public class Test
+
+public class Main
 {
-	public static void main(String[] args)
-	{
-		try
-		{		    
-			// read the test file ...
-			File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\LessLinter\\test\\test.less");
-			FileReader reader = new FileReader(file);
-		
-			// create an ANTLRInputStream
-			ANTLRInputStream source = new ANTLRInputStream(reader);
-			
-			// lex it
-			LessLexer lexer = new LessLexer(source);
-		    //BufferedTokenStream stream = new BufferedTokenStream(lexer);
-		    CommonTokenStream stream = new CommonTokenStream(lexer, Token.DEFAULT_CHANNEL);
-			//lexer.addErrorListener(new FailOnErrorListener());
-		    
-		    System.out.println(stream.getText());
-		    System.out.println();
-		    System.out.println();
-		    
-		    for (int i = 0; i < stream.size(); i++) {
-		    	System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
-		    }
-		    stream.seek(0);
-		    
-		    LessParser par = new LessParser(stream);
-	      	par.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
-	      	par.setBuildParseTree(true);
 
-		    par.addErrorListener(new FailOnErrorListener());
-		    
-		    LessParser.StylesheetContext stylesheet = par.stylesheet();
-		    
-	        stylesheet.inspect(par); // show in gui
-		    
-		    System.out.println();
-		    System.out.println();
-		    
-		    System.out.println("Listening and visiting:");
-		    
-		    ParseTreeWalker walker = new ParseTreeWalker();
-		    LessParserListenerImpl listener = new LessParserListenerImpl(stream);
-		    walker.walk(listener, stylesheet);
-		    		
-		    LessParserVisitorImpl visitor = new LessParserVisitorImpl(stream);
-		    visitor.visit(stylesheet);
-		    
-		    System.out.println("bla");
-		    //  return par.stylesheet();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+    public static void main(String[] args)
+    {
+        try
+        {           
+            // read the test file ...
+            File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\MyLessLinter\\test\\test.less");
+            FileReader reader = new FileReader(file);
+        
+            // create an ANTLRInputStream
+            ANTLRInputStream source = new ANTLRInputStream(reader);
+            
+            // lex it
+            MyLessLexer lexer = new MyLessLexer(source);
+            //BufferedTokenStream stream = new BufferedTokenStream(lexer);
+            CommonTokenStream stream = new CommonTokenStream(lexer, Token.DEFAULT_CHANNEL);
+            //lexer.addErrorListener(new FailOnErrorListener());
+            
+            System.out.println(stream.getText());
+            System.out.println();
+            System.out.println();
+            
+            for (int i = 0; i < stream.size(); i++) {
+                System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
+            }
+            stream.seek(0);
+            
+            MyLessParser par = new MyLessParser(stream);
+            par.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
+            par.setBuildParseTree(true);
+
+            par.addErrorListener(new FailOnErrorListener());
+            
+            MyLessParser.StylesheetContext stylesheet = par.stylesheet();
+            
+            Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
+            
+            Toolkit kit = Toolkit.getDefaultToolkit();
+            Dimension screenSize = kit.getScreenSize();
+            int screenHeight = screenSize.height;
+            int screenWidth = screenSize.width;
+
+            dialog.get().setSize(screenWidth, screenHeight);
+            dialog.get().setLocationRelativeTo(null);
+            /*
+            System.out.println();
+            System.out.println();
+            
+            System.out.println("Listening and visiting:");
+            
+            ParseTreeWalker walker = new ParseTreeWalker();
+            LessParserListenerImpl listener = new LessParserListenerImpl(stream);
+            walker.walk(listener, stylesheet);
+                    
+            LessParserVisitorImpl visitor = new LessParserVisitorImpl(stream);
+            visitor.visit(stylesheet);
+            */
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
 
 class FailOnErrorListener implements ANTLRErrorListener
 {
-	
+    
     @Override
     public void syntaxError(@NotNull Recognizer<?, ?> recognizer,
                             @Nullable Object o,
@@ -100,7 +105,7 @@ class FailOnErrorListener implements ANTLRErrorListener
         }
 
         System.err.println(sourceName+"line "+i+":"+i2+" "+s + ", " + o.toString());
-	  
+      
         System.err.println("Syntax error in detection.");
     }
 

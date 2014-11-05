@@ -15,8 +15,6 @@ statement
   	| variableDeclaration
   	;
 
-
-
 //Params to mixins, includes, etc
 params
   	: param (COMMA param)* Ellipsis?
@@ -56,7 +54,7 @@ paramOptionalValue
 //
 //
 commandStatement
-  	: (expression+ | '(' commandStatement ')') mathStatement?
+  	: (expression+ | LPAREN commandStatement RPAREN) mathStatement?
   	;
 
 mathCharacter
@@ -64,7 +62,10 @@ mathCharacter
   	;
 
 mathStatement
-  	: mathCharacter commandStatement
+    : mathCharacter commandStatement
+    | LPAREN (PLUS|MINUS)* mathStatement RPAREN
+//  	| mathCharacter? commandStatement (mathCharacter commandStatement)*
+//  	| LPAREN mathCharacter? commandStatement (mathCharacter commandStatement)* RPAREN
   	;
 
 expression
@@ -78,15 +79,13 @@ expression
   	| functionCall
   	;
 
-
 variableDeclaration
-  	: variableName COLON values ';'
+  	: variableName COLON values SEMI
   	;
-
 
 //Imports
 importDeclaration
-	: '@import' referenceUrl mediaTypes? ';'
+	: IMPORT referenceUrl mediaTypes? SEMI
 	;
 
 referenceUrl
@@ -99,17 +98,14 @@ mediaTypes
   	: (Identifier (COMMA Identifier)*)
   	;
 
-
 //Nested (stylesheets, etc)
 nested
- 	: '@' nest selectors BlockStart stylesheet BlockEnd
+ 	: AT nest selectors BlockStart stylesheet BlockEnd
 	;
 
 nest
-	: (Identifier | '&') Identifier* pseudo*
+	: (Identifier | AND) Identifier* pseudo*
 	;
-
-
 
 //Rules
 ruleset
@@ -117,7 +113,7 @@ ruleset
 	;
 
 block
-  	: BlockStart (property ';' | statement)* property? BlockEnd
+  	: BlockStart (property SEMI | statement)* property? BlockEnd
   	;
 
 selectors
@@ -134,10 +130,10 @@ selectorPrefix
 
 element
 	: identifier
-  	| '#' identifier
-  	| '.' identifier
-  	| '&'
-  	| '*'
+  	| HASH identifier
+  	| DOT identifier
+  	| AND
+  	| TIMES
 	;
 
 pseudo
@@ -146,13 +142,13 @@ pseudo
 	;
 
 attrib
-	: '[' Identifier (attribRelate (StringLiteral | Identifier))? ']'
+	: LBRACK Identifier (attribRelate (StringLiteral | Identifier))? RBRACK
 	;
 
 attribRelate
-	: '='
-	| '~='
-	| '|='
+	: EQ
+	| TILD_EQ
+	| PIPE_EQ
 	;
 
 identifier
@@ -184,7 +180,6 @@ url
 measurement
  	: Number Unit?
   	;
-
 
 functionCall
 	: Identifier LPAREN values? RPAREN

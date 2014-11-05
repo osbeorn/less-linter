@@ -23,4 +23,13 @@ public class GeneralHelper
 	{
 	    return String.format("%s - %s - [%d:%d]", warning, desc, posToken.getLine(), posToken.getCharPositionInLine());
 	}
+	
+	public static boolean IsSelectorDepthOverThanLimit(String word, int depth)
+	{
+	    if (word == null || word.isEmpty())
+	        return false;
+	    
+	    String[] splits = word.split("\\.");
+	    return splits.length-1 > depth;
+	}
 }
