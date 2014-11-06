@@ -9,7 +9,7 @@ options {
 }
 
 stylesheet
-    : statement*
+    : statement* EOF
     ;
     
 statement
@@ -39,7 +39,8 @@ expression
     | functionCall
     | measurement
     | color
-    | url
+//    | url
+//    | format
     | IDENT
     | STRING_LITERAL
     | NULL
@@ -128,7 +129,11 @@ block
 property
     : element
 //    | SRC COLON url_format
-    | IDENT COLON values
+    | IDENT COLON propertyValues
+    ;
+
+propertyValues
+    : values (COMMA values)* 
     ;
 
 functionCall
@@ -153,17 +158,17 @@ values
     : expressionStatement expressionStatement*
     ;
 
-url_format
-    : URL FORMAT (COMMA URL FORMAT)* SEMI
-    ;
+//url_format
+//    : URL FORMAT (COMMA URL FORMAT)* SEMI
+//    ;
 
-url
-    : URL_START URL URL_END
-    ;
+//url
+//    : URL_START URL URL_END
+//    ;
 
-format
-    : FORMAT_START FORMAT FORMAT_END
-    ;
+//format
+//    : FORMAT_START FORMAT FORMAT_END
+//    ;
 
 color
     : HASH (IDENT | NUMBER)

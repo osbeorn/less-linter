@@ -120,6 +120,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -127,19 +140,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUrl_format(@NotNull MyLessParser.Url_formatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUrl_format(@NotNull MyLessParser.Url_formatContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -302,19 +302,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormat(@NotNull MyLessParser.FormatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFormat(@NotNull MyLessParser.FormatContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAttrib(@NotNull MyLessParser.AttribContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -322,19 +309,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAttrib(@NotNull MyLessParser.AttribContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUrl(@NotNull MyLessParser.UrlContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUrl(@NotNull MyLessParser.UrlContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

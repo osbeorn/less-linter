@@ -51,7 +51,7 @@ public class Main
             stream.seek(0);
             
             MyLessParser par = new MyLessParser(stream);
-            par.getInterpreter().setPredictionMode(PredictionMode.LL_EXACT_AMBIG_DETECTION);
+            par.getInterpreter().setPredictionMode(PredictionMode.SLL);
             par.setBuildParseTree(true);
 
             par.addErrorListener(new FailOnErrorListener());

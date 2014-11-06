@@ -96,6 +96,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMathCharacter(@NotNull MyLessParser.MathCharacterContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#propertyValues}.
+	 * @param ctx the parse tree
+	 */
+	void enterPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#propertyValues}.
+	 * @param ctx the parse tree
+	 */
+	void exitPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
@@ -105,17 +116,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MyLessParser#url_format}.
-	 * @param ctx the parse tree
-	 */
-	void enterUrl_format(@NotNull MyLessParser.Url_formatContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#url_format}.
-	 * @param ctx the parse tree
-	 */
-	void exitUrl_format(@NotNull MyLessParser.Url_formatContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#values}.
@@ -250,17 +250,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitProperty(@NotNull MyLessParser.PropertyContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MyLessParser#format}.
-	 * @param ctx the parse tree
-	 */
-	void enterFormat(@NotNull MyLessParser.FormatContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#format}.
-	 * @param ctx the parse tree
-	 */
-	void exitFormat(@NotNull MyLessParser.FormatContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link MyLessParser#attrib}.
 	 * @param ctx the parse tree
 	 */
@@ -270,17 +259,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAttrib(@NotNull MyLessParser.AttribContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MyLessParser#url}.
-	 * @param ctx the parse tree
-	 */
-	void enterUrl(@NotNull MyLessParser.UrlContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#url}.
-	 * @param ctx the parse tree
-	 */
-	void exitUrl(@NotNull MyLessParser.UrlContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#attribRelate}.

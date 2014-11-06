@@ -39,13 +39,13 @@ MINUS           : '-';
 PERC            : '%';
 QUOT            : '"';
 
-URL_START
-    : 'url' LPAREN -> pushMode(URL_STARTED)
-    ;
+//URL_START
+//    : 'url' LPAREN -> pushMode(URL_STARTED)
+//    ;
   
-FORMAT_START
-    : 'format' LPAREN -> pushMode(FORMAT_STARTED)
-    ;
+//FORMAT_START
+//    : 'format' LPAREN -> pushMode(FORMAT_STARTED)
+//    ;
 
 EQEQ            : '==';
 NOTEQ           : '!=';
@@ -58,7 +58,7 @@ WHEN            : 'when';
 IMPORT          : '@import';
 FONTFACE        : '@font-face';
 
-SRC             : 'src';
+//SRC             : 'src';
 
 IDENT
     :   (('_' | 'a'..'z'| 'A'..'Z' | '\u0100'..'\ufffe' )
@@ -100,10 +100,10 @@ ML_COMMENT
     :   '/*' .*? '*/' -> skip
     ;
     
-mode URL_STARTED;
-URL_END : RPAREN -> popMode;
-URL     : STRING | (~(')' | '\n' | '\r' | ';'))+;
+//mode URL_STARTED;
+//URL_END : RPAREN -> popMode;
+//URL     : STRING | (~(')' | '\n' | '\r' | ';'))+;
 
-mode FORMAT_STARTED;
-FORMAT_END : RPAREN -> popMode;
-FORMAT : STRING;
+//mode FORMAT_STARTED;
+//FORMAT_END : RPAREN -> popMode;
+//FORMAT : STRING | (~(')' | '\n' | '\r' | ';'))+;
