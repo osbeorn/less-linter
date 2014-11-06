@@ -42,6 +42,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMixinCall(@NotNull MyLessParser.MixinCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMixinCall(@NotNull MyLessParser.MixinCallContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableStatement(@NotNull MyLessParser.VariableStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -133,6 +146,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCallParam(@NotNull MyLessParser.CallParamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallParam(@NotNull MyLessParser.CallParamContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -198,6 +224,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCallParams(@NotNull MyLessParser.CallParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallParams(@NotNull MyLessParser.CallParamsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMixin(@NotNull MyLessParser.MixinContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -211,19 +250,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionCallParam(@NotNull MyLessParser.FunctionCallParamContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctionCallParam(@NotNull MyLessParser.FunctionCallParamContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCommaValues(@NotNull MyLessParser.CommaValuesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -231,19 +257,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFunctionCallParams(@NotNull MyLessParser.FunctionCallParamsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctionCallParams(@NotNull MyLessParser.FunctionCallParamsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

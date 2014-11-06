@@ -74,7 +74,7 @@ selectors
     ;
 
 selector
-    : element+ (selectorPrefix element)* attrib* pseudo* mixin?
+    : element* (selectorPrefix element)* attrib* pseudo* mixin?
     ;
 
 mixin
@@ -102,9 +102,11 @@ element
     : IDENT//identifier
     | HASH IDENT//identifier
     | DOT IDENT//identifier
+    | AT IDENT
     | AND
     | TIMES
     | FONTFACE
+    | measurement
     ;
     
 pseudo
@@ -127,8 +129,8 @@ block
     ;
 
 property
-    : element
-//    | SRC COLON url_format
+//    : element
+    : mixinCall
     | IDENT COLON propertyValues
     ;
 
@@ -136,15 +138,19 @@ propertyValues
     : values (COMMA values)* 
     ;
 
+mixinCall
+    : element (LPAREN callParams? RPAREN)?
+    ;
+
 functionCall
-    : IDENT LPAREN functionCallParams? RPAREN
+    : IDENT LPAREN callParams? RPAREN
     ;
 
-functionCallParams
-    : functionCallParam (COMMA functionCallParam)*
+callParams
+    : callParam (COMMA callParam)*
     ;
 
-functionCallParam
+callParam
     : values
     ;
 

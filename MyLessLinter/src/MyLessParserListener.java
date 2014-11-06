@@ -30,6 +30,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitSelector(@NotNull MyLessParser.SelectorContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mixinCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterMixinCall(@NotNull MyLessParser.MixinCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mixinCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitMixinCall(@NotNull MyLessParser.MixinCallContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#variableStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -107,6 +118,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#callParam}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallParam(@NotNull MyLessParser.CallParamContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#callParam}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallParam(@NotNull MyLessParser.CallParamContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
@@ -162,6 +184,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#callParams}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallParams(@NotNull MyLessParser.CallParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#callParams}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallParams(@NotNull MyLessParser.CallParamsContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#mixin}.
 	 * @param ctx the parse tree
 	 */
@@ -173,17 +206,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMixin(@NotNull MyLessParser.MixinContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MyLessParser#functionCallParam}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionCallParam(@NotNull MyLessParser.FunctionCallParamContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#functionCallParam}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionCallParam(@NotNull MyLessParser.FunctionCallParamContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link MyLessParser#commaValues}.
 	 * @param ctx the parse tree
 	 */
@@ -193,17 +215,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MyLessParser#functionCallParams}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionCallParams(@NotNull MyLessParser.FunctionCallParamsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#functionCallParams}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionCallParams(@NotNull MyLessParser.FunctionCallParamsContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#element}.
