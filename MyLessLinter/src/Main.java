@@ -118,7 +118,8 @@ class FailOnErrorListener implements ANTLRErrorListener
                                 @Nullable BitSet bitSet,
                                 @NotNull ATNConfigSet atnConfigs)
     {
-        System.err.println("line "+i+":"+i2);
+        Token tok = parser.getCurrentToken();
+        System.err.println("line "+ tok.getLine() +":"+ tok.getCharPositionInLine() + " --> " + tok.getText());
         System.err.println("Ambiguity error in detection.");
     }
 

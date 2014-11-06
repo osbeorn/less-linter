@@ -8,8 +8,51 @@
 @nice-blue: 12;
 @light-blue: (-@nice-blue/2 + 111) * 12;
 
-.selector {
+.overlay.tint { background-color: rgba(0,0,0,0.5); }
+
+.image (@url: none) { background-image: @url; background-repeat: no-repeat; background-position: center center; text-align: left; text-indent: -9999px; overflow: hidden; }
+
+.gradient (@top_color, @bottom_color, @start: 0%, @stop: 100%, @position: top, @w3c_position: to bottom) {
+    background-image: -moz-linear-gradient(@position, @top_color @start, @bottom_color @stop); // FF3.6+
+    background-image: -webkit-gradient(linear, left @position, left bottom, color-stop(@start, @top_color), color-stop(@stop, @bottom_color)); // Chrome,Safari4+
+    background-image: -webkit-linear-gradient(@position, @top_color @start, @bottom_color @stop); // Chrome10+,Safari5.1+
+    background-image: linear-gradient(@w3c_position, @top_color @start, @bottom_color @stop); // W3C
+    background-repeat: no-repeat;
+}
+
+.transform {
+    -webkit-transform: @param;
+       -moz-transform: @param;
+            transform: @param;
+}
+
+/*
+input[type='text'], #selector {
+    background-color: spin(lighten(@base, 25%), 8);
+    content      : "•";
     padding: 5px 6px 1px 1px;
     background: url("@{images}/white-sand.png");
     background : url(img/loader_dots_white_L.gif) center no-repeat transparent;
+    
+    .loading-message {
+        width      : 100%;
+        text-align : center;
+        color      : #444;
+        font       : normal 13px Arial;
+    }
+    
+    &:hover:after, &:hover:before {
+        visibility : visible;
+        opacity    : 1;
+    }
 }
+*/
+/*
+@font-face {
+    font-family: 'Helvetica Neue LT Pro 25 Ultra Light';
+    src: url('fonts/helveticaneueltpro-ultlt-webfont.woff') format('woff'),
+         url('fonts/helveticaneueltpro-ultlt-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+*/

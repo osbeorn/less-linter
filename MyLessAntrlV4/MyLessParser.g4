@@ -4,7 +4,9 @@
 
 parser grammar MyLessParser;
 
-options { tokenVocab=MyLessLexer; }
+options {
+    tokenVocab=MyLessLexer;
+}
 
 stylesheet
     : statement*
@@ -21,7 +23,7 @@ importStatement
     ;
     
 variableStatement
-    : variableName COLON expressionStatement (COMMA expressionStatement)* SEMI
+    : variableName COLON commaValues SEMI
     ;
     
 variableName
@@ -31,17 +33,35 @@ variableName
 measurement
     : NUMBER UNIT?
     ;
-    
-expressionStatement
-    : expressionStatement (PLUS|MINUS|TIMES|DIV) expressionStatement
-    | LPAREN expressionStatement RPAREN
-    | (PLUS|MINUS) expressionStatement
-    | variableName
+
+expression
+    : variableName
     | functionCall
     | measurement
+    | color
     | url
     | IDENT
     | STRING_LITERAL
+    | NULL
+    ;
+    
+expressionStatement
+    : expressionStatement mathCharacter expressionStatement
+    | LPAREN expressionStatement RPAREN
+    | mathPrefixCharacter expressionStatement
+    | expression
+    ;
+    
+mathCharacter
+    : PLUS
+    | MINUS
+    | TIMES
+    | DIV
+    ;
+    
+mathPrefixCharacter
+    : PLUS
+    | MINUS
     ;
     
 ruleStatement
@@ -53,7 +73,24 @@ selectors
     ;
 
 selector
-    : element+ (selectorPrefix element)* attrib* pseudo?
+    : element+ (selectorPrefix element)* attrib* pseudo* mixin?
+    ;
+
+mixin
+    : LPAREN mixinParams? RPAREN
+    ;
+
+mixinParams
+    : mixinParam (COMMA mixinParam)*
+    ;
+
+mixinParam
+    : mixinParamName (COLON values)?
+    ;
+
+mixinParamName
+    : IDENT
+    | variableName
     ;
 
 selectorPrefix
@@ -66,6 +103,7 @@ element
     | DOT IDENT//identifier
     | AND
     | TIMES
+    | FONTFACE
     ;
     
 pseudo
@@ -89,25 +127,44 @@ block
 
 property
     : element
-    | IDENT COLON whiteSpaceSeparatedValues
+//    | SRC COLON url_format
+    | IDENT COLON values
     ;
 
 functionCall
-    : IDENT LPAREN commaSeparatedValues? RPAREN
+    : IDENT LPAREN functionCallParams? RPAREN
     ;
 
-commaSeparatedValues
+functionCallParams
+    : functionCallParam (COMMA functionCallParam)*
+    ;
+
+functionCallParam
+    : values
+    ;
+
+// comma separated values
+commaValues
     : expressionStatement (COMMA expressionStatement)*
     ;
 
-whiteSpaceSeparatedValues
-    : expressionStatement (expressionStatement)*
+// whitespace separated values
+values
+    : expressionStatement expressionStatement*
+    ;
+
+url_format
+    : URL FORMAT (COMMA URL FORMAT)* SEMI
     ;
 
 url
     : URL_START URL URL_END
     ;
 
+format
+    : FORMAT_START FORMAT FORMAT_END
+    ;
+
 color
-    : HASH IDENT
+    : HASH (IDENT | NUMBER)
     ;
