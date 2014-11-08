@@ -94,6 +94,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitStylesheet(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitStylesheet(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StylesheetContext stylesheet() throws RecognitionException {
@@ -151,6 +156,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -212,6 +222,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitImportStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitImportStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ImportStatementContext importStatement() throws RecognitionException {
@@ -261,6 +276,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitKeyword(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitKeyword(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final KeywordContext keyword() throws RecognitionException {
@@ -306,6 +326,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVariableStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVariableStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VariableStatementContext variableStatement() throws RecognitionException {
@@ -346,6 +371,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVariableName(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVariableName(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VariableNameContext variableName() throws RecognitionException {
@@ -383,6 +413,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMeasurement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMeasurement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -441,6 +476,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -543,6 +583,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitExpressionStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitExpressionStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -659,6 +704,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMathCharacter(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMathCharacter(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MathCharacterContext mathCharacter() throws RecognitionException {
@@ -706,6 +756,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitBoolCharacter(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitBoolCharacter(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final BoolCharacterContext boolCharacter() throws RecognitionException {
@@ -748,6 +803,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMathPrefixCharacter(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMathPrefixCharacter(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -796,6 +856,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitRuleStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitRuleStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final RuleStatementContext ruleStatement() throws RecognitionException {
@@ -841,6 +906,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelectors(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelectors(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -921,6 +991,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelector(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelector(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1031,6 +1106,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixin(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixin(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MixinContext mixin() throws RecognitionException {
@@ -1079,6 +1159,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuards(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuards(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1129,6 +1214,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuardsList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuardsList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1215,6 +1305,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuard(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuard(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MixinGuardContext mixinGuard() throws RecognitionException {
@@ -1270,6 +1365,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParams(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParams(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1328,6 +1428,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParam(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParam(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MixinParamContext mixinParam() throws RecognitionException {
@@ -1376,6 +1481,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParamName(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParamName(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1428,6 +1538,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelectorPrefix(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelectorPrefix(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectorPrefixContext selectorPrefix() throws RecognitionException {
@@ -1477,6 +1592,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitElement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitElement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1566,6 +1686,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPseudo(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPseudo(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PseudoContext pseudo() throws RecognitionException {
@@ -1641,6 +1766,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitAttrib(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitAttrib(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AttribContext attrib() throws RecognitionException {
@@ -1695,6 +1825,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitAttribRelate(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitAttribRelate(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1754,6 +1889,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitBlock(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitBlock(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1839,6 +1979,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitProperty(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitProperty(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PropertyContext property() throws RecognitionException {
@@ -1912,6 +2057,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPropertyIdent(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPropertyIdent(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PropertyIdentContext propertyIdent() throws RecognitionException {
@@ -1979,6 +2129,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVarInterpolation(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVarInterpolation(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VarInterpolationContext varInterpolation() throws RecognitionException {
@@ -2025,6 +2180,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPropertyValues(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPropertyValues(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2083,6 +2243,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinCall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2143,6 +2308,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitFunctionCall(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitFunctionCall(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FunctionCallContext functionCall() throws RecognitionException {
@@ -2199,6 +2369,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCallParams(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCallParams(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CallParamsContext callParams() throws RecognitionException {
@@ -2252,6 +2427,11 @@ public class MyLessParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCallParam(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCallParam(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CallParamContext callParam() throws RecognitionException {
@@ -2296,6 +2476,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCommaValues(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCommaValues(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2352,6 +2537,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitValues(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitValues(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2410,6 +2600,11 @@ public class MyLessParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitColor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitColor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

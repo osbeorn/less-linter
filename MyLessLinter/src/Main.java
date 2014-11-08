@@ -19,6 +19,7 @@ import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.misc.Nullable;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 
 public class Main
@@ -29,7 +30,7 @@ public class Main
         try
         {           
             // read the test file ...
-            File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\MyLessLinter\\test\\types.less");
+            File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\MyLessLinter\\test\\test.less");
             FileReader reader = new FileReader(file);
         
             // create an ANTLRInputStream
@@ -58,16 +59,16 @@ public class Main
             
             MyLessParser.StylesheetContext stylesheet = par.stylesheet();
             
-            Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
+            //Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
             
-            Toolkit kit = Toolkit.getDefaultToolkit();
-            Dimension screenSize = kit.getScreenSize();
-            int screenHeight = screenSize.height;
-            int screenWidth = screenSize.width;
+            //Toolkit kit = Toolkit.getDefaultToolkit();
+            //Dimension screenSize = kit.getScreenSize();
+            //int screenHeight = screenSize.height;
+            //int screenWidth = screenSize.width;
 
-            dialog.get().setSize(screenWidth, screenHeight);
-            dialog.get().setLocationRelativeTo(null);
-            /*
+            //dialog.get().setSize(screenWidth, screenHeight);
+            //dialog.get().setLocationRelativeTo(null);
+            
             System.out.println();
             System.out.println();
             
@@ -79,7 +80,7 @@ public class Main
                     
             LessParserVisitorImpl visitor = new LessParserVisitorImpl(stream);
             visitor.visit(stylesheet);
-            */
+            
         }
         catch(Exception e)
         {
