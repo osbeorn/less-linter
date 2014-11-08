@@ -81,6 +81,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPseudo(@NotNull MyLessParser.PseudoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPseudo(@NotNull MyLessParser.PseudoContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpressionStatement(@NotNull MyLessParser.ExpressionStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -94,13 +107,13 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPseudo(@NotNull MyLessParser.PseudoContext ctx) { }
+	@Override public void enterBoolCharacter(@NotNull MyLessParser.BoolCharacterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPseudo(@NotNull MyLessParser.PseudoContext ctx) { }
+	@Override public void exitBoolCharacter(@NotNull MyLessParser.BoolCharacterContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -146,6 +159,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCallParam(@NotNull MyLessParser.CallParamContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -179,6 +205,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitValues(@NotNull MyLessParser.ValuesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMixinGuardsList(@NotNull MyLessParser.MixinGuardsListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMixinGuardsList(@NotNull MyLessParser.MixinGuardsListContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -302,6 +341,32 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMixinGuard(@NotNull MyLessParser.MixinGuardContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMixinGuard(@NotNull MyLessParser.MixinGuardContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterKeyword(@NotNull MyLessParser.KeywordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitKeyword(@NotNull MyLessParser.KeywordContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProperty(@NotNull MyLessParser.PropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -367,6 +432,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterColor(@NotNull MyLessParser.ColorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -380,19 +458,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSelectors(@NotNull MyLessParser.SelectorsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSelectors(@NotNull MyLessParser.SelectorsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMathPrefixCharacter(@NotNull MyLessParser.MathPrefixCharacterContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -400,6 +465,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMathPrefixCharacter(@NotNull MyLessParser.MathPrefixCharacterContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSelectors(@NotNull MyLessParser.SelectorsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSelectors(@NotNull MyLessParser.SelectorsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -426,6 +504,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSelectorPrefix(@NotNull MyLessParser.SelectorPrefixContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarInterpolation(@NotNull MyLessParser.VarInterpolationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarInterpolation(@NotNull MyLessParser.VarInterpolationContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

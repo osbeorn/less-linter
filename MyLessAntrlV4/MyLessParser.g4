@@ -19,7 +19,11 @@ statement
     ;
     
 importStatement
-    : IMPORT STRING_LITERAL SEMI
+    : IMPORT keyword? STRING_LITERAL SEMI
+    ;
+    
+keyword
+    : LPAREN IDENT RPAREN
     ;
     
 variableStatement
@@ -48,6 +52,7 @@ expression
     
 expressionStatement
     : expressionStatement mathCharacter expressionStatement
+    | expressionStatement boolCharacter expressionStatement
     | LPAREN expressionStatement RPAREN
     | mathPrefixCharacter expressionStatement
     | expression
@@ -58,6 +63,15 @@ mathCharacter
     | MINUS
     | TIMES
     | DIV
+    ;
+
+boolCharacter
+    : GT
+    | LT
+    | GTEQ
+    | LTEQ
+    | EQ
+    | NOTEQ
     ;
     
 mathPrefixCharacter
@@ -74,11 +88,24 @@ selectors
     ;
 
 selector
-    : element* (selectorPrefix element)* attrib* pseudo* mixin?
+    : element* (selectorPrefix element)* attrib* pseudo* mixin? mixinGuards?
     ;
 
 mixin
     : LPAREN mixinParams? RPAREN
+    ;
+
+mixinGuards
+    : WHEN mixinGuardsList
+    ;
+
+mixinGuardsList
+    : mixinGuard (ANDW mixinGuard)*
+    | mixinGuard (COMMA mixinGuard)*
+    ;
+    
+mixinGuard
+    : NOTW? LPAREN expressionStatement RPAREN
     ;
 
 mixinParams
@@ -105,12 +132,12 @@ element
     | AT IDENT
     | AND
     | TIMES
-    | FONTFACE
+
     | measurement
     ;
     
 pseudo
-    : (COLON|COLONCOLON) IDENT//Identifier
+    : (COLON|COLONCOLON) (IDENT|NOTW)//Identifier
     | (COLON|COLONCOLON) functionCall
     ;
 
@@ -129,9 +156,17 @@ block
     ;
 
 property
-//    : element
-    : mixinCall
-    | IDENT COLON propertyValues
+    : mixinCall IMPORTANT?
+    | propertyIdent COLON propertyValues IMPORTANT?
+    ;
+
+propertyIdent
+    : IDENT
+    | IDENT? varInterpolation IDENT?
+    ;
+
+varInterpolation
+    : INTERPOLATION_START INTERPOLATION INTERPOLATION_END
     ;
 
 propertyValues
@@ -177,5 +212,5 @@ values
 //    ;
 
 color
-    : HASH (IDENT | NUMBER)
+    : HASH (IDENT | NUMBER)+
     ;

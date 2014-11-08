@@ -63,6 +63,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitVariableName(@NotNull MyLessParser.VariableNameContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#pseudo}.
+	 * @param ctx the parse tree
+	 */
+	void enterPseudo(@NotNull MyLessParser.PseudoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#pseudo}.
+	 * @param ctx the parse tree
+	 */
+	void exitPseudo(@NotNull MyLessParser.PseudoContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#expressionStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -74,15 +85,15 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitExpressionStatement(@NotNull MyLessParser.ExpressionStatementContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MyLessParser#pseudo}.
+	 * Enter a parse tree produced by {@link MyLessParser#boolCharacter}.
 	 * @param ctx the parse tree
 	 */
-	void enterPseudo(@NotNull MyLessParser.PseudoContext ctx);
+	void enterBoolCharacter(@NotNull MyLessParser.BoolCharacterContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MyLessParser#pseudo}.
+	 * Exit a parse tree produced by {@link MyLessParser#boolCharacter}.
 	 * @param ctx the parse tree
 	 */
-	void exitPseudo(@NotNull MyLessParser.PseudoContext ctx);
+	void exitBoolCharacter(@NotNull MyLessParser.BoolCharacterContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#block}.
@@ -118,6 +129,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#propertyIdent}.
+	 * @param ctx the parse tree
+	 */
+	void enterPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#propertyIdent}.
+	 * @param ctx the parse tree
+	 */
+	void exitPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#callParam}.
 	 * @param ctx the parse tree
 	 */
@@ -149,6 +171,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValues(@NotNull MyLessParser.ValuesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mixinGuardsList}.
+	 * @param ctx the parse tree
+	 */
+	void enterMixinGuardsList(@NotNull MyLessParser.MixinGuardsListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mixinGuardsList}.
+	 * @param ctx the parse tree
+	 */
+	void exitMixinGuardsList(@NotNull MyLessParser.MixinGuardsListContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#importStatement}.
@@ -250,6 +283,28 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMixinParams(@NotNull MyLessParser.MixinParamsContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mixinGuard}.
+	 * @param ctx the parse tree
+	 */
+	void enterMixinGuard(@NotNull MyLessParser.MixinGuardContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mixinGuard}.
+	 * @param ctx the parse tree
+	 */
+	void exitMixinGuard(@NotNull MyLessParser.MixinGuardContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void enterKeyword(@NotNull MyLessParser.KeywordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void exitKeyword(@NotNull MyLessParser.KeywordContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#property}.
 	 * @param ctx the parse tree
 	 */
@@ -305,6 +360,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitStatement(@NotNull MyLessParser.StatementContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mixinGuards}.
+	 * @param ctx the parse tree
+	 */
+	void enterMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mixinGuards}.
+	 * @param ctx the parse tree
+	 */
+	void exitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#color}.
 	 * @param ctx the parse tree
 	 */
@@ -316,17 +382,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitColor(@NotNull MyLessParser.ColorContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link MyLessParser#selectors}.
-	 * @param ctx the parse tree
-	 */
-	void enterSelectors(@NotNull MyLessParser.SelectorsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#selectors}.
-	 * @param ctx the parse tree
-	 */
-	void exitSelectors(@NotNull MyLessParser.SelectorsContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link MyLessParser#mathPrefixCharacter}.
 	 * @param ctx the parse tree
 	 */
@@ -336,6 +391,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMathPrefixCharacter(@NotNull MyLessParser.MathPrefixCharacterContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#selectors}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelectors(@NotNull MyLessParser.SelectorsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#selectors}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelectors(@NotNull MyLessParser.SelectorsContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#mixinParam}.
@@ -358,4 +424,15 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectorPrefix(@NotNull MyLessParser.SelectorPrefixContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#varInterpolation}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarInterpolation(@NotNull MyLessParser.VarInterpolationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#varInterpolation}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarInterpolation(@NotNull MyLessParser.VarInterpolationContext ctx);
 }

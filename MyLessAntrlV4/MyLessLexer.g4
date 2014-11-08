@@ -39,6 +39,10 @@ MINUS           : '-';
 PERC            : '%';
 QUOT            : '"';
 
+INTERPOLATION_START
+  : '@{' -> pushMode(INTERPOLATION_STARTED)
+  ;
+
 //URL_START
 //    : 'url' LPAREN -> pushMode(URL_STARTED)
 //    ;
@@ -49,6 +53,10 @@ QUOT            : '"';
 
 EQEQ            : '==';
 NOTEQ           : '!=';
+GTEQ            : '>=';
+LTEQ            : '<=';
+ANDW            : 'and';
+NOTW            : 'not';
 
 EQ              : '=';
 PIPE_EQ         : '|=';
@@ -56,7 +64,7 @@ TILD_EQ         : '~=';
 
 WHEN            : 'when';
 IMPORT          : '@import';
-FONTFACE        : '@font-face';
+IMPORTANT       : '!important';
 
 //SRC             : 'src';
 
@@ -99,6 +107,10 @@ SL_COMMENT
 ML_COMMENT
     :   '/*' .*? '*/' -> skip
     ;
+    
+mode INTERPOLATION_STARTED;
+INTERPOLATION_END : RCURLY -> popMode;
+INTERPOLATION : IDENT;
     
 //mode URL_STARTED;
 //URL_END : RPAREN -> popMode;
