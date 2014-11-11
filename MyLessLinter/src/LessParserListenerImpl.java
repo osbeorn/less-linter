@@ -33,7 +33,7 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	
 	@Override
 	public void enterProperty(MyLessParser.PropertyContext ctx)
-	{	
+	{		    
 		// check if selectors use all lowercase letters
 		if (!GeneralHelper.IsLowerCase(ctx.getText()))
 		{
@@ -45,6 +45,8 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	public void enterBlock(MyLessParser.BlockContext ctx)
 	{
 	    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
+	    
+	    formattingHelper.checkPropertiesGroupOrder(ctx);
 	}
 	
 	@Override
@@ -59,6 +61,8 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	    formattingHelper.checkRuleLinePosition(ctx);
 	    
 	    formattingHelper.checkBlockClosingBracketLocation(ctx);
+	    
+	    formattingHelper.checkNewLineAfterMultiLineStatement(ctx);
 	}
 	
 	@Override

@@ -273,6 +273,14 @@ public class MyLessParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impl
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitAttrib(@NotNull MyLessParser.AttribContext ctx) { return visitChildren(ctx); }
 
 	/**

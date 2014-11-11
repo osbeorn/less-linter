@@ -58,7 +58,7 @@ public class Main
             par.addErrorListener(new FailOnErrorListener());
             
             MyLessParser.StylesheetContext stylesheet = par.stylesheet();
-            
+            /*
             Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
             
             Toolkit kit = Toolkit.getDefaultToolkit();
@@ -71,7 +71,7 @@ public class Main
             
             System.out.println();
             System.out.println();
-            
+            */
             System.out.println("Listening and visiting:");
             
             ParseTreeWalker walker = new ParseTreeWalker();

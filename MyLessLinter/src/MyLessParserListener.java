@@ -360,6 +360,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitProperty(@NotNull MyLessParser.PropertyContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#varInterpolationIdent}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#varInterpolationIdent}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#attrib}.
 	 * @param ctx the parse tree
 	 */

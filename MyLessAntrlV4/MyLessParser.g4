@@ -177,8 +177,8 @@ block
     ;
 
 property
-    : mixinCall IMPORTANT?
-    | propertyIdent COLON propertyValues IMPORTANT?
+    : mixinCall
+    | propertyStatement
     ;
 
 propertyStatement
@@ -187,7 +187,11 @@ propertyStatement
 
 propertyIdent
     : IDENT
-    | IDENT? varInterpolation IDENT?
+    | varInterpolationIdent 
+    ;
+
+varInterpolationIdent
+    : IDENT? varInterpolation IDENT?
     ;
 
 varInterpolation
@@ -199,7 +203,7 @@ propertyValues
     ;
 
 mixinCall
-    : element (LPAREN callParams? RPAREN)?
+    : element (LPAREN callParams? RPAREN)? IMPORTANT?
     ;
 
 functionCall

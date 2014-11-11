@@ -235,6 +235,13 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitProperty(@NotNull MyLessParser.PropertyContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MyLessParser#varInterpolationIdent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MyLessParser#attrib}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

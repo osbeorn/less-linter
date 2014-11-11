@@ -432,6 +432,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAttrib(@NotNull MyLessParser.AttribContext ctx) { }
 	/**
 	 * {@inheritDoc}
