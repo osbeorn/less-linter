@@ -81,6 +81,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPseudo(@NotNull MyLessParser.PseudoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -224,6 +237,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterImportStatement(@NotNull MyLessParser.ImportStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -244,19 +270,6 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStylesheet(@NotNull MyLessParser.StylesheetContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -289,6 +302,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMediaStatement(@NotNull MyLessParser.MediaStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMediaStatement(@NotNull MyLessParser.MediaStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCommaValues(@NotNull MyLessParser.CommaValuesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -296,6 +322,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -335,6 +374,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMixinParams(@NotNull MyLessParser.MixinParamsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -439,6 +491,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMediaQueryExpression(@NotNull MyLessParser.MediaQueryExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMediaQueryExpression(@NotNull MyLessParser.MediaQueryExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

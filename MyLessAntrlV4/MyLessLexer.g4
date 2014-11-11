@@ -64,6 +64,8 @@ TILD_EQ         : '~=';
 
 WHEN            : 'when';
 IMPORT          : '@import';
+MEDIA           : '@media';
+ONLY            : 'only';
 IMPORTANT       : '!important';
 
 //SRC             : 'src';

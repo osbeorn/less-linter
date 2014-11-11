@@ -1,3 +1,4 @@
+
 public class ColorHelper
 {
 	public static boolean IsLowerCase(String word)

@@ -42,14 +42,14 @@ public class Main
             CommonTokenStream stream = new CommonTokenStream(lexer, Token.DEFAULT_CHANNEL);
             //lexer.addErrorListener(new FailOnErrorListener());
             
-            System.out.println(stream.getText());
-            System.out.println();
-            System.out.println();
-            
-            for (int i = 0; i < stream.size(); i++) {
-                System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
-            }
-            stream.seek(0);
+//            System.out.println(stream.getText());
+//            System.out.println();
+//            System.out.println();
+//            
+//            for (int i = 0; i < stream.size(); i++) {
+//                System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
+//            }
+//            stream.seek(0);
             
             MyLessParser par = new MyLessParser(stream);
             par.getInterpreter().setPredictionMode(PredictionMode.SLL);
@@ -59,15 +59,15 @@ public class Main
             
             MyLessParser.StylesheetContext stylesheet = par.stylesheet();
             
-            //Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
+            Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
             
-            //Toolkit kit = Toolkit.getDefaultToolkit();
-            //Dimension screenSize = kit.getScreenSize();
-            //int screenHeight = screenSize.height;
-            //int screenWidth = screenSize.width;
+            Toolkit kit = Toolkit.getDefaultToolkit();
+            Dimension screenSize = kit.getScreenSize();
+            int screenHeight = screenSize.height;
+            int screenWidth = screenSize.width;
 
-            //dialog.get().setSize(screenWidth, screenHeight);
-            //dialog.get().setLocationRelativeTo(null);
+            dialog.get().setSize(screenWidth, screenHeight);
+            dialog.get().setLocationRelativeTo(null);
             
             System.out.println();
             System.out.println();
@@ -75,12 +75,14 @@ public class Main
             System.out.println("Listening and visiting:");
             
             ParseTreeWalker walker = new ParseTreeWalker();
-            LessParserListenerImpl listener = new LessParserListenerImpl(stream);
+            FormattingHelper formattingHelper = new FormattingHelper(stream);
+            LessParserListenerImpl listener = new LessParserListenerImpl(stream, formattingHelper);
             walker.walk(listener, stylesheet);
                     
             LessParserVisitorImpl visitor = new LessParserVisitorImpl(stream);
             visitor.visit(stylesheet);
             
+            System.out.println(formattingHelper.getWarnings());
         }
         catch(Exception e)
         {

@@ -63,6 +63,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitVariableName(@NotNull MyLessParser.VariableNameContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#propertyStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#propertyStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#pseudo}.
 	 * @param ctx the parse tree
 	 */
@@ -184,6 +195,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMixinGuardsList(@NotNull MyLessParser.MixinGuardsListContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mixinParamName}.
+	 * @param ctx the parse tree
+	 */
+	void enterMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mixinParamName}.
+	 * @param ctx the parse tree
+	 */
+	void exitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#importStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -204,17 +226,6 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStylesheet(@NotNull MyLessParser.StylesheetContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link MyLessParser#mixinParamName}.
-	 * @param ctx the parse tree
-	 */
-	void enterMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyLessParser#mixinParamName}.
-	 * @param ctx the parse tree
-	 */
-	void exitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#callParams}.
@@ -239,6 +250,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitMixin(@NotNull MyLessParser.MixinContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mediaStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterMediaStatement(@NotNull MyLessParser.MediaStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mediaStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitMediaStatement(@NotNull MyLessParser.MediaStatementContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#commaValues}.
 	 * @param ctx the parse tree
 	 */
@@ -248,6 +270,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mediaQuery}.
+	 * @param ctx the parse tree
+	 */
+	void enterMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mediaQuery}.
+	 * @param ctx the parse tree
+	 */
+	void exitMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#element}.
@@ -281,6 +314,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMixinParams(@NotNull MyLessParser.MixinParamsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mediaQueryList}.
+	 * @param ctx the parse tree
+	 */
+	void enterMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mediaQueryList}.
+	 * @param ctx the parse tree
+	 */
+	void exitMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#mixinGuard}.
@@ -369,6 +413,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#mediaQueryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMediaQueryExpression(@NotNull MyLessParser.MediaQueryExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#mediaQueryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMediaQueryExpression(@NotNull MyLessParser.MediaQueryExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#color}.

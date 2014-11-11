@@ -16,6 +16,25 @@ statement
     : importStatement
     | variableStatement
     | ruleStatement
+    | mediaStatement
+    ;
+    
+mediaStatement
+    : MEDIA mediaQueryList block
+    ;    
+    
+mediaQueryList
+    : mediaQuery (COMMA mediaQuery)* 
+    ;
+    
+mediaQuery
+    : (ONLY | NOTW)? IDENT (ANDW mediaQueryExpression)*
+    | mediaQueryExpression (ANDW mediaQueryExpression)* 
+    ;
+    
+mediaQueryExpression
+    : IDENT
+    | LPAREN IDENT COLON expressionStatement RPAREN
     ;
     
 importStatement
@@ -32,6 +51,7 @@ variableStatement
     
 variableName
     : AT IDENT
+    | MEDIA
     ;
     
 measurement
@@ -43,6 +63,7 @@ expression
     | functionCall
     | measurement
     | color
+    | element
 //    | url
 //    | format
     | IDENT
@@ -88,7 +109,8 @@ selectors
     ;
 
 selector
-    : element* (selectorPrefix element)* attrib* pseudo* mixin? mixinGuards?
+    : element* (selectorPrefix element)* attrib* pseudo*
+    | element* (selectorPrefix element)* mixin? mixinGuards?
     ;
 
 mixin
@@ -126,18 +148,17 @@ selectorPrefix
     ;
 
 element
-    : IDENT//identifier
-    | HASH IDENT//identifier
-    | DOT IDENT//identifier
+    : IDENT
+    | HASH IDENT
+    | DOT IDENT
     | AT IDENT
     | AND
     | TIMES
-
     | measurement
     ;
     
 pseudo
-    : (COLON|COLONCOLON) (IDENT|NOTW)//Identifier
+    : (COLON|COLONCOLON) (IDENT|NOTW)
     | (COLON|COLONCOLON) functionCall
     ;
 
@@ -152,12 +173,16 @@ attribRelate
     ;
 
 block
-    : LCURLY (property SEMI | statement)* property? RCURLY
+    : LCURLY (property SEMI | statement)* RCURLY
     ;
 
 property
     : mixinCall IMPORTANT?
     | propertyIdent COLON propertyValues IMPORTANT?
+    ;
+
+propertyStatement
+    : propertyIdent COLON propertyValues IMPORTANT?
     ;
 
 propertyIdent
@@ -178,7 +203,7 @@ mixinCall
     ;
 
 functionCall
-    : IDENT LPAREN callParams? RPAREN
+    : (IDENT|NOTW) LPAREN callParams? RPAREN
     ;
 
 callParams
