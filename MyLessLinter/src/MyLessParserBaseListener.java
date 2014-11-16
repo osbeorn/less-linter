@@ -68,6 +68,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableName(@NotNull MyLessParser.VariableNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -88,6 +101,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -452,6 +478,19 @@ public class MyLessParserBaseListener implements MyLessParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAttrib(@NotNull MyLessParser.AttribContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUrl(@NotNull MyLessParser.UrlContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUrl(@NotNull MyLessParser.UrlContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

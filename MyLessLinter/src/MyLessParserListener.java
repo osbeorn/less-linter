@@ -52,6 +52,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	void exitVariableStatement(@NotNull MyLessParser.VariableStatementContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MyLessParser#selectorGroup}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#selectorGroup}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MyLessParser#variableName}.
 	 * @param ctx the parse tree
 	 */
@@ -72,6 +83,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#pseudoParams}.
+	 * @param ctx the parse tree
+	 */
+	void enterPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#pseudoParams}.
+	 * @param ctx the parse tree
+	 */
+	void exitPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#pseudo}.
@@ -380,6 +402,17 @@ public interface MyLessParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAttrib(@NotNull MyLessParser.AttribContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link MyLessParser#url}.
+	 * @param ctx the parse tree
+	 */
+	void enterUrl(@NotNull MyLessParser.UrlContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyLessParser#url}.
+	 * @param ctx the parse tree
+	 */
+	void exitUrl(@NotNull MyLessParser.UrlContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MyLessParser#attribRelate}.

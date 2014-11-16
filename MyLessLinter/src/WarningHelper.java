@@ -2,6 +2,7 @@
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class WarningHelper
 {	
@@ -13,6 +14,16 @@ public class WarningHelper
         return new Warning(posToken.getLine(),
                            posToken.getCharPositionInLine(),
                            text,
+                           warning);
+    }
+    
+    public static Warning getWarning(TerminalNode node, CommonTokenStream tokens, String warning)
+    {
+        Token posToken = node.getSymbol();
+        
+        return new Warning(posToken.getLine(),
+                           posToken.getCharPositionInLine(),
+                           node.getText(),
                            warning);
     }
     

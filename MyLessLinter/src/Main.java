@@ -42,14 +42,14 @@ public class Main
             CommonTokenStream stream = new CommonTokenStream(lexer, Token.DEFAULT_CHANNEL);
             //lexer.addErrorListener(new FailOnErrorListener());
             
-//            System.out.println(stream.getText());
-//            System.out.println();
-//            System.out.println();
-//            
-//            for (int i = 0; i < stream.size(); i++) {
-//                System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
-//            }
-//            stream.seek(0);
+            System.out.println(stream.getText());
+            System.out.println();
+            System.out.println();
+            
+            for (int i = 0; i < stream.size(); i++) {
+                System.out.println("Type: " + stream.get(i).getType() + ", Channel: " + stream.get(i).getChannel() + " --> " + stream.get(i).getText());
+            }
+            stream.seek(0);
             
             MyLessParser par = new MyLessParser(stream);
             par.getInterpreter().setPredictionMode(PredictionMode.SLL);
@@ -58,7 +58,7 @@ public class Main
             par.addErrorListener(new FailOnErrorListener());
             
             MyLessParser.StylesheetContext stylesheet = par.stylesheet();
-            /*
+            
             Future<JDialog> dialog = stylesheet.inspect(par); // show in gui
             
             Toolkit kit = Toolkit.getDefaultToolkit();
@@ -71,18 +71,22 @@ public class Main
             
             System.out.println();
             System.out.println();
-            */
+            
             System.out.println("Listening and visiting:");
             
             ParseTreeWalker walker = new ParseTreeWalker();
             FormattingHelper formattingHelper = new FormattingHelper(stream);
-            LessParserListenerImpl listener = new LessParserListenerImpl(stream, formattingHelper);
+            CountHelper countHelper = new CountHelper();
+            LessParserListenerImpl listener = new LessParserListenerImpl(stream, formattingHelper, countHelper);
             walker.walk(listener, stylesheet);
                     
             LessParserVisitorImpl visitor = new LessParserVisitorImpl(stream);
             visitor.visit(stylesheet);
             
             System.out.println(formattingHelper.getWarnings());
+            System.out.println();
+            System.out.println(countHelper.getCountReport());
+            
         }
         catch(Exception e)
         {

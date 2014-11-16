@@ -63,8 +63,7 @@ expression
     | functionCall
     | measurement
     | color
-    | element
-//    | url
+    | url
 //    | format
     | IDENT
     | STRING_LITERAL
@@ -105,12 +104,18 @@ ruleStatement
     ;
     
 selectors
-    : selector (COMMA selector)*
+    : selectorGroup (COMMA selectorGroup)*
+    ;
+
+selectorGroup
+    : selector+
     ;
 
 selector
-    : element* (selectorPrefix element)* attrib* pseudo*
-    | element* (selectorPrefix element)* mixin? mixinGuards?
+    : attrib+ pseudo*
+    | pseudo+
+    | selectorPrefix? element attrib* pseudo*
+    | selectorPrefix? element mixin? mixinGuards?
     ;
 
 mixin
@@ -149,6 +154,7 @@ selectorPrefix
 
 element
     : IDENT
+    | UNIT // some units (em) also represent html tags ...
     | HASH IDENT
     | DOT IDENT
     | AT IDENT
@@ -156,14 +162,25 @@ element
     | TIMES
     | measurement
     ;
+
+//mixinElement
+//    : IDENT
+//    | HASH IDENT
+//    | DOT IDENT
+//    ;
     
 pseudo
-    : (COLON|COLONCOLON) (IDENT|NOTW)
-    | (COLON|COLONCOLON) functionCall
+    : (COLON|COLONCOLON) (IDENT|NOTW) (LPAREN pseudoParams RPAREN)?
+    ;
+
+pseudoParams
+    : pseudo
+    | attrib
+    | element
     ;
 
 attrib
-    : LBRACK IDENT/*Identifier*/ (attribRelate (STRING_LITERAL | IDENT))? RBRACK
+    : LBRACK IDENT (attribRelate (STRING_LITERAL | IDENT))? RBRACK
     ;
 
 attribRelate
@@ -173,7 +190,7 @@ attribRelate
     ;
 
 block
-    : LCURLY (property SEMI | statement)* RCURLY
+    : LCURLY (statement | property SEMI*)* RCURLY
     ;
 
 property
@@ -232,9 +249,9 @@ values
 //    : URL FORMAT (COMMA URL FORMAT)* SEMI
 //    ;
 
-//url
-//    : URL_START URL URL_END
-//    ;
+url
+    : URL_START URL URL_END
+    ;
 
 //format
 //    : FORMAT_START FORMAT FORMAT_END

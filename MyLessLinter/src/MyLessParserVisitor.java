@@ -39,6 +39,13 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitVariableStatement(@NotNull MyLessParser.VariableStatementContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MyLessParser#selectorGroup}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MyLessParser#variableName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -51,6 +58,13 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#pseudoParams}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#pseudo}.
@@ -247,6 +261,13 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAttrib(@NotNull MyLessParser.AttribContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#url}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUrl(@NotNull MyLessParser.UrlContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#attribRelate}.

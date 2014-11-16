@@ -43,9 +43,9 @@ INTERPOLATION_START
   : '@{' -> pushMode(INTERPOLATION_STARTED)
   ;
 
-//URL_START
-//    : 'url' LPAREN -> pushMode(URL_STARTED)
-//    ;
+URL_START
+    : 'url' LPAREN -> pushMode(URL_STARTED)
+    ;
   
 //FORMAT_START
 //    : 'format' LPAREN -> pushMode(FORMAT_STARTED)
@@ -114,9 +114,9 @@ mode INTERPOLATION_STARTED;
 INTERPOLATION_END : RCURLY -> popMode;
 INTERPOLATION : IDENT;
     
-//mode URL_STARTED;
-//URL_END : RPAREN -> popMode;
-//URL     : STRING | (~(')' | '\n' | '\r' | ';'))+;
+mode URL_STARTED;
+URL_END : RPAREN -> popMode;
+URL     : STRING | (~(')' | '\n' | '\r' | ';'))+;
 
 //mode FORMAT_STARTED;
 //FORMAT_END : RPAREN -> popMode;
