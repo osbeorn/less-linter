@@ -1,3 +1,4 @@
+package si.osbeorn.lesslint.helpers;
 
 public class ColorHelper
 {

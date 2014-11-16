@@ -15,3 +15,11 @@
 /MyLessParser.java
 /MyLessParserBaseVisitor.java
 /MyLessParserVisitor.java
+/LessLexer.java
+/LessLexer.tokens
+/LessParser.java
+/LessParser.tokens
+/LessParserBaseListener.java
+/LessParserBaseVisitor.java
+/LessParserListener.java
+/LessParserVisitor.java

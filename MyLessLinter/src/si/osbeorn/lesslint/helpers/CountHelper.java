@@ -1,4 +1,6 @@
-import java.util.List;
+package si.osbeorn.lesslint.helpers;
+import si.osbeorn.lesslint.antlr.LessParser.ElementContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorContext;
 
 /**
  * @author Benjamin
@@ -12,9 +14,9 @@ public class CountHelper
     private int classSelectorsCount;
     private int tagSelectorsCount;
     
-    public void countSelectors(MyLessParser.SelectorContext ctx)
+    public void countSelectors(SelectorContext ctx)
     {
-        MyLessParser.ElementContext elementCtx = ctx.element();
+        ElementContext elementCtx = ctx.element();
         if (elementCtx == null)
             return;
         

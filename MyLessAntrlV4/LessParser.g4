@@ -1,11 +1,11 @@
 /**
- * Define a grammar called MyLessParser
+ * Defines a grammar called LessParser
  */
 
-parser grammar MyLessParser;
+parser grammar LessParser;
 
 options {
-    tokenVocab=MyLessLexer;
+    tokenVocab=LessLexer;
 }
 
 stylesheet

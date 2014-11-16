@@ -1,3 +1,4 @@
+package si.osbeorn.lesslint.helpers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,9 +7,22 @@ import java.util.List;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.stringtemplate.v4.compiler.CodeGenerator.conditional_return;
+
+import si.osbeorn.lesslint.antlr.LessParser;
+import si.osbeorn.lesslint.antlr.LessParser.BlockContext;
+import si.osbeorn.lesslint.antlr.LessParser.ColorContext;
+import si.osbeorn.lesslint.antlr.LessParser.PropertyContext;
+import si.osbeorn.lesslint.antlr.LessParser.PropertyIdentContext;
+import si.osbeorn.lesslint.antlr.LessParser.PropertyStatementContext;
+import si.osbeorn.lesslint.antlr.LessParser.RuleStatementContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorGroupContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorsContext;
+import si.osbeorn.lesslint.antlr.LessParser.StatementContext;
+import si.osbeorn.lesslint.library.Messages;
+import si.osbeorn.lesslint.library.Warning;
+import si.osbeorn.lesslint.library.WarningComparator;
 
 /**
  * @author Benjamin
@@ -66,23 +80,23 @@ public class FormattingHelper
      * 
      * @param ctx The RuleStatementContext.
      */
-    public void checkIDStyling(MyLessParser.RuleStatementContext ctx) {
+    public void checkIDStyling(RuleStatementContext ctx) {
         /*
-        MyLessParser.SelectorsContext selectorsCtx = ctx.selectors();
+        SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
         
-        List<MyLessParser.SelectorContext> selectorCtxList = selectorsCtx.selector();
+        List<SelectorContext> selectorCtxList = selectorsCtx.selector();
         if (selectorCtxList == null)
             return;
         
-        for (MyLessParser.SelectorContext selectorCtx : selectorCtxList)
+        for (SelectorContext selectorCtx : selectorCtxList)
         {
-            List<MyLessParser.ElementContext> elementCtxList = selectorCtx.element();
+            List<ElementContext> elementCtxList = selectorCtx.element();
             if (elementCtxList == null)
                 continue;
             
-            for (MyLessParser.ElementContext elementCtx : elementCtxList)
+            for (ElementContext elementCtx : elementCtxList)
             {
                 if (elementCtx.HASH() != null)
                 {
@@ -99,18 +113,18 @@ public class FormattingHelper
      * 
      * @param ctx
      */
-    public void checkBlockClosingBracketLocation(MyLessParser.RuleStatementContext ctx)
+    public void checkBlockClosingBracketLocation(RuleStatementContext ctx)
     {
-        MyLessParser.SelectorsContext selectorsCtx = ctx.selectors();
+        SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
         
-        MyLessParser.BlockContext blockCtx = ctx.block();
+        BlockContext blockCtx = ctx.block();
         if (blockCtx == null)
             return;
         
-        List<MyLessParser.PropertyContext> propertyCtxList = blockCtx.property();
-        List<MyLessParser.StatementContext> statementCtxList = blockCtx.statement();
+        List<PropertyContext> propertyCtxList = blockCtx.property();
+        List<StatementContext> statementCtxList = blockCtx.statement();
         
         if (GeneralHelper.IsRuleMultiLine(ctx))
         {
@@ -129,35 +143,35 @@ public class FormattingHelper
                 addWarning(WarningHelper.getWarning(blockCtx,
                                                     blockCtx.getStop(),
                                                     tokens,
-                                                    "Closing bracket should appear on its own line after the final property."));
+                                                    Messages.WARN_BRACKET_OWN_LINE));
             }
         }
     }
     
-    public void checkPropertyColonSpace(MyLessParser.RuleStatementContext ctx){
-        MyLessParser.SelectorsContext selectorsCtx = ctx.selectors();
+    public void checkPropertyColonSpace(RuleStatementContext ctx){
+        SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
         
-        MyLessParser.BlockContext blockCtx = ctx.block();
+        BlockContext blockCtx = ctx.block();
         if (blockCtx == null)
             return;
         
-        List<MyLessParser.PropertyContext> propertyCtxList = blockCtx.property();
+        List<PropertyContext> propertyCtxList = blockCtx.property();
         
         if (GeneralHelper.IsRuleSingleLine(ctx))
         {
-            for (MyLessParser.PropertyContext propertyCtx : propertyCtxList)
+            for (PropertyContext propertyCtx : propertyCtxList)
                 checkPropertyStatementColonSpaceAfter(propertyCtx.propertyStatement());
         }
         else if (GeneralHelper.IsRuleMultiLine(ctx))
         {
-            for (MyLessParser.PropertyContext propertyCtx : propertyCtxList)
+            for (PropertyContext propertyCtx : propertyCtxList)
                 checkPropertyStatementColonSpaceBeforeAndAfter(propertyCtx.propertyStatement());
         }
     }
     
-    private void checkPropertyStatementColonSpaceAfter(MyLessParser.PropertyStatementContext ctx)
+    private void checkPropertyStatementColonSpaceAfter(PropertyStatementContext ctx)
     {
         if (ctx == null)
             return;
@@ -169,20 +183,20 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Colon is not followed by a white space."));
+                                                Messages.WARN_WS_AFTER_COLON));
             return;
         }
             
         Token tok = rightTokens.get(0);
-        if (tok.getType() != MyLessParser.WS)
+        if (tok.getType() != LessParser.WS)
         {
             addWarning(WarningHelper.getWarning(ctx,
-                    tokens,
-                    "Colon is not followed by a white space."));
+                                                tokens,
+                                                Messages.WARN_WS_AFTER_COLON));
         }
     }
     
-    private void checkPropertyStatementColonSpaceBeforeAndAfter(MyLessParser.PropertyStatementContext ctx)
+    private void checkPropertyStatementColonSpaceBeforeAndAfter(PropertyStatementContext ctx)
     {
         if (ctx == null)
             return;
@@ -195,7 +209,7 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Colon is not preceded by a white space."));
+                                                Messages.WARN_WS_BEFORE_COLON));
             return;
         }
         
@@ -203,24 +217,24 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Colon is not followed by a white space."));
+                                                Messages.WARN_WS_AFTER_COLON));
             return;
         }
             
         Token tok = leftTokens.get(0);
-        if (tok.getType() != MyLessParser.WS)
+        if (tok.getType() != LessParser.WS)
         {
             addWarning(WarningHelper.getWarning(ctx,
-                    tokens,
-                    "Colon is not preceded by a white space."));
+                                                tokens,
+                                                Messages.WARN_WS_BEFORE_COLON));
         }
         
         tok = rightTokens.get(0);
-        if (tok.getType() != MyLessParser.WS)
+        if (tok.getType() != LessParser.WS)
         {
             addWarning(WarningHelper.getWarning(ctx,
-                    tokens,
-                    "Colon is not followed by a white space."));
+                                                tokens,
+                                                Messages.WARN_WS_AFTER_COLON));
         }
     }
     
@@ -229,7 +243,7 @@ public class FormattingHelper
      * 
      * @param ctx
      */
-    public void checkNewLineAfterMultiLineStatement(MyLessParser.RuleStatementContext ctx)
+    public void checkNewLineAfterMultiLineStatement(RuleStatementContext ctx)
     {
         if (!GeneralHelper.IsRuleMultiLine(ctx))
             return;
@@ -245,21 +259,21 @@ public class FormattingHelper
                 rightVisibleTokens.add(t);
         }
         
-        if (rightVisibleTokens != null && rightVisibleTokens.size() > 0 && rightVisibleTokens.get(0).getType() == MyLessParser.EOF)
+        if (rightVisibleTokens != null && rightVisibleTokens.size() > 0 && rightVisibleTokens.get(0).getType() == LessParser.EOF)
             return;
         
         if (rightHiddenTokens == null || rightHiddenTokens.size() < 1)
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Multi line rule statement is not followed by an empty line."));
+                                                Messages.WARN_NL_AFTER_MULTI_LINE_STMT));
             return;
         }
         
         boolean existNL = false;
         for (Token t : rightHiddenTokens)
         {
-            if (t.getType() == MyLessParser.NL)
+            if (t.getType() == LessParser.NL)
             {
                 existNL = true;
                 break;
@@ -269,8 +283,8 @@ public class FormattingHelper
         if (!existNL)
         {
             addWarning(WarningHelper.getWarning(ctx,
-                       tokens,
-                       "Multi line rule statement is not followed by an empty line."));
+                                                tokens,
+                                                Messages.WARN_NL_AFTER_MULTI_LINE_STMT));
         }
     }
     
@@ -278,13 +292,13 @@ public class FormattingHelper
      * 
      * @param ctx
      */
-    public void checkRuleLinePosition(MyLessParser.RuleStatementContext ctx)
+    public void checkRuleLinePosition(RuleStatementContext ctx)
     {
-        MyLessParser.SelectorsContext selectorsCtx = ctx.selectors();
+        SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
         
-        MyLessParser.BlockContext blockCtx = ctx.block();
+        BlockContext blockCtx = ctx.block();
         if (blockCtx == null)
             return;
         
@@ -295,7 +309,7 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Opening bracket is not on the same line as the rule set selector."));
+                                                Messages.WARN_SAME_LINE_OPEN_BRACKET));
         }
     }
     
@@ -303,17 +317,17 @@ public class FormattingHelper
      * 
      * @param ctx
      */
-    public void checkRuleLineSpan(MyLessParser.RuleStatementContext ctx)
+    public void checkRuleLineSpan(RuleStatementContext ctx)
     {
-        MyLessParser.SelectorsContext selectorsCtx = ctx.selectors();
+        SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
         
-        MyLessParser.BlockContext blockCtx = ctx.block();
+        BlockContext blockCtx = ctx.block();
         if (blockCtx == null)
             return;
         
-        List<MyLessParser.PropertyContext> propertyCtxList = blockCtx.property();
+        List<PropertyContext> propertyCtxList = blockCtx.property();
         if (propertyCtxList == null || propertyCtxList.size() < 1)
             return;
         
@@ -321,13 +335,13 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Rule bi moral biti single-line pa ni."));
+                                                Messages.WARN_RULE_SINLE_LINE));
         }
         else if (propertyCtxList.size() > 1 && GeneralHelper.IsRuleSingleLine(ctx))
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Rule bi moral biti multi-line pa ni."));
+                                                Messages.WARN_RULE_MULTI_LINE));
         }
     }
     
@@ -336,24 +350,24 @@ public class FormattingHelper
      * 
      * @param ctx The ColorContext.
      */
-    public void checkColorFormat(MyLessParser.ColorContext ctx)
+    public void checkColorFormat(ColorContext ctx)
     {
         if (!ColorHelper.IsLowerCase(ctx.getText()))
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Colour declaration is not lowercase."));
+                                                Messages.WARN_COLOUR_LOWERCASE));
         
         if (!ColorHelper.IsSixFigureHexColor(ctx.getText()))
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Colour declaration is not using the 6 digit hex format."));
+                                                Messages.WARN_COLOUR_FORMAT));
     }
     
     /**
      * 
      * @param ctx
      */
-    public void checkBlockOpeningBracketWhiteSpace(MyLessParser.BlockContext ctx)
+    public void checkBlockOpeningBracketWhiteSpace(BlockContext ctx)
     {
         int blockStart = ctx.getStart().getTokenIndex();
         List<Token> leftTokens = tokens.getHiddenTokensToLeft(blockStart);
@@ -362,26 +376,26 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Opening bracket { is not preceeded by exactly one space."));
+                                                Messages.WARN_WS_BEFORE_BRACKET));
             return;
         }
         
         Token white = leftTokens.get(leftTokens.size()-1);
-        if (white.getType() == MyLessParser.WS)
+        if (white.getType() == LessParser.WS)
         {
             String text = white.getText();
             if (text.length() != 1)
             {
                 addWarning(WarningHelper.getWarning(ctx,
                                                     tokens,
-                                                    "Opening bracket { is not preceeded by exactly one space."));
+                                                    Messages.WARN_WS_BEFORE_BRACKET));
             }
         }
         else
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                "Opening bracket { is not preceeded by exactly one space."));
+                                                Messages.WARN_WS_BEFORE_BRACKET));
         }
     }
     
@@ -391,20 +405,20 @@ public class FormattingHelper
      * @param ctx
      * @param depth
      */
-    public void checkSelectorDepth(MyLessParser.SelectorsContext ctx, int depth)
+    public void checkSelectorDepth(SelectorsContext ctx, int depth)
     {
-        List<MyLessParser.SelectorGroupContext> selectorGroupCtxList = ctx.selectorGroup();
+        List<SelectorGroupContext> selectorGroupCtxList = ctx.selectorGroup();
         if (selectorGroupCtxList == null || selectorGroupCtxList.size() < 1)
             return;
         
-        for (MyLessParser.SelectorGroupContext selectorGroupCtx : selectorGroupCtxList)
+        for (SelectorGroupContext selectorGroupCtx : selectorGroupCtxList)
         {
-            List<MyLessParser.SelectorContext> selectorCtxList = selectorGroupCtx.selector();
+            List<SelectorContext> selectorCtxList = selectorGroupCtx.selector();
             if (selectorCtxList == null || selectorCtxList.size() < 1)
                 continue;
             
             int d = 1;
-            for (MyLessParser.SelectorContext selectorCtx : selectorCtxList)
+            for (SelectorContext selectorCtx : selectorCtxList)
             {
                 int selectorStop = selectorCtx.getStop().getTokenIndex();
                 List<Token> rightHiddenTokens = tokens.getHiddenTokensToRight(selectorStop);
@@ -416,7 +430,7 @@ public class FormattingHelper
                 boolean wsSeparator = false;
                 for (Token tok : rightHiddenTokens)
                 {
-                    if (tok.getType() == MyLessParser.WS || tok.getType() == MyLessParser.NL)
+                    if (tok.getType() == LessParser.WS || tok.getType() == LessParser.NL)
                         wsSeparator = true;
                 }
                 
@@ -426,7 +440,7 @@ public class FormattingHelper
                     if (tok.getChannel() == Token.HIDDEN_CHANNEL)
                         continue;
                     
-                    if (tok.getType() == MyLessParser.COMMA || tok.getType() == MyLessParser.LCURLY)
+                    if (tok.getType() == LessParser.COMMA || tok.getType() == LessParser.LCURLY)
                     {
                         followedByCommaOrBracket = true;
                     }
@@ -443,7 +457,7 @@ public class FormattingHelper
             {
                 addWarning(WarningHelper.getWarning(selectorGroupCtx,
                                                     tokens,
-                                                    String.format("The selector depth is over %d.", depth)));
+                                                    String.format(Messages.WARN_SELECTOR_DEPTH, depth)));
             }
             
             d = 1;
@@ -455,20 +469,20 @@ public class FormattingHelper
      * 
      * @param ctx
      */
-    public void checkPropertiesGroupOrder(MyLessParser.BlockContext ctx)
+    public void checkPropertiesGroupOrder(BlockContext ctx)
     {
-        List<MyLessParser.PropertyContext> propertyCtxList = ctx.property();
+        List<PropertyContext> propertyCtxList = ctx.property();
         if (propertyCtxList == null || propertyCtxList.size() < 1)
             return;
         
         List<Integer> indices = new ArrayList<Integer>();
-        for (MyLessParser.PropertyContext propertyCtx : propertyCtxList)
+        for (PropertyContext propertyCtx : propertyCtxList)
         {
-            MyLessParser.PropertyStatementContext propStmtCtx = propertyCtx.propertyStatement();
+            PropertyStatementContext propStmtCtx = propertyCtx.propertyStatement();
             if (propStmtCtx == null)
                 continue;
             
-            MyLessParser.PropertyIdentContext propIdentCtx = propStmtCtx.propertyIdent();
+            PropertyIdentContext propIdentCtx = propStmtCtx.propertyIdent();
             if (propIdentCtx == null)
                 continue;
             
@@ -510,14 +524,14 @@ public class FormattingHelper
             if (indices.get(i-1) > indices.get(i))
             {
                 addWarning(WarningHelper.getWarning(ctx,
-                           tokens,
-                           "The order of property groups is not correct."));
+                                                    tokens,
+                                                    Messages.WARN_PROPERTY_GROUP_ORDER));
             }
         }
     }
     
     /**
-     * A helper method used by {@link #checkPropertiesGroupOrder(MyLessParser.BlockContext) checkPropertiesGroupOrder} method.
+     * A helper method used by {@link #checkPropertiesGroupOrder(BlockContext) checkPropertiesGroupOrder} method.
      * If the index to be added is the same as the current last item of the list, the index is not added, otherwise it is.
      * 
      * @param list A list of integer indices.
@@ -546,7 +560,7 @@ public class FormattingHelper
             {
                 addWarning(WarningHelper.getWarning(ident,
                                                     tokens,
-                                                    "Try to use lower case words if possible."));
+                                                    Messages.WARN_LOWERCASE));
                 return;
             }
         }
@@ -558,7 +572,7 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ident,
                                                 tokens,
-                                                "Avoid using camelCase style to separate words and use hypens instead."));
+                                                Messages.WARN_CAMELCASE));
         }
     }
     
@@ -568,7 +582,7 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ident,
                                                 tokens,
-                                                "Avoid using underscores to separate words and use hypens instead."));
+                                                Messages.WARN_UNDERSCORE));
         }
     }
     

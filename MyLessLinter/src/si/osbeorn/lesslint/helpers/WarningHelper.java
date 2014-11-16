@@ -1,8 +1,11 @@
+package si.osbeorn.lesslint.helpers;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import si.osbeorn.lesslint.library.Warning;
 
 public class WarningHelper
 {	

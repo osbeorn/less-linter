@@ -1,7 +1,7 @@
 /**
- * Define a grammar called MyLessLexer
+ * Defines a grammar called LessLexer
  */
-lexer grammar MyLessLexer;
+lexer grammar LessLexer;
 
 NULL            : 'null';
 

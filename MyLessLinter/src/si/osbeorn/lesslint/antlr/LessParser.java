@@ -1,4 +1,6 @@
-// Generated from MyLessParser.g4 by ANTLR 4.2.2
+package si.osbeorn.lesslint.antlr;
+
+// Generated from LessParser.g4 by ANTLR 4.2.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +11,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class MyLessParser extends Parser {
+public class LessParser extends Parser {
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
@@ -61,7 +63,7 @@ public class MyLessParser extends Parser {
 	};
 
 	@Override
-	public String getGrammarFileName() { return "MyLessParser.g4"; }
+	public String getGrammarFileName() { return "LessParser.g4"; }
 
 	@Override
 	public String[] getTokenNames() { return tokenNames; }
@@ -75,7 +77,7 @@ public class MyLessParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public MyLessParser(TokenStream input) {
+	public LessParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -83,7 +85,7 @@ public class MyLessParser extends Parser {
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
-		public TerminalNode EOF() { return getToken(MyLessParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(LessParser.EOF, 0); }
 		public StatementContext statement(int i) {
 			return getRuleContext(StatementContext.class,i);
 		}
@@ -93,15 +95,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_stylesheet; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterStylesheet(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterStylesheet(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitStylesheet(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitStylesheet(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitStylesheet(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitStylesheet(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -159,15 +161,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_statement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -219,7 +221,7 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MediaStatementContext extends ParserRuleContext {
-		public TerminalNode MEDIA() { return getToken(MyLessParser.MEDIA, 0); }
+		public TerminalNode MEDIA() { return getToken(LessParser.MEDIA, 0); }
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
@@ -232,15 +234,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mediaStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMediaStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMediaStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMediaStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMediaStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMediaStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMediaStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -268,7 +270,7 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MediaQueryListContext extends ParserRuleContext {
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public List<MediaQueryContext> mediaQuery() {
 			return getRuleContexts(MediaQueryContext.class);
 		}
@@ -276,7 +278,7 @@ public class MyLessParser extends Parser {
 			return getRuleContext(MediaQueryContext.class,i);
 		}
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public MediaQueryListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -284,15 +286,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mediaQueryList; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMediaQueryList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMediaQueryList(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMediaQueryList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMediaQueryList(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMediaQueryList(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMediaQueryList(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -333,8 +335,8 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MediaQueryContext extends ParserRuleContext {
-		public List<TerminalNode> ANDW() { return getTokens(MyLessParser.ANDW); }
-		public TerminalNode ONLY() { return getToken(MyLessParser.ONLY, 0); }
+		public List<TerminalNode> ANDW() { return getTokens(LessParser.ANDW); }
+		public TerminalNode ONLY() { return getToken(LessParser.ONLY, 0); }
 		public MediaQueryExpressionContext mediaQueryExpression(int i) {
 			return getRuleContext(MediaQueryExpressionContext.class,i);
 		}
@@ -342,25 +344,25 @@ public class MyLessParser extends Parser {
 			return getRuleContexts(MediaQueryExpressionContext.class);
 		}
 		public TerminalNode ANDW(int i) {
-			return getToken(MyLessParser.ANDW, i);
+			return getToken(LessParser.ANDW, i);
 		}
-		public TerminalNode NOTW() { return getToken(MyLessParser.NOTW, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode NOTW() { return getToken(LessParser.NOTW, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public MediaQueryContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mediaQuery; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMediaQuery(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMediaQuery(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMediaQuery(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMediaQuery(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMediaQuery(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMediaQuery(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -440,10 +442,10 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MediaQueryExpressionContext extends ParserRuleContext {
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
-		public TerminalNode COLON() { return getToken(MyLessParser.COLON, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
+		public TerminalNode COLON() { return getToken(LessParser.COLON, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public ExpressionStatementContext expressionStatement() {
 			return getRuleContext(ExpressionStatementContext.class,0);
 		}
@@ -453,15 +455,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mediaQueryExpression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMediaQueryExpression(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMediaQueryExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMediaQueryExpression(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMediaQueryExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMediaQueryExpression(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMediaQueryExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -507,24 +509,24 @@ public class MyLessParser extends Parser {
 		public KeywordContext keyword() {
 			return getRuleContext(KeywordContext.class,0);
 		}
-		public TerminalNode IMPORT() { return getToken(MyLessParser.IMPORT, 0); }
-		public TerminalNode SEMI() { return getToken(MyLessParser.SEMI, 0); }
-		public TerminalNode STRING_LITERAL() { return getToken(MyLessParser.STRING_LITERAL, 0); }
+		public TerminalNode IMPORT() { return getToken(LessParser.IMPORT, 0); }
+		public TerminalNode SEMI() { return getToken(LessParser.SEMI, 0); }
+		public TerminalNode STRING_LITERAL() { return getToken(LessParser.STRING_LITERAL, 0); }
 		public ImportStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_importStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterImportStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterImportStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitImportStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitImportStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitImportStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitImportStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -561,24 +563,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class KeywordContext extends ParserRuleContext {
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public KeywordContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_keyword; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterKeyword(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterKeyword(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitKeyword(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitKeyword(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitKeyword(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitKeyword(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -609,26 +611,26 @@ public class MyLessParser extends Parser {
 		public VariableNameContext variableName() {
 			return getRuleContext(VariableNameContext.class,0);
 		}
-		public TerminalNode SEMI() { return getToken(MyLessParser.SEMI, 0); }
+		public TerminalNode SEMI() { return getToken(LessParser.SEMI, 0); }
 		public CommaValuesContext commaValues() {
 			return getRuleContext(CommaValuesContext.class,0);
 		}
-		public TerminalNode COLON() { return getToken(MyLessParser.COLON, 0); }
+		public TerminalNode COLON() { return getToken(LessParser.COLON, 0); }
 		public VariableStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_variableStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterVariableStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterVariableStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVariableStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitVariableStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVariableStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitVariableStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -657,24 +659,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class VariableNameContext extends ParserRuleContext {
-		public TerminalNode MEDIA() { return getToken(MyLessParser.MEDIA, 0); }
-		public TerminalNode AT() { return getToken(MyLessParser.AT, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode MEDIA() { return getToken(LessParser.MEDIA, 0); }
+		public TerminalNode AT() { return getToken(LessParser.AT, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public VariableNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_variableName; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterVariableName(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterVariableName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVariableName(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitVariableName(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVariableName(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitVariableName(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -714,23 +716,23 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MeasurementContext extends ParserRuleContext {
-		public TerminalNode UNIT() { return getToken(MyLessParser.UNIT, 0); }
-		public TerminalNode NUMBER() { return getToken(MyLessParser.NUMBER, 0); }
+		public TerminalNode UNIT() { return getToken(LessParser.UNIT, 0); }
+		public TerminalNode NUMBER() { return getToken(LessParser.NUMBER, 0); }
 		public MeasurementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_measurement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMeasurement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMeasurement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMeasurement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMeasurement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMeasurement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMeasurement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -773,12 +775,12 @@ public class MyLessParser extends Parser {
 		public VariableNameContext variableName() {
 			return getRuleContext(VariableNameContext.class,0);
 		}
-		public TerminalNode STRING_LITERAL() { return getToken(MyLessParser.STRING_LITERAL, 0); }
+		public TerminalNode STRING_LITERAL() { return getToken(LessParser.STRING_LITERAL, 0); }
 		public MeasurementContext measurement() {
 			return getRuleContext(MeasurementContext.class,0);
 		}
-		public TerminalNode NULL() { return getToken(MyLessParser.NULL, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode NULL() { return getToken(LessParser.NULL, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public ColorContext color() {
 			return getRuleContext(ColorContext.class,0);
 		}
@@ -788,15 +790,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterExpression(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitExpression(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitExpression(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -885,11 +887,11 @@ public class MyLessParser extends Parser {
 		public MathCharacterContext mathCharacter() {
 			return getRuleContext(MathCharacterContext.class,0);
 		}
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
 		public List<ExpressionStatementContext> expressionStatement() {
 			return getRuleContexts(ExpressionStatementContext.class);
 		}
@@ -902,15 +904,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expressionStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterExpressionStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterExpressionStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitExpressionStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitExpressionStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitExpressionStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitExpressionStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1015,25 +1017,25 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MathCharacterContext extends ParserRuleContext {
-		public TerminalNode TIMES() { return getToken(MyLessParser.TIMES, 0); }
-		public TerminalNode DIV() { return getToken(MyLessParser.DIV, 0); }
-		public TerminalNode MINUS() { return getToken(MyLessParser.MINUS, 0); }
-		public TerminalNode PLUS() { return getToken(MyLessParser.PLUS, 0); }
+		public TerminalNode TIMES() { return getToken(LessParser.TIMES, 0); }
+		public TerminalNode DIV() { return getToken(LessParser.DIV, 0); }
+		public TerminalNode MINUS() { return getToken(LessParser.MINUS, 0); }
+		public TerminalNode PLUS() { return getToken(LessParser.PLUS, 0); }
 		public MathCharacterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mathCharacter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMathCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMathCharacter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMathCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMathCharacter(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMathCharacter(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMathCharacter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1065,27 +1067,27 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class BoolCharacterContext extends ParserRuleContext {
-		public TerminalNode GTEQ() { return getToken(MyLessParser.GTEQ, 0); }
-		public TerminalNode LT() { return getToken(MyLessParser.LT, 0); }
-		public TerminalNode NOTEQ() { return getToken(MyLessParser.NOTEQ, 0); }
-		public TerminalNode GT() { return getToken(MyLessParser.GT, 0); }
-		public TerminalNode EQ() { return getToken(MyLessParser.EQ, 0); }
-		public TerminalNode LTEQ() { return getToken(MyLessParser.LTEQ, 0); }
+		public TerminalNode GTEQ() { return getToken(LessParser.GTEQ, 0); }
+		public TerminalNode LT() { return getToken(LessParser.LT, 0); }
+		public TerminalNode NOTEQ() { return getToken(LessParser.NOTEQ, 0); }
+		public TerminalNode GT() { return getToken(LessParser.GT, 0); }
+		public TerminalNode EQ() { return getToken(LessParser.EQ, 0); }
+		public TerminalNode LTEQ() { return getToken(LessParser.LTEQ, 0); }
 		public BoolCharacterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_boolCharacter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterBoolCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterBoolCharacter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitBoolCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitBoolCharacter(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitBoolCharacter(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitBoolCharacter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1117,23 +1119,23 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MathPrefixCharacterContext extends ParserRuleContext {
-		public TerminalNode MINUS() { return getToken(MyLessParser.MINUS, 0); }
-		public TerminalNode PLUS() { return getToken(MyLessParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(LessParser.MINUS, 0); }
+		public TerminalNode PLUS() { return getToken(LessParser.PLUS, 0); }
 		public MathPrefixCharacterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mathPrefixCharacter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMathPrefixCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMathPrefixCharacter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMathPrefixCharacter(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMathPrefixCharacter(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMathPrefixCharacter(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMathPrefixCharacter(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1177,15 +1179,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_ruleStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterRuleStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterRuleStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitRuleStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitRuleStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitRuleStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitRuleStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1218,9 +1220,9 @@ public class MyLessParser extends Parser {
 		public List<SelectorGroupContext> selectorGroup() {
 			return getRuleContexts(SelectorGroupContext.class);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public SelectorsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1228,15 +1230,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_selectors; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterSelectors(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterSelectors(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelectors(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitSelectors(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelectors(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitSelectors(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1289,15 +1291,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_selectorGroup; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterSelectorGroup(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterSelectorGroup(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelectorGroup(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitSelectorGroup(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelectorGroup(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitSelectorGroup(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1366,15 +1368,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_selector; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterSelector(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterSelector(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelector(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitSelector(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelector(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitSelector(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1544,23 +1546,23 @@ public class MyLessParser extends Parser {
 		public MixinParamsContext mixinParams() {
 			return getRuleContext(MixinParamsContext.class,0);
 		}
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
 		public MixinContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mixin; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixin(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixin(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixin(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixin(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixin(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixin(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1596,7 +1598,7 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MixinGuardsContext extends ParserRuleContext {
-		public TerminalNode WHEN() { return getToken(MyLessParser.WHEN, 0); }
+		public TerminalNode WHEN() { return getToken(LessParser.WHEN, 0); }
 		public MixinGuardsListContext mixinGuardsList() {
 			return getRuleContext(MixinGuardsListContext.class,0);
 		}
@@ -1606,15 +1608,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mixinGuards; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinGuards(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinGuards(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuards(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinGuards(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuards(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinGuards(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1644,13 +1646,13 @@ public class MyLessParser extends Parser {
 		public List<MixinGuardContext> mixinGuard() {
 			return getRuleContexts(MixinGuardContext.class);
 		}
-		public List<TerminalNode> ANDW() { return getTokens(MyLessParser.ANDW); }
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> ANDW() { return getTokens(LessParser.ANDW); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public TerminalNode ANDW(int i) {
-			return getToken(MyLessParser.ANDW, i);
+			return getToken(LessParser.ANDW, i);
 		}
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public MixinGuardContext mixinGuard(int i) {
 			return getRuleContext(MixinGuardContext.class,i);
@@ -1661,15 +1663,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mixinGuardsList; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinGuardsList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinGuardsList(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuardsList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinGuardsList(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuardsList(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinGuardsList(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1739,9 +1741,9 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MixinGuardContext extends ParserRuleContext {
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode NOTW() { return getToken(MyLessParser.NOTW, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode NOTW() { return getToken(LessParser.NOTW, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
 		public ExpressionStatementContext expressionStatement() {
 			return getRuleContext(ExpressionStatementContext.class,0);
 		}
@@ -1751,15 +1753,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mixinGuard; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinGuard(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinGuard(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinGuard(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinGuard(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinGuard(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinGuard(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1796,7 +1798,7 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MixinParamsContext extends ParserRuleContext {
-		public List<TerminalNode> SEMI() { return getTokens(MyLessParser.SEMI); }
+		public List<TerminalNode> SEMI() { return getTokens(LessParser.SEMI); }
 		public List<MixinParamListContext> mixinParamList() {
 			return getRuleContexts(MixinParamListContext.class);
 		}
@@ -1804,7 +1806,7 @@ public class MyLessParser extends Parser {
 			return getRuleContext(MixinParamListContext.class,i);
 		}
 		public TerminalNode SEMI(int i) {
-			return getToken(MyLessParser.SEMI, i);
+			return getToken(LessParser.SEMI, i);
 		}
 		public MixinParamsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1812,15 +1814,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mixinParams; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinParams(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinParams(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParams(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinParams(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1878,9 +1880,9 @@ public class MyLessParser extends Parser {
 		public List<MixinParamContext> mixinParam() {
 			return getRuleContexts(MixinParamContext.class);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public MixinParamListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1888,15 +1890,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_mixinParamList; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinParamList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinParamList(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParamList(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinParamList(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParamList(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinParamList(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1937,7 +1939,7 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MixinParamContext extends ParserRuleContext {
-		public TerminalNode ELLIPSIS() { return getToken(MyLessParser.ELLIPSIS, 0); }
+		public TerminalNode ELLIPSIS() { return getToken(LessParser.ELLIPSIS, 0); }
 		public VariableNameContext variableName() {
 			return getRuleContext(VariableNameContext.class,0);
 		}
@@ -1947,22 +1949,22 @@ public class MyLessParser extends Parser {
 		public MixinParamNameContext mixinParamName() {
 			return getRuleContext(MixinParamNameContext.class,0);
 		}
-		public TerminalNode COLON() { return getToken(MyLessParser.COLON, 0); }
+		public TerminalNode COLON() { return getToken(LessParser.COLON, 0); }
 		public MixinParamContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mixinParam; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinParam(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinParam(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParam(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinParam(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParam(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinParam(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2021,22 +2023,22 @@ public class MyLessParser extends Parser {
 		public VariableNameContext variableName() {
 			return getRuleContext(VariableNameContext.class,0);
 		}
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public MixinParamNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mixinParamName; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinParamName(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinParamName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinParamName(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinParamName(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinParamName(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinParamName(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2076,24 +2078,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class SelectorPrefixContext extends ParserRuleContext {
-		public TerminalNode PLUS() { return getToken(MyLessParser.PLUS, 0); }
-		public TerminalNode GT() { return getToken(MyLessParser.GT, 0); }
-		public TerminalNode TIL() { return getToken(MyLessParser.TIL, 0); }
+		public TerminalNode PLUS() { return getToken(LessParser.PLUS, 0); }
+		public TerminalNode GT() { return getToken(LessParser.GT, 0); }
+		public TerminalNode TIL() { return getToken(LessParser.TIL, 0); }
 		public SelectorPrefixContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_selectorPrefix; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterSelectorPrefix(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterSelectorPrefix(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitSelectorPrefix(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitSelectorPrefix(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitSelectorPrefix(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitSelectorPrefix(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2125,31 +2127,31 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class ElementContext extends ParserRuleContext {
-		public TerminalNode TIMES() { return getToken(MyLessParser.TIMES, 0); }
-		public TerminalNode DOT() { return getToken(MyLessParser.DOT, 0); }
-		public TerminalNode AND() { return getToken(MyLessParser.AND, 0); }
-		public TerminalNode UNIT() { return getToken(MyLessParser.UNIT, 0); }
+		public TerminalNode TIMES() { return getToken(LessParser.TIMES, 0); }
+		public TerminalNode DOT() { return getToken(LessParser.DOT, 0); }
+		public TerminalNode AND() { return getToken(LessParser.AND, 0); }
+		public TerminalNode UNIT() { return getToken(LessParser.UNIT, 0); }
 		public MeasurementContext measurement() {
 			return getRuleContext(MeasurementContext.class,0);
 		}
-		public TerminalNode AT() { return getToken(MyLessParser.AT, 0); }
-		public TerminalNode HASH() { return getToken(MyLessParser.HASH, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode AT() { return getToken(LessParser.AT, 0); }
+		public TerminalNode HASH() { return getToken(LessParser.HASH, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public ElementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_element; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterElement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterElement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitElement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitElement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitElement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitElement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2227,30 +2229,30 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class PseudoContext extends ParserRuleContext {
-		public TerminalNode COLONCOLON() { return getToken(MyLessParser.COLONCOLON, 0); }
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
+		public TerminalNode COLONCOLON() { return getToken(LessParser.COLONCOLON, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
 		public PseudoParamsContext pseudoParams() {
 			return getRuleContext(PseudoParamsContext.class,0);
 		}
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
-		public TerminalNode NOTW() { return getToken(MyLessParser.NOTW, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
-		public TerminalNode COLON() { return getToken(MyLessParser.COLON, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
+		public TerminalNode NOTW() { return getToken(LessParser.NOTW, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
+		public TerminalNode COLON() { return getToken(LessParser.COLON, 0); }
 		public PseudoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_pseudo; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterPseudo(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterPseudo(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPseudo(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitPseudo(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPseudo(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitPseudo(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2313,15 +2315,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_pseudoParams; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterPseudoParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterPseudoParams(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPseudoParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitPseudoParams(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPseudoParams(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitPseudoParams(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2374,31 +2376,31 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class AttribContext extends ParserRuleContext {
-		public TerminalNode RBRACK() { return getToken(MyLessParser.RBRACK, 0); }
+		public TerminalNode RBRACK() { return getToken(LessParser.RBRACK, 0); }
 		public AttribRelateContext attribRelate() {
 			return getRuleContext(AttribRelateContext.class,0);
 		}
-		public TerminalNode STRING_LITERAL() { return getToken(MyLessParser.STRING_LITERAL, 0); }
-		public List<TerminalNode> IDENT() { return getTokens(MyLessParser.IDENT); }
+		public TerminalNode STRING_LITERAL() { return getToken(LessParser.STRING_LITERAL, 0); }
+		public List<TerminalNode> IDENT() { return getTokens(LessParser.IDENT); }
 		public TerminalNode IDENT(int i) {
-			return getToken(MyLessParser.IDENT, i);
+			return getToken(LessParser.IDENT, i);
 		}
-		public TerminalNode LBRACK() { return getToken(MyLessParser.LBRACK, 0); }
+		public TerminalNode LBRACK() { return getToken(LessParser.LBRACK, 0); }
 		public AttribContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_attrib; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterAttrib(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterAttrib(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitAttrib(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitAttrib(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitAttrib(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitAttrib(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2441,24 +2443,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class AttribRelateContext extends ParserRuleContext {
-		public TerminalNode PIPE_EQ() { return getToken(MyLessParser.PIPE_EQ, 0); }
-		public TerminalNode TILD_EQ() { return getToken(MyLessParser.TILD_EQ, 0); }
-		public TerminalNode EQ() { return getToken(MyLessParser.EQ, 0); }
+		public TerminalNode PIPE_EQ() { return getToken(LessParser.PIPE_EQ, 0); }
+		public TerminalNode TILD_EQ() { return getToken(LessParser.TILD_EQ, 0); }
+		public TerminalNode EQ() { return getToken(LessParser.EQ, 0); }
 		public AttribRelateContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_attribRelate; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterAttribRelate(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterAttribRelate(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitAttribRelate(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitAttribRelate(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitAttribRelate(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitAttribRelate(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2493,13 +2495,13 @@ public class MyLessParser extends Parser {
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
-		public TerminalNode LCURLY() { return getToken(MyLessParser.LCURLY, 0); }
-		public List<TerminalNode> SEMI() { return getTokens(MyLessParser.SEMI); }
+		public TerminalNode LCURLY() { return getToken(LessParser.LCURLY, 0); }
+		public List<TerminalNode> SEMI() { return getTokens(LessParser.SEMI); }
 		public PropertyContext property(int i) {
 			return getRuleContext(PropertyContext.class,i);
 		}
 		public TerminalNode SEMI(int i) {
-			return getToken(MyLessParser.SEMI, i);
+			return getToken(LessParser.SEMI, i);
 		}
 		public StatementContext statement(int i) {
 			return getRuleContext(StatementContext.class,i);
@@ -2507,22 +2509,22 @@ public class MyLessParser extends Parser {
 		public List<PropertyContext> property() {
 			return getRuleContexts(PropertyContext.class);
 		}
-		public TerminalNode RCURLY() { return getToken(MyLessParser.RCURLY, 0); }
+		public TerminalNode RCURLY() { return getToken(LessParser.RCURLY, 0); }
 		public BlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterBlock(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterBlock(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitBlock(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitBlock(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitBlock(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitBlock(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2599,15 +2601,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_property; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterProperty(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterProperty(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitProperty(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitProperty(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitProperty(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitProperty(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2645,29 +2647,29 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class PropertyStatementContext extends ParserRuleContext {
-		public TerminalNode IMPORTANT() { return getToken(MyLessParser.IMPORTANT, 0); }
+		public TerminalNode IMPORTANT() { return getToken(LessParser.IMPORTANT, 0); }
 		public PropertyValuesContext propertyValues() {
 			return getRuleContext(PropertyValuesContext.class,0);
 		}
 		public PropertyIdentContext propertyIdent() {
 			return getRuleContext(PropertyIdentContext.class,0);
 		}
-		public TerminalNode COLON() { return getToken(MyLessParser.COLON, 0); }
+		public TerminalNode COLON() { return getToken(LessParser.COLON, 0); }
 		public PropertyStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_propertyStatement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterPropertyStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterPropertyStatement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPropertyStatement(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitPropertyStatement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPropertyStatement(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitPropertyStatement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2707,22 +2709,22 @@ public class MyLessParser extends Parser {
 		public VarInterpolationIdentContext varInterpolationIdent() {
 			return getRuleContext(VarInterpolationIdentContext.class,0);
 		}
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public PropertyIdentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_propertyIdent; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterPropertyIdent(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterPropertyIdent(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPropertyIdent(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitPropertyIdent(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPropertyIdent(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitPropertyIdent(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2763,9 +2765,9 @@ public class MyLessParser extends Parser {
 		public VarInterpolationContext varInterpolation() {
 			return getRuleContext(VarInterpolationContext.class,0);
 		}
-		public List<TerminalNode> IDENT() { return getTokens(MyLessParser.IDENT); }
+		public List<TerminalNode> IDENT() { return getTokens(LessParser.IDENT); }
 		public TerminalNode IDENT(int i) {
-			return getToken(MyLessParser.IDENT, i);
+			return getToken(LessParser.IDENT, i);
 		}
 		public VarInterpolationIdentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2773,15 +2775,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_varInterpolationIdent; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterVarInterpolationIdent(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterVarInterpolationIdent(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVarInterpolationIdent(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitVarInterpolationIdent(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVarInterpolationIdent(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitVarInterpolationIdent(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2824,24 +2826,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class VarInterpolationContext extends ParserRuleContext {
-		public TerminalNode INTERPOLATION_START() { return getToken(MyLessParser.INTERPOLATION_START, 0); }
-		public TerminalNode INTERPOLATION_END() { return getToken(MyLessParser.INTERPOLATION_END, 0); }
-		public TerminalNode INTERPOLATION() { return getToken(MyLessParser.INTERPOLATION, 0); }
+		public TerminalNode INTERPOLATION_START() { return getToken(LessParser.INTERPOLATION_START, 0); }
+		public TerminalNode INTERPOLATION_END() { return getToken(LessParser.INTERPOLATION_END, 0); }
+		public TerminalNode INTERPOLATION() { return getToken(LessParser.INTERPOLATION, 0); }
 		public VarInterpolationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_varInterpolation; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterVarInterpolation(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterVarInterpolation(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitVarInterpolation(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitVarInterpolation(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitVarInterpolation(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitVarInterpolation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2872,12 +2874,12 @@ public class MyLessParser extends Parser {
 		public ValuesContext values(int i) {
 			return getRuleContext(ValuesContext.class,i);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public List<ValuesContext> values() {
 			return getRuleContexts(ValuesContext.class);
 		}
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public PropertyValuesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2885,15 +2887,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_propertyValues; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterPropertyValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterPropertyValues(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitPropertyValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitPropertyValues(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitPropertyValues(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitPropertyValues(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2934,30 +2936,30 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class MixinCallContext extends ParserRuleContext {
-		public TerminalNode IMPORTANT() { return getToken(MyLessParser.IMPORTANT, 0); }
+		public TerminalNode IMPORTANT() { return getToken(LessParser.IMPORTANT, 0); }
 		public ElementContext element() {
 			return getRuleContext(ElementContext.class,0);
 		}
 		public CallParamsContext callParams() {
 			return getRuleContext(CallParamsContext.class,0);
 		}
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
 		public MixinCallContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mixinCall; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterMixinCall(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterMixinCall(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitMixinCall(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitMixinCall(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitMixinCall(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitMixinCall(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3012,25 +3014,25 @@ public class MyLessParser extends Parser {
 		public CallParamsContext callParams() {
 			return getRuleContext(CallParamsContext.class,0);
 		}
-		public TerminalNode RPAREN() { return getToken(MyLessParser.RPAREN, 0); }
-		public TerminalNode NOTW() { return getToken(MyLessParser.NOTW, 0); }
-		public TerminalNode LPAREN() { return getToken(MyLessParser.LPAREN, 0); }
-		public TerminalNode IDENT() { return getToken(MyLessParser.IDENT, 0); }
+		public TerminalNode RPAREN() { return getToken(LessParser.RPAREN, 0); }
+		public TerminalNode NOTW() { return getToken(LessParser.NOTW, 0); }
+		public TerminalNode LPAREN() { return getToken(LessParser.LPAREN, 0); }
+		public TerminalNode IDENT() { return getToken(LessParser.IDENT, 0); }
 		public FunctionCallContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_functionCall; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterFunctionCall(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterFunctionCall(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitFunctionCall(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitFunctionCall(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitFunctionCall(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitFunctionCall(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3075,12 +3077,12 @@ public class MyLessParser extends Parser {
 		public CallParamContext callParam(int i) {
 			return getRuleContext(CallParamContext.class,i);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public List<CallParamContext> callParam() {
 			return getRuleContexts(CallParamContext.class);
 		}
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public CallParamsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3088,15 +3090,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_callParams; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterCallParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterCallParams(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCallParams(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitCallParams(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCallParams(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitCallParams(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3146,15 +3148,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_callParam; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterCallParam(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterCallParam(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCallParam(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitCallParam(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCallParam(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitCallParam(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3183,9 +3185,9 @@ public class MyLessParser extends Parser {
 		public ExpressionStatementContext expressionStatement(int i) {
 			return getRuleContext(ExpressionStatementContext.class,i);
 		}
-		public List<TerminalNode> COMMA() { return getTokens(MyLessParser.COMMA); }
+		public List<TerminalNode> COMMA() { return getTokens(LessParser.COMMA); }
 		public TerminalNode COMMA(int i) {
-			return getToken(MyLessParser.COMMA, i);
+			return getToken(LessParser.COMMA, i);
 		}
 		public List<ExpressionStatementContext> expressionStatement() {
 			return getRuleContexts(ExpressionStatementContext.class);
@@ -3196,15 +3198,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_commaValues; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterCommaValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterCommaValues(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitCommaValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitCommaValues(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitCommaValues(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitCommaValues(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3257,15 +3259,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_values; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterValues(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitValues(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitValues(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitValues(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitValues(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3307,24 +3309,24 @@ public class MyLessParser extends Parser {
 	}
 
 	public static class UrlContext extends ParserRuleContext {
-		public TerminalNode URL_START() { return getToken(MyLessParser.URL_START, 0); }
-		public TerminalNode URL_END() { return getToken(MyLessParser.URL_END, 0); }
-		public TerminalNode URL() { return getToken(MyLessParser.URL, 0); }
+		public TerminalNode URL_START() { return getToken(LessParser.URL_START, 0); }
+		public TerminalNode URL_END() { return getToken(LessParser.URL_END, 0); }
+		public TerminalNode URL() { return getToken(LessParser.URL, 0); }
 		public UrlContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_url; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterUrl(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterUrl(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitUrl(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitUrl(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitUrl(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitUrl(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3353,13 +3355,13 @@ public class MyLessParser extends Parser {
 
 	public static class ColorContext extends ParserRuleContext {
 		public TerminalNode NUMBER(int i) {
-			return getToken(MyLessParser.NUMBER, i);
+			return getToken(LessParser.NUMBER, i);
 		}
-		public List<TerminalNode> NUMBER() { return getTokens(MyLessParser.NUMBER); }
-		public TerminalNode HASH() { return getToken(MyLessParser.HASH, 0); }
-		public List<TerminalNode> IDENT() { return getTokens(MyLessParser.IDENT); }
+		public List<TerminalNode> NUMBER() { return getTokens(LessParser.NUMBER); }
+		public TerminalNode HASH() { return getToken(LessParser.HASH, 0); }
+		public List<TerminalNode> IDENT() { return getTokens(LessParser.IDENT); }
 		public TerminalNode IDENT(int i) {
-			return getToken(MyLessParser.IDENT, i);
+			return getToken(LessParser.IDENT, i);
 		}
 		public ColorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3367,15 +3369,15 @@ public class MyLessParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_color; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).enterColor(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).enterColor(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MyLessParserListener ) ((MyLessParserListener)listener).exitColor(this);
+			if ( listener instanceof LessParserListener ) ((LessParserListener)listener).exitColor(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MyLessParserVisitor ) return ((MyLessParserVisitor<? extends T>)visitor).visitColor(this);
+			if ( visitor instanceof LessParserVisitor ) return ((LessParserVisitor<? extends T>)visitor).visitColor(this);
 			else return visitor.visitChildren(this);
 		}
 	}

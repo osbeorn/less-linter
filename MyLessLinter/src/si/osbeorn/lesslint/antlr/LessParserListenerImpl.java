@@ -1,6 +1,24 @@
+package si.osbeorn.lesslint.antlr;
+
 import org.antlr.v4.runtime.CommonTokenStream;
 
-public class LessParserListenerImpl extends MyLessParserBaseListener
+import si.osbeorn.lesslint.antlr.LessParser.BlockContext;
+import si.osbeorn.lesslint.antlr.LessParser.ColorContext;
+import si.osbeorn.lesslint.antlr.LessParser.ElementContext;
+import si.osbeorn.lesslint.antlr.LessParser.PropertyContext;
+import si.osbeorn.lesslint.antlr.LessParser.PropertyIdentContext;
+import si.osbeorn.lesslint.antlr.LessParser.RuleStatementContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorContext;
+import si.osbeorn.lesslint.antlr.LessParser.SelectorsContext;
+import si.osbeorn.lesslint.helpers.CountHelper;
+import si.osbeorn.lesslint.helpers.FormattingHelper;
+
+/**
+ * 
+ * @author Benjamin
+ *
+ */
+public class LessParserListenerImpl extends LessParserBaseListener
 {
     private CommonTokenStream tokens;
     private int depth = 2;
@@ -16,14 +34,14 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
     }
     
     @Override
-    public void enterSelectors(MyLessParser.SelectorsContext ctx)
+    public void enterSelectors(SelectorsContext ctx)
     {
         // check the selector nesting depth     
         formattingHelper.checkSelectorDepth(ctx, depth);
     }
     
 	@Override
-	public void enterSelector(MyLessParser.SelectorContext ctx)
+	public void enterSelector(SelectorContext ctx)
 	{		
 		// check if selectors use all lowercase letters
 		//if (!GeneralHelper.IsLowerCase(ctx.getText()))
@@ -35,7 +53,7 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	}
 	
 	@Override
-	public void enterElement(MyLessParser.ElementContext ctx)
+	public void enterElement(ElementContext ctx)
 	{
 	    if (ctx.IDENT() == null)
 	        return;
@@ -46,7 +64,7 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	}
 	
 	@Override
-	public void enterProperty(MyLessParser.PropertyContext ctx)
+	public void enterProperty(PropertyContext ctx)
 	{		    
 		// check if selectors use all lowercase letters
 		//if (!GeneralHelper.IsLowerCase(ctx.getText()))
@@ -56,7 +74,7 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	}
 	
 	@Override
-	public void enterPropertyIdent(MyLessParser.PropertyIdentContext ctx)
+	public void enterPropertyIdent(PropertyIdentContext ctx)
 	{
 	    if (ctx.IDENT() == null)
 	        return;
@@ -67,14 +85,14 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	}
 	
 	@Override
-	public void enterBlock(MyLessParser.BlockContext ctx)
+	public void enterBlock(BlockContext ctx)
 	{
 	    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
 	    formattingHelper.checkPropertiesGroupOrder(ctx);
 	}
 	
 	@Override
-	public void enterRuleStatement(MyLessParser.RuleStatementContext ctx)
+	public void enterRuleStatement(RuleStatementContext ctx)
 	{   
 	    // ID styling
 	    formattingHelper.checkIDStyling(ctx);
@@ -88,7 +106,7 @@ public class LessParserListenerImpl extends MyLessParserBaseListener
 	}
 	
 	@Override
-	public void enterColor(MyLessParser.ColorContext ctx)
+	public void enterColor(ColorContext ctx)
 	{	 
 	    // lowercase and format check
 	    formattingHelper.checkColorFormat(ctx);

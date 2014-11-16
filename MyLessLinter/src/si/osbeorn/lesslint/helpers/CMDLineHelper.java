@@ -1,3 +1,4 @@
+package si.osbeorn.lesslint.helpers;
 import java.util.HashMap;
 import java.util.Map;
 

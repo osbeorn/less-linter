@@ -1,4 +1,6 @@
-// Generated from MyLessLexer.g4 by ANTLR 4.2.2
+package si.osbeorn.lesslint.antlr;
+
+// Generated from LessLexer.g4 by ANTLR 4.2.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -9,7 +11,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class MyLessLexer extends Lexer {
+public class LessLexer extends Lexer {
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
@@ -50,13 +52,13 @@ public class MyLessLexer extends Lexer {
 	};
 
 
-	public MyLessLexer(CharStream input) {
+	public LessLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "MyLessLexer.g4"; }
+	public String getGrammarFileName() { return "LessLexer.g4"; }
 
 	@Override
 	public String[] getTokenNames() { return tokenNames; }

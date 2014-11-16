@@ -1,8 +1,10 @@
+package si.osbeorn.lesslint.helpers;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.misc.Interval;
+
+import si.osbeorn.lesslint.antlr.LessParser.RuleStatementContext;
 
 public class GeneralHelper
 {
@@ -37,12 +39,12 @@ public class GeneralHelper
 	    return splits.length-1 > depth;
 	}
 	
-	public static boolean IsRuleSingleLine(MyLessParser.RuleStatementContext rule)
+	public static boolean IsRuleSingleLine(RuleStatementContext rule)
 	{
 	    return rule.start.getLine() == rule.stop.getLine();
 	}
 	
-	public static boolean IsRuleMultiLine(MyLessParser.RuleStatementContext rule)
+	public static boolean IsRuleMultiLine(RuleStatementContext rule)
     {
         return rule.start.getLine() < rule.stop.getLine();
     }
