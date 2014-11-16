@@ -135,12 +135,19 @@ mixinGuard
     : NOTW? LPAREN expressionStatement RPAREN
     ;
 
+// mixin arguments are separated by semicolons, to distinguish
+// between comma separated css lists
 mixinParams
+    : mixinParamList (SEMI mixinParamList)* SEMI?
+    ;
+
+mixinParamList
     : mixinParam (COMMA mixinParam)*
     ;
 
 mixinParam
     : mixinParamName (COLON values)?
+    | variableName? ELLIPSIS
     ;
 
 mixinParamName
@@ -162,12 +169,6 @@ element
     | TIMES
     | measurement
     ;
-
-//mixinElement
-//    : IDENT
-//    | HASH IDENT
-//    | DOT IDENT
-//    ;
     
 pseudo
     : (COLON|COLONCOLON) (IDENT|NOTW) (LPAREN pseudoParams RPAREN)?

@@ -1,3 +1,18 @@
+.average(@x, @y) {
+  @average: ((@x + @y) / 2);
+}
+
+div {
+  .average(16px, 50px); // "call" the mixin
+  padding: @average;    // use its "return" value
+}
+
+.box-shadow(@x: 0, @y: 0, @blur: 1px, @color: #000; @rest...) {
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+
 .one:not(h1).two .three .four, .one:not(h1).two .three {
     border  : solid 1px rgba(0, 0, 0, .2);
     outline : none;
@@ -8,4 +23,4 @@
     }
 
     &:after { outline: none; }
-}   
+}

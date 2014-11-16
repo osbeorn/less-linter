@@ -11,18 +11,18 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpression(@NotNull MyLessParser.ExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#selector}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSelector(@NotNull MyLessParser.SelectorContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(@NotNull MyLessParser.ExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mixinCall}.
@@ -32,46 +32,11 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitMixinCall(@NotNull MyLessParser.MixinCallContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#variableStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableStatement(@NotNull MyLessParser.VariableStatementContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#selectorGroup}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#variableName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVariableName(@NotNull MyLessParser.VariableNameContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#propertyStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#pseudoParams}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#pseudo}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPseudo(@NotNull MyLessParser.PseudoContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#expressionStatement}.
@@ -81,18 +46,32 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionStatement(@NotNull MyLessParser.ExpressionStatementContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link MyLessParser#pseudo}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPseudo(@NotNull MyLessParser.PseudoContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#pseudoParams}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPseudoParams(@NotNull MyLessParser.PseudoParamsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#propertyStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPropertyStatement(@NotNull MyLessParser.PropertyStatementContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link MyLessParser#boolCharacter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBoolCharacter(@NotNull MyLessParser.BoolCharacterContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#block}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBlock(@NotNull MyLessParser.BlockContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mathCharacter}.
@@ -109,11 +88,11 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitPropertyValues(@NotNull MyLessParser.PropertyValuesContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#propertyIdent}.
+	 * Visit a parse tree produced by {@link MyLessParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx);
+	T visitFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#callParam}.
@@ -121,13 +100,6 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCallParam(@NotNull MyLessParser.CallParamContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#functionCall}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionCall(@NotNull MyLessParser.FunctionCallContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#values}.
@@ -151,53 +123,11 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitMixinParamName(@NotNull MyLessParser.MixinParamNameContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#importStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitImportStatement(@NotNull MyLessParser.ImportStatementContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#stylesheet}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStylesheet(@NotNull MyLessParser.StylesheetContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#callParams}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCallParams(@NotNull MyLessParser.CallParamsContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#mixin}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMixin(@NotNull MyLessParser.MixinContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mediaStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMediaStatement(@NotNull MyLessParser.MediaStatementContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#commaValues}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#mediaQuery}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#element}.
@@ -221,13 +151,6 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitMixinParams(@NotNull MyLessParser.MixinParamsContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#mediaQueryList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mixinGuard}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -235,11 +158,11 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitMixinGuard(@NotNull MyLessParser.MixinGuardContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#keyword}.
+	 * Visit a parse tree produced by {@link MyLessParser#mediaQueryList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitKeyword(@NotNull MyLessParser.KeywordContext ctx);
+	T visitMediaQueryList(@NotNull MyLessParser.MediaQueryListContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#property}.
@@ -256,11 +179,11 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitVarInterpolationIdent(@NotNull MyLessParser.VarInterpolationIdentContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#attrib}.
+	 * Visit a parse tree produced by {@link MyLessParser#attribRelate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAttrib(@NotNull MyLessParser.AttribContext ctx);
+	T visitAttribRelate(@NotNull MyLessParser.AttribRelateContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#url}.
@@ -268,13 +191,6 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUrl(@NotNull MyLessParser.UrlContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link MyLessParser#attribRelate}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAttribRelate(@NotNull MyLessParser.AttribRelateContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#measurement}.
@@ -291,13 +207,6 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStatement(@NotNull MyLessParser.StatementContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#mixinGuards}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mediaQueryExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -305,18 +214,116 @@ public interface MyLessParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitMediaQueryExpression(@NotNull MyLessParser.MediaQueryExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link MyLessParser#color}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitColor(@NotNull MyLessParser.ColorContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link MyLessParser#mathPrefixCharacter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMathPrefixCharacter(@NotNull MyLessParser.MathPrefixCharacterContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#selectorGroup}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectorGroup(@NotNull MyLessParser.SelectorGroupContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#variableStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableStatement(@NotNull MyLessParser.VariableStatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(@NotNull MyLessParser.BlockContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#propertyIdent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPropertyIdent(@NotNull MyLessParser.PropertyIdentContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#stylesheet}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStylesheet(@NotNull MyLessParser.StylesheetContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#importStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImportStatement(@NotNull MyLessParser.ImportStatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#mixin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMixin(@NotNull MyLessParser.MixinContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#callParams}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallParams(@NotNull MyLessParser.CallParamsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#commaValues}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaValues(@NotNull MyLessParser.CommaValuesContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#mediaQuery}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMediaQuery(@NotNull MyLessParser.MediaQueryContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#keyword}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKeyword(@NotNull MyLessParser.KeywordContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#mixinParamList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMixinParamList(@NotNull MyLessParser.MixinParamListContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#attrib}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrib(@NotNull MyLessParser.AttribContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#mixinGuards}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMixinGuards(@NotNull MyLessParser.MixinGuardsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link MyLessParser#color}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColor(@NotNull MyLessParser.ColorContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link MyLessParser#selectors}.
