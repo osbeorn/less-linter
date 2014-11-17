@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Future;
 
@@ -53,6 +54,10 @@ public class Main
         try
         {
             Map<String, Object> config = ConfigHelper.parseArgs(args);
+            if (config == null)
+            {
+                throw new Exception("No input source defined (raw string or file).");
+            }
             
             ANTLRInputStream source;
             if (config.containsKey(ConfigParams.RAW_INPUT))
@@ -69,7 +74,7 @@ public class Main
             }
             else
             {
-                throw new Exception("No input defined (raw or file).");
+                throw new Exception("No input source defined (raw string or file).");
             }
             
             // lexer initialization
@@ -161,13 +166,17 @@ public class Main
             ParseTreeWalker walker = new ParseTreeWalker();
             FormattingHelper formattingHelper = new FormattingHelper(stream);
             CountHelper countHelper = new CountHelper();
-            LessParserListenerImpl listener = new LessParserListenerImpl(stream, formattingHelper, countHelper, null);
+            
+            Map<String, Object> config = new HashMap<String, Object>();
+            config.put(ConfigParams.ALL_PARAMS, null);
+            
+            LessParserListenerImpl listener =
+                new LessParserListenerImpl(stream, formattingHelper, countHelper, config);
             walker.walk(listener, stylesheet);
             
             System.out.println(formattingHelper.getWarnings());
             System.out.println();
             System.out.println(countHelper.getCountReport());
-            
         }
         catch(Exception e)
         {

@@ -14,6 +14,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.SelectorContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorsContext;
 import si.osbeorn.lesslinter.helpers.CountHelper;
 import si.osbeorn.lesslinter.helpers.FormattingHelper;
+import si.osbeorn.lesslinter.library.ConfigParams;
 
 /**
  * 
@@ -23,7 +24,6 @@ import si.osbeorn.lesslinter.helpers.FormattingHelper;
 public class LessParserListenerImpl extends LessParserBaseListener
 {
     private CommonTokenStream tokens;
-    private int depth = 2;
     
     private FormattingHelper formattingHelper;
     private CountHelper countHelper;
@@ -43,17 +43,31 @@ public class LessParserListenerImpl extends LessParserBaseListener
     @Override
     public void enterSelectors(SelectorsContext ctx)
     {
-        // check the selector nesting depth     
-        formattingHelper.checkSelectorDepth(ctx, depth);
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.SELECTOR_DEPTH))
+        {
+            int depth = (Integer) config.get(ConfigParams.SELECTOR_DEPTH);
+            
+            // check the selector nesting depth     
+            formattingHelper.checkSelectorDepth(ctx, depth);
+        }
     }
     
 	@Override
 	public void enterSelector(SelectorContext ctx)
 	{	
-	    // ID styling
-        formattingHelper.checkIDStyling(ctx);
-	    
-		countHelper.countSelectors(ctx);
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.ID_STYLING))
+        {
+    	    // ID styling
+            formattingHelper.checkIDStyling(ctx);
+        }
+    	 
+	    if (config.containsKey(ConfigParams.COUNT_SELECTORS))
+	    {
+            // count selectors
+    		countHelper.countSelectors(ctx);
+        }
 	}
 	
 	@Override
@@ -62,9 +76,18 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	    if (ctx.IDENT() == null)
 	        return;
 	    
-	    formattingHelper.checkLowerCase(ctx.IDENT());
-	    formattingHelper.checkCamelCase(ctx.IDENT());
-	    formattingHelper.checkUnderScore(ctx.IDENT());
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.LOWERCASE))
+        {
+	        formattingHelper.checkLowerCase(ctx.IDENT());
+	        formattingHelper.checkCamelCase(ctx.IDENT());
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.UNDERSCORES))
+        {
+	        formattingHelper.checkUnderScore(ctx.IDENT());
+        }
 	}
 	
 	@Override
@@ -78,33 +101,71 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	    if (ctx.IDENT() == null)
 	        return;
 	        
-	    formattingHelper.checkLowerCase(ctx.IDENT());
-        formattingHelper.checkCamelCase(ctx.IDENT());
-        formattingHelper.checkUnderScore(ctx.IDENT());
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.LOWERCASE))
+        {
+            formattingHelper.checkLowerCase(ctx.IDENT());
+            formattingHelper.checkCamelCase(ctx.IDENT());
+        }
+        
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.UNDERSCORES))
+        {
+            formattingHelper.checkUnderScore(ctx.IDENT());
+        }
 	}
 	
 	@Override
 	public void enterBlock(BlockContext ctx)
 	{
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.BRACKET_LOCATION))
+        {
 	    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.PROP_GROUPS))
+        {
 	    formattingHelper.checkPropertiesGroupOrder(ctx);
+        }
 	}
 	
 	@Override
 	public void enterRuleStatement(RuleStatementContext ctx)
 	{   	        
         // Multi- and single-line checks
-	    formattingHelper.checkRuleLineSpan(ctx);	    
-	    formattingHelper.checkRuleLinePosition(ctx);
-	    formattingHelper.checkBlockClosingBracketLocation(ctx);	    
-	    formattingHelper.checkNewLineAfterMultiLineStatement(ctx);
-	    formattingHelper.checkPropertyColonSpace(ctx);
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.LINE_SPAN))
+        {
+	        formattingHelper.checkRuleLineSpan(ctx);
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.BRACKET_LOCATION))
+        {
+	        formattingHelper.checkRuleLinePosition(ctx);
+	        formattingHelper.checkBlockClosingBracketLocation(ctx);
+        }
+	    
+	    // TODO - new switch
+	    //formattingHelper.checkNewLineAfterMultiLineStatement(ctx);
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.COLON_SPACES))
+        {
+	        formattingHelper.checkPropertyColonSpace(ctx);
+        }
 	}
 	
 	@Override
 	public void enterColor(ColorContext ctx)
-	{	 
-	    // lowercase and format check
-	    formattingHelper.checkColorFormat(ctx);
+	{	
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.COLOR_FORMAT))
+        {
+	        // lowercase and format check
+	        formattingHelper.checkColorFormat(ctx);
+        }
 	}	
 }
