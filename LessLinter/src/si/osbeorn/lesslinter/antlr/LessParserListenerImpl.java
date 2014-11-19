@@ -2,8 +2,6 @@ package si.osbeorn.lesslinter.antlr;
 
 import java.util.Map;
 
-import org.antlr.v4.runtime.CommonTokenStream;
-
 import si.osbeorn.lesslinter.antlr.LessParser.BlockContext;
 import si.osbeorn.lesslinter.antlr.LessParser.ColorContext;
 import si.osbeorn.lesslinter.antlr.LessParser.ElementContext;
@@ -17,24 +15,20 @@ import si.osbeorn.lesslinter.helpers.FormattingHelper;
 import si.osbeorn.lesslinter.library.ConfigParams;
 
 /**
+ * An extended implementation of the {@link si.osbeorn.lesslinter.antlr.LessParserBaseListener} class. 
  * 
  * @author Benjamin
- *
  */
 public class LessParserListenerImpl extends LessParserBaseListener
-{
-    private CommonTokenStream tokens;
-    
+{  
     private FormattingHelper formattingHelper;
     private CountHelper countHelper;
     private Map<String, Object> config;
     
-    public LessParserListenerImpl(CommonTokenStream tokens,
-                                  FormattingHelper formattingHelper,
+    public LessParserListenerImpl(FormattingHelper formattingHelper,
                                   CountHelper countHelper,
                                   Map<String, Object> config)
     {
-        this.tokens = tokens;
         this.formattingHelper = formattingHelper;
         this.countHelper = countHelper;
         this.config = config;
@@ -92,7 +86,18 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	
 	@Override
 	public void enterProperty(PropertyContext ctx)
-	{		    
+	{
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.DECL_SPACES_MULTI))
+        {
+	        formattingHelper.checkPropertyIndentation(ctx, 4);
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.DECL_SPACES_SINGLE))
+        {
+	        formattingHelper.checkSingleLinePropertySpaces(ctx);
+        }
 	}
 	
 	@Override
@@ -121,13 +126,13 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.BRACKET_LOCATION))
         {
-	    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
+	        formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
         }
 	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.PROP_GROUPS))
         {
-	    formattingHelper.checkPropertiesGroupOrder(ctx);
+	        formattingHelper.checkPropertiesGroupOrder(ctx);
         }
 	}
 	
@@ -148,8 +153,11 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	        formattingHelper.checkBlockClosingBracketLocation(ctx);
         }
 	    
-	    // TODO - new switch
-	    //formattingHelper.checkNewLineAfterMultiLineStatement(ctx);
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.MULTI_NEW_LINE))
+        {
+	        formattingHelper.checkNewLineAfterMultiLineStatement(ctx);
+        }
 	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.COLON_SPACES))

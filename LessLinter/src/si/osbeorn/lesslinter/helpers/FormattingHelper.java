@@ -1,11 +1,12 @@
 package si.osbeorn.lesslinter.helpers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.antlr.v4.parse.ANTLRParser.block_return;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -22,6 +23,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.SelectorGroupContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorsContext;
 import si.osbeorn.lesslinter.antlr.LessParser.StatementContext;
 import si.osbeorn.lesslinter.library.Messages;
+import si.osbeorn.lesslinter.library.PropertyGroups;
 import si.osbeorn.lesslinter.library.Warning;
 import si.osbeorn.lesslinter.library.WarningComparator;
 
@@ -31,51 +33,158 @@ import si.osbeorn.lesslinter.library.WarningComparator;
  */
 public class FormattingHelper
 {
-    private static List<String> positionGroup =
-        Arrays.asList("position", "top", "right", "left", "bottom", "z-index");
-    
-    private static List<String> displayAndBoxGroup =
-        Arrays.asList("display", "box-sizing", "width", "height", "padding",
-                      "margin", "overflow");
-    
-    private static List<String> borderGroup =
-        Arrays.asList("border", "border-bottom", "border-bottom-color", "border-bottom-left-radius",
-                      "border-bottom-right-radius", "border-bottom-style", "border-bottom-width",
-                      "border-collapse", "border-color", "border-image", "border-image-outset",
-                      "border-image-repeat", "border-image-slice", "border-image-source", "border-image-width",
-                      "border-left", "border-left-color", "border-left-style", "border-left-width",
-                      "border-radius", "border-right", "border-right-color", "border-right-style",
-                      "border-right-width", "border-spacing", "border-style", "border-top", "border-top-color",
-                      "border-top-left-radius", "border-top-right-radius", "border-top-style", "border-top-width",
-                      "border-width");
-    
-    private static List<String> backgroundAndColorGroup =
-        Arrays.asList("background", "background-attachment", "background-clip", "background-color",
-                      "background-image", "background-origin", "background-position", "background-repeat",
-                      "background-size", "color");
-    
-    private static List<String> textGroup =
-        Arrays.asList("font-family", "font-size", "line-height", "text-align",
-                      "text-transform", "letter-spacing");
-    
-    private static final int POSITION_GRP_INDEX = 1;
-    private static final int DISP_AND_BOX_GRP_INDEX = 2;
-    private static final int BORDER_GRP_INDEX = 3;
-    private static final int BG_AND_COLOR_GRP_INDEX = 4;
-    private static final int TEXT_GRP_INDEX = 5;
-    private static final int OTHER_GRP_INDEX = 6;
-
-    // all tokens (hidden and normal)
+    /**
+     * All collected tokens from all channels (hidden and normal)
+     */
     private CommonTokenStream tokens;
     
-    // all gathered warnings
+    /**
+     * A list of gathered warnings.
+     */
     private List<Warning> warnings;
     
-    // constructor
+    /**
+     * Constructor.
+     * 
+     * @param tokens Tokens collected by the LessLexer.
+     */
     public FormattingHelper(CommonTokenStream tokens) {
         this.tokens = tokens;
         
         this.warnings = new ArrayList<Warning>();
+    }
+    
+    /**
+     * Checks if the property in a single line rule statement is preceded and followed by a white space. 
+     *  
+     * @param ctx The property context.
+     */
+    public void checkSingleLinePropertySpaces(PropertyContext ctx)
+    {
+        BlockContext blockCtx = (BlockContext) ctx.getParent();
+        
+        if (!GeneralHelper.isBlockSingleLine(blockCtx))
+            return;
+        
+        int propertyStartIndex = ctx.getStart().getTokenIndex();
+        int propertyEndIndex = ctx.getStop().getTokenIndex();
+        
+        List<Token> leftTokens = tokens.getHiddenTokensToLeft(propertyStartIndex);
+        List<Token> rightTokens = tokens.getHiddenTokensToRight(propertyEndIndex);
+        
+        if (leftTokens == null || leftTokens.size() < 1)
+            addWarning(WarningHelper.getWarning(ctx,
+                                                tokens,
+                                                Messages.WARN_PROPERTY_SPACE_BEFORE));
+        
+        if (rightTokens == null || rightTokens.size() < 1)
+            addWarning(WarningHelper.getWarning(ctx,
+                                                tokens,
+                                                Messages.WARN_PROPERTY_SPACE_AFTER));
+        
+        Token tok = leftTokens.get(leftTokens.size() - 1);
+        if (leftTokens.size() > 0)
+        {
+            if (tok.getType() != LessParser.WS)
+                addWarning(WarningHelper.getWarning(ctx,
+                                                    tokens,
+                                                    Messages.WARN_PROPERTY_SPACE_BEFORE));
+        }
+        
+        tok = rightTokens.get(0);
+        if (rightTokens.size() > 0)
+        {
+            if (tok.getType() != LessParser.WS)
+                addWarning(WarningHelper.getWarning(ctx,
+                                                    tokens,
+                                                    Messages.WARN_PROPERTY_SPACE_AFTER));            
+        }
+    }
+    
+    /**
+     * Check if a property is properly indented:<br />
+     * - indentation width must equal <code>indent</code>*depth<br />
+     * - only white spaces are allowed (no tabs)
+     * 
+     * @param ctx Property context.
+     * @param indent The indentation width on the first level.
+     */
+    public void checkPropertyIndentation(PropertyContext ctx, int indent)
+    {
+        if (!GeneralHelper.isBlockMultiLine((BlockContext) ctx.getParent()))
+            return;
+        
+        int depth = getPropertyDepth(ctx);
+        int propertyStartIndex = ctx.getStart().getTokenIndex();
+        List<Token> rightTokens = tokens.getHiddenTokensToLeft(propertyStartIndex);
+        
+        if (rightTokens == null || rightTokens.size() < 1)
+            return;
+        
+        Token tok = rightTokens.get(rightTokens.size() - 1);
+        if (tok.getType() == LessParser.WS)
+        {
+            if (tok.getText().length() != indent*depth)
+                addWarning(WarningHelper.getWarning(ctx,
+                                                    tokens,
+                                                    String.format(Messages.WARN_PROPERTY_INDENT, tok.getText().length(), indent, depth, indent*depth)));
+        }
+        else
+        {
+            addWarning(WarningHelper.getWarning(ctx,
+                                                tokens,
+                                                Messages.WARN_PROPERTY_INDENT_SPACES));
+        }
+    }
+    
+    /**
+     * Get the nesting depth of a property.<br />
+     * For now, used only by the {@link #checkPropertyIndentation(PropertyContext, int)} method.
+     * 
+     * @param ctx PropertContext context
+     * @return The depth of the property in terms of nesting depth.
+     */
+    private int getPropertyDepth(PropertyContext ctx)
+    {
+        int depth = 0;
+        ParserRuleContext parent = ctx;
+        do
+        {
+            parent = parent.getParent();
+            if (parent != null && parent instanceof BlockContext)
+                depth++;
+        }
+        while (parent != null);
+       
+        return depth;
+    }
+    
+    /**
+     * Get the parent of the PropertyContext, the BlockContext. 
+     * 
+     * @param ctx The property context
+     * @return The block context.
+     */
+    private BlockContext getBlockContext(PropertyContext ctx)
+    {
+        BlockContext blockContext = null;
+        try
+        {
+            if (ctx == null)
+                throw new Exception("Error in retrieving RuleStatementContext.");
+            
+            BlockContext blockCtx = (BlockContext) ctx.getParent();
+            if (blockCtx == null)
+                throw new Exception("Error in retrieving RuleStatementContext.");
+            
+            return blockContext;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return blockContext;
     }
     
     /**
@@ -113,7 +222,7 @@ public class FormattingHelper
         List<PropertyContext> propertyCtxList = blockCtx.property();
         List<StatementContext> statementCtxList = blockCtx.statement();
         
-        if (GeneralHelper.IsRuleMultiLine(ctx))
+        if (GeneralHelper.isRuleMultiLine(ctx))
         {
             int blockEndLine = blockCtx.getStop().getLine();
             int lastPropertyEndLine =
@@ -125,7 +234,9 @@ public class FormattingHelper
                     ? statementCtxList.get(statementCtxList.size()-1).getStop().getLine()
                     : -1;
             
-            if (Math.max(lastPropertyEndLine, lastStatementEndLine) + 1 != blockEndLine)
+            int endLine = Math.max(lastPropertyEndLine, lastStatementEndLine);
+            
+            if (endLine == blockEndLine)
             {
                 addWarning(WarningHelper.getWarning(blockCtx,
                                                     blockCtx.getStop(),
@@ -135,6 +246,14 @@ public class FormattingHelper
         }
     }
     
+    /**
+     * Checks if property declarations conform to the following rules about colon
+     * and white space placement:<br />
+     * - single line rule sets should have a space following the colon<br />
+     * - multi line rule sets should have a space preceding and following the colon. 
+     * 
+     * @param ctx Rule statement context
+     */
     public void checkPropertyColonSpace(RuleStatementContext ctx){
         SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
@@ -146,18 +265,23 @@ public class FormattingHelper
         
         List<PropertyContext> propertyCtxList = blockCtx.property();
         
-        if (GeneralHelper.IsRuleSingleLine(ctx))
+        if (GeneralHelper.isRuleSingleLine(ctx))
         {
             for (PropertyContext propertyCtx : propertyCtxList)
                 checkPropertyStatementColonSpaceAfter(propertyCtx.propertyStatement());
         }
-        else if (GeneralHelper.IsRuleMultiLine(ctx))
+        else if (GeneralHelper.isRuleMultiLine(ctx))
         {
             for (PropertyContext propertyCtx : propertyCtxList)
                 checkPropertyStatementColonSpaceBeforeAndAfter(propertyCtx.propertyStatement());
         }
     }
     
+    /**
+     * Checks if property declarations are followed by a whitespace.
+     * 
+     * @param ctx Property statement context
+     */
     private void checkPropertyStatementColonSpaceAfter(PropertyStatementContext ctx)
     {
         if (ctx == null)
@@ -183,6 +307,11 @@ public class FormattingHelper
         }
     }
     
+    /**
+     * Checks if property declarations are preceded and followed by a whitespace.
+     * 
+     * @param ctx Property statement context
+     */
     private void checkPropertyStatementColonSpaceBeforeAndAfter(PropertyStatementContext ctx)
     {
         if (ctx == null)
@@ -226,13 +355,13 @@ public class FormattingHelper
     }
     
     /**
-     * Checks if there is a new line following a multi line statement.
+     * Checks if there is a new line following a multi line statement closing bracket.
      * 
-     * @param ctx
+     * @param ctx Rule statement context
      */
     public void checkNewLineAfterMultiLineStatement(RuleStatementContext ctx)
     {
-        if (!GeneralHelper.IsRuleMultiLine(ctx))
+        if (!GeneralHelper.isRuleMultiLine(ctx))
             return;
         
         int statementStop = ctx.getStop().getTokenIndex();
@@ -258,9 +387,21 @@ public class FormattingHelper
         }
         
         boolean existNL = false;
+        int countNL = 0;
         for (Token t : rightHiddenTokens)
         {
+            if (t.getType() == LessParser.WS || t.getType() == LessParser.TAB)
+                continue;
+            
+            if (t.getType() != LessParser.NL && t.getType() != LessParser.WS && t.getType() == LessParser.TAB)
+                break;
+            
             if (t.getType() == LessParser.NL)
+            {
+                countNL++;
+            }
+            
+            if (countNL == 2)
             {
                 existNL = true;
                 break;
@@ -276,8 +417,9 @@ public class FormattingHelper
     }
     
     /**
+     * Checks if the rule statement opening bracket is on the same line as the selectors.
      * 
-     * @param ctx
+     * @param ctx Rule statement context
      */
     public void checkRuleLinePosition(RuleStatementContext ctx)
     {
@@ -301,8 +443,11 @@ public class FormattingHelper
     }
     
     /**
+     * Checks if the <code>ctx</code> rule statement is properly formatted:<br />
+     * - rule statement with a single property should be written in a single line<br />
+     * - rule statement with multiple properties should be written multiple lines.
      * 
-     * @param ctx
+     * @param ctx Rule statement context
      */
     public void checkRuleLineSpan(RuleStatementContext ctx)
     {
@@ -318,13 +463,13 @@ public class FormattingHelper
         if (propertyCtxList == null || propertyCtxList.size() < 1)
             return;
         
-        if (propertyCtxList.size() == 1 && !GeneralHelper.IsRuleSingleLine(ctx))
+        if (propertyCtxList.size() == 1 && !GeneralHelper.isRuleSingleLine(ctx))
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
                                                 Messages.WARN_RULE_SINLE_LINE));
         }
-        else if (propertyCtxList.size() > 1 && GeneralHelper.IsRuleSingleLine(ctx))
+        else if (propertyCtxList.size() > 1 && GeneralHelper.isRuleSingleLine(ctx))
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
@@ -333,7 +478,7 @@ public class FormattingHelper
     }
     
     /**
-     * Checks if color declaration of form "color: #code" is lowercase and using the 6 digit hex format. 
+     * Checks if color declaration of form "color: #code" is lower case and using the 6 digit hex format. 
      * 
      * @param ctx The ColorContext.
      */
@@ -351,8 +496,9 @@ public class FormattingHelper
     }
     
     /**
+     * Checks if the opening bracket of a block is preceded by a white space.
      * 
-     * @param ctx
+     * @param ctx Block context
      */
     public void checkBlockOpeningBracketWhiteSpace(BlockContext ctx)
     {
@@ -389,8 +535,8 @@ public class FormattingHelper
     /**
      * Checks if the selector depth is greater than the <code>depth</code> limit.
      * 
-     * @param ctx
-     * @param depth
+     * @param ctx Selector context
+     * @param depth Depth
      */
     public void checkSelectorDepth(SelectorsContext ctx, int depth)
     {
@@ -454,7 +600,7 @@ public class FormattingHelper
     /**
      * Checks if properties within a block are grouped and order according to the rules.
      * 
-     * @param ctx
+     * @param ctx Block context
      */
     public void checkPropertiesGroupOrder(BlockContext ctx)
     {
@@ -477,29 +623,29 @@ public class FormattingHelper
             if (ident == null)
                 return;
             
-            if (positionGroup.contains(ident.getText()))
+            if (PropertyGroups.positionGroup.contains(ident.getText()))
             {
-                addGroupOrderIndex(indices, POSITION_GRP_INDEX);
+                addGroupOrderIndex(indices, PropertyGroups.POSITION_GRP_INDEX);
             }
-            else if (displayAndBoxGroup.contains(ident.getText()))
+            else if (PropertyGroups.displayAndBoxGroup.contains(ident.getText()))
             {
-                addGroupOrderIndex(indices, DISP_AND_BOX_GRP_INDEX);
+                addGroupOrderIndex(indices, PropertyGroups.DISP_AND_BOX_GRP_INDEX);
             }
-            else if (borderGroup.contains(ident.getText()))
+            else if (PropertyGroups.borderGroup.contains(ident.getText()))
             {
-                addGroupOrderIndex(indices, BORDER_GRP_INDEX);
+                addGroupOrderIndex(indices, PropertyGroups.BORDER_GRP_INDEX);
             }
-            else if (backgroundAndColorGroup.contains(ident.getText()))
+            else if (PropertyGroups.backgroundAndColorGroup.contains(ident.getText()))
             {
-                addGroupOrderIndex(indices, BG_AND_COLOR_GRP_INDEX);
+                addGroupOrderIndex(indices, PropertyGroups.BG_AND_COLOR_GRP_INDEX);
             }
-            else if (textGroup.contains(ident.getText()))
+            else if (PropertyGroups.textGroup.contains(ident.getText()))
             {
-                addGroupOrderIndex(indices, TEXT_GRP_INDEX);
+                addGroupOrderIndex(indices, PropertyGroups.TEXT_GRP_INDEX);
             }
             else
             {
-                addGroupOrderIndex(indices, OTHER_GRP_INDEX); // other group
+                addGroupOrderIndex(indices, PropertyGroups.OTHER_GRP_INDEX); // other group
             }
         }
         
@@ -518,7 +664,7 @@ public class FormattingHelper
     }
     
     /**
-     * A helper method used by {@link #checkPropertiesGroupOrder(BlockContext) checkPropertiesGroupOrder} method.
+     * A helper method used only by {@link #checkPropertiesGroupOrder(BlockContext) checkPropertiesGroupOrder} method.
      * If the index to be added is the same as the current last item of the list, the index is not added, otherwise it is.
      * 
      * @param list A list of integer indices.
@@ -536,6 +682,11 @@ public class FormattingHelper
         }
     }
     
+    /**
+     * Check if the <code>ident</code> is written in lower case format.
+     * 
+     * @param ident The selector or property name.
+     */
     public void checkLowerCase(TerminalNode ident)
     {
         String word = ident.getText();
@@ -553,6 +704,11 @@ public class FormattingHelper
         }
     }
     
+    /**
+     * Check if the <code>ident</code> is written in camel case format.
+     * 
+     * @param ident The selector name.
+     */
     public void checkCamelCase(TerminalNode ident)
     {
         if (ident.getText().matches("[a-z0-9_]+([A-Z][a-z0-9_]+)+"))
@@ -563,6 +719,11 @@ public class FormattingHelper
         }
     }
     
+    /**
+     * Check if the <code>ident</code> contains underscores.
+     * 
+     * @param ident The selector name.
+     */
     public void checkUnderScore(TerminalNode ident)
     {
         if (ident.getText().contains("_"))
@@ -587,22 +748,27 @@ public class FormattingHelper
     }
     
     /**
+     * Get a formatted string of collected warnings.
      * 
-     * @return
+     * @return Warnings in a string.
      */
     public String getWarnings()
     {
+        StringBuilder builder = new StringBuilder();
+        builder.append("LessLinter report:\n");
+        
         if (warnings == null || warnings.size() == 0)
-            return "No warnings. Good job!";
+        {
+            builder.append("No warnings. Good job!");
+            return builder.toString();
+        }
         
         Collections.sort(warnings, new WarningComparator());
-        
-        StringBuilder builder = new StringBuilder();
         for (Warning warning : warnings)
         {
-            builder.append(warning);
-            builder.append(System.lineSeparator());
+            builder.append(warning + "\n");
         }
+        builder.append("\n");
         
         return builder.toString();
     }

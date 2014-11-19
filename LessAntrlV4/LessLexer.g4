@@ -40,8 +40,8 @@ PERC            : '%';
 QUOT            : '"';
 
 INTERPOLATION_START
-  : '@{' -> pushMode(INTERPOLATION_STARTED)
-  ;
+    : '@{' -> pushMode(INTERPOLATION_STARTED)
+    ;
 
 URL_START
     : 'url' LPAREN -> pushMode(URL_STARTED)
@@ -94,12 +94,16 @@ NUMBER
     ;
 
 WS
-  : (' '|'\t')+ -> channel(HIDDEN)
-  ;
+    : ' '+ -> channel(HIDDEN)
+    ;
+
+TAB
+    : '\t'+ -> channel(HIDDEN)
+    ;
 
 NL
-  : ('\n'|'\r'|'\r\n')+ -> channel(HIDDEN)
-  ;
+    : ('\n'|'\r'|'\r\n')+ -> channel(HIDDEN)
+    ;
 
 SL_COMMENT
     :   '//'

@@ -98,12 +98,14 @@ public class Main
             CountHelper countHelper = new CountHelper();
             
             LessParserListenerImpl listener =
-                new LessParserListenerImpl(tokenStream, formattingHelper, countHelper, config);
+                new LessParserListenerImpl(formattingHelper, countHelper, config);
             walker.walk(listener, stylesheet);
             
-            System.out.println(formattingHelper.getWarnings());
-            System.out.println();
-            System.out.println(countHelper.getCountReport());
+            // output results
+            System.out.print(formattingHelper.getWarnings());
+            
+            if (config.containsKey(ConfigParams.COUNT_SELECTORS))
+                System.out.print(countHelper.getCountReport());
         }
         catch (Exception e)
         {
@@ -171,7 +173,7 @@ public class Main
             config.put(ConfigParams.ALL_PARAMS, null);
             
             LessParserListenerImpl listener =
-                new LessParserListenerImpl(stream, formattingHelper, countHelper, config);
+                new LessParserListenerImpl(formattingHelper, countHelper, config);
             walker.walk(listener, stylesheet);
             
             System.out.println(formattingHelper.getWarnings());

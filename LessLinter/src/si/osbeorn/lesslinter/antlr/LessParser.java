@@ -16,23 +16,23 @@ public class LessParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		DOLLAR=19, LT=14, LBRACK=10, ONLY=44, LTEQ=35, INTERPOLATION_END=53, MEDIA=43, 
-		AND=21, ANDW=36, LPAREN=6, INTERPOLATION_START=30, AT=20, ML_COMMENT=52, 
+		DOLLAR=19, LT=14, LBRACK=10, ONLY=44, LTEQ=35, INTERPOLATION_END=54, MEDIA=43, 
+		AND=21, ANDW=36, LPAREN=6, INTERPOLATION_START=30, AT=20, ML_COMMENT=53, 
 		RPAREN=7, IMPORT=42, STRING_LITERAL=47, IN=2, COMMA=17, TIL=13, TILD_EQ=40, 
-		IDENT=46, PLUS=24, NL=50, EQ=38, DOT=18, URL_END=55, PIPE_EQ=39, NOTW=37, 
+		IDENT=46, PLUS=24, NL=51, EQ=38, DOT=18, URL_END=56, PIPE_EQ=39, NOTW=37, 
 		EQEQ=32, RBRACK=11, URL_START=31, NULL=1, QUOT=29, NUMBER=48, HASH=22, 
-		ELLIPSIS=5, LCURLY=8, MINUS=27, GTEQ=34, SEMI=16, URL=56, IMPORTANT=45, 
-		COLON=15, COLONCOLON=23, UNIT=3, NOTEQ=33, WS=49, PERC=28, WHEN=41, SL_COMMENT=51, 
-		RCURLY=9, GT=12, INTERPOLATION=54, DIV=26, TIMES=25, COMBINE_COMPARE=4;
+		TAB=50, ELLIPSIS=5, LCURLY=8, MINUS=27, GTEQ=34, SEMI=16, URL=57, IMPORTANT=45, 
+		COLON=15, COLONCOLON=23, UNIT=3, NOTEQ=33, WS=49, PERC=28, WHEN=41, SL_COMMENT=52, 
+		RCURLY=9, GT=12, INTERPOLATION=55, DIV=26, TIMES=25, COMBINE_COMPARE=4;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'null'", "'in'", "UNIT", "COMBINE_COMPARE", "'...'", "'('", 
 		"')'", "'{'", "'}'", "'['", "']'", "'>'", "'~'", "'<'", "':'", "';'", 
 		"','", "'.'", "'$'", "'@'", "'&'", "'#'", "'::'", "'+'", "'*'", "'/'", 
 		"'-'", "'%'", "'\"'", "'@{'", "URL_START", "'=='", "'!='", "'>='", "'<='", 
 		"'and'", "'not'", "'='", "'|='", "'~='", "'when'", "'@import'", "'@media'", 
-		"'only'", "'!important'", "IDENT", "STRING_LITERAL", "NUMBER", "WS", "NL", 
-		"SL_COMMENT", "ML_COMMENT", "INTERPOLATION_END", "INTERPOLATION", "URL_END", 
-		"URL"
+		"'only'", "'!important'", "IDENT", "STRING_LITERAL", "NUMBER", "WS", "TAB", 
+		"NL", "SL_COMMENT", "ML_COMMENT", "INTERPOLATION_END", "INTERPOLATION", 
+		"URL_END", "URL"
 	};
 	public static final int
 		RULE_stylesheet = 0, RULE_statement = 1, RULE_mediaStatement = 2, RULE_mediaQueryList = 3, 
@@ -3444,7 +3444,7 @@ public class LessParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3:\u01eb\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3;\u01eb\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3601,31 +3601,31 @@ public class LessParser extends Parser {
 		"\2\2\u01a1M\3\2\2\2\u01a2\u01a4\7\60\2\2\u01a3\u01a2\3\2\2\2\u01a3\u01a4"+
 		"\3\2\2\2\u01a4\u01a5\3\2\2\2\u01a5\u01a7\5P)\2\u01a6\u01a8\7\60\2\2\u01a7"+
 		"\u01a6\3\2\2\2\u01a7\u01a8\3\2\2\2\u01a8O\3\2\2\2\u01a9\u01aa\7 \2\2\u01aa"+
-		"\u01ab\78\2\2\u01ab\u01ac\7\67\2\2\u01acQ\3\2\2\2\u01ad\u01b2\5^\60\2"+
-		"\u01ae\u01af\7\23\2\2\u01af\u01b1\5^\60\2\u01b0\u01ae\3\2\2\2\u01b1\u01b4"+
-		"\3\2\2\2\u01b2\u01b0\3\2\2\2\u01b2\u01b3\3\2\2\2\u01b3S\3\2\2\2\u01b4"+
-		"\u01b2\3\2\2\2\u01b5\u01bb\5<\37\2\u01b6\u01b8\7\b\2\2\u01b7\u01b9\5X"+
-		"-\2\u01b8\u01b7\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9\u01ba\3\2\2\2\u01ba"+
-		"\u01bc\7\t\2\2\u01bb\u01b6\3\2\2\2\u01bb\u01bc\3\2\2\2\u01bc\u01be\3\2"+
-		"\2\2\u01bd\u01bf\7/\2\2\u01be\u01bd\3\2\2\2\u01be\u01bf\3\2\2\2\u01bf"+
-		"U\3\2\2\2\u01c0\u01c1\t\b\2\2\u01c1\u01c3\7\b\2\2\u01c2\u01c4\5X-\2\u01c3"+
-		"\u01c2\3\2\2\2\u01c3\u01c4\3\2\2\2\u01c4\u01c5\3\2\2\2\u01c5\u01c6\7\t"+
-		"\2\2\u01c6W\3\2\2\2\u01c7\u01cc\5Z.\2\u01c8\u01c9\7\23\2\2\u01c9\u01cb"+
-		"\5Z.\2\u01ca\u01c8\3\2\2\2\u01cb\u01ce\3\2\2\2\u01cc\u01ca\3\2\2\2\u01cc"+
-		"\u01cd\3\2\2\2\u01cdY\3\2\2\2\u01ce\u01cc\3\2\2\2\u01cf\u01d0\5^\60\2"+
-		"\u01d0[\3\2\2\2\u01d1\u01d6\5\32\16\2\u01d2\u01d3\7\23\2\2\u01d3\u01d5"+
-		"\5\32\16\2\u01d4\u01d2\3\2\2\2\u01d5\u01d8\3\2\2\2\u01d6\u01d4\3\2\2\2"+
-		"\u01d6\u01d7\3\2\2\2\u01d7]\3\2\2\2\u01d8\u01d6\3\2\2\2\u01d9\u01dd\5"+
-		"\32\16\2\u01da\u01dc\5\32\16\2\u01db\u01da\3\2\2\2\u01dc\u01df\3\2\2\2"+
-		"\u01dd\u01db\3\2\2\2\u01dd\u01de\3\2\2\2\u01de_\3\2\2\2\u01df\u01dd\3"+
-		"\2\2\2\u01e0\u01e1\7!\2\2\u01e1\u01e2\7:\2\2\u01e2\u01e3\79\2\2\u01e3"+
-		"a\3\2\2\2\u01e4\u01e6\7\30\2\2\u01e5\u01e7\t\13\2\2\u01e6\u01e5\3\2\2"+
-		"\2\u01e7\u01e8\3\2\2\2\u01e8\u01e6\3\2\2\2\u01e8\u01e9\3\2\2\2\u01e9c"+
-		"\3\2\2\2>gp{\177\u0086\u008e\u0091\u009a\u009e\u00af\u00b3\u00bd\u00c8"+
-		"\u00d2\u00d4\u00e5\u00eb\u00f0\u00f5\u00fb\u00fe\u0104\u010a\u010e\u0112"+
-		"\u0115\u0117\u011b\u0127\u012f\u0132\u0135\u0140\u0144\u014b\u0151\u0154"+
-		"\u0157\u015b\u016a\u0172\u0177\u017e\u018a\u018d\u018f\u0196\u019c\u01a0"+
-		"\u01a3\u01a7\u01b2\u01b8\u01bb\u01be\u01c3\u01cc\u01d6\u01dd\u01e8";
+		"\u01ab\79\2\2\u01ab\u01ac\78\2\2\u01acQ\3\2\2\2\u01ad\u01b2\5^\60\2\u01ae"+
+		"\u01af\7\23\2\2\u01af\u01b1\5^\60\2\u01b0\u01ae\3\2\2\2\u01b1\u01b4\3"+
+		"\2\2\2\u01b2\u01b0\3\2\2\2\u01b2\u01b3\3\2\2\2\u01b3S\3\2\2\2\u01b4\u01b2"+
+		"\3\2\2\2\u01b5\u01bb\5<\37\2\u01b6\u01b8\7\b\2\2\u01b7\u01b9\5X-\2\u01b8"+
+		"\u01b7\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9\u01ba\3\2\2\2\u01ba\u01bc\7\t"+
+		"\2\2\u01bb\u01b6\3\2\2\2\u01bb\u01bc\3\2\2\2\u01bc\u01be\3\2\2\2\u01bd"+
+		"\u01bf\7/\2\2\u01be\u01bd\3\2\2\2\u01be\u01bf\3\2\2\2\u01bfU\3\2\2\2\u01c0"+
+		"\u01c1\t\b\2\2\u01c1\u01c3\7\b\2\2\u01c2\u01c4\5X-\2\u01c3\u01c2\3\2\2"+
+		"\2\u01c3\u01c4\3\2\2\2\u01c4\u01c5\3\2\2\2\u01c5\u01c6\7\t\2\2\u01c6W"+
+		"\3\2\2\2\u01c7\u01cc\5Z.\2\u01c8\u01c9\7\23\2\2\u01c9\u01cb\5Z.\2\u01ca"+
+		"\u01c8\3\2\2\2\u01cb\u01ce\3\2\2\2\u01cc\u01ca\3\2\2\2\u01cc\u01cd\3\2"+
+		"\2\2\u01cdY\3\2\2\2\u01ce\u01cc\3\2\2\2\u01cf\u01d0\5^\60\2\u01d0[\3\2"+
+		"\2\2\u01d1\u01d6\5\32\16\2\u01d2\u01d3\7\23\2\2\u01d3\u01d5\5\32\16\2"+
+		"\u01d4\u01d2\3\2\2\2\u01d5\u01d8\3\2\2\2\u01d6\u01d4\3\2\2\2\u01d6\u01d7"+
+		"\3\2\2\2\u01d7]\3\2\2\2\u01d8\u01d6\3\2\2\2\u01d9\u01dd\5\32\16\2\u01da"+
+		"\u01dc\5\32\16\2\u01db\u01da\3\2\2\2\u01dc\u01df\3\2\2\2\u01dd\u01db\3"+
+		"\2\2\2\u01dd\u01de\3\2\2\2\u01de_\3\2\2\2\u01df\u01dd\3\2\2\2\u01e0\u01e1"+
+		"\7!\2\2\u01e1\u01e2\7;\2\2\u01e2\u01e3\7:\2\2\u01e3a\3\2\2\2\u01e4\u01e6"+
+		"\7\30\2\2\u01e5\u01e7\t\13\2\2\u01e6\u01e5\3\2\2\2\u01e7\u01e8\3\2\2\2"+
+		"\u01e8\u01e6\3\2\2\2\u01e8\u01e9\3\2\2\2\u01e9c\3\2\2\2>gp{\177\u0086"+
+		"\u008e\u0091\u009a\u009e\u00af\u00b3\u00bd\u00c8\u00d2\u00d4\u00e5\u00eb"+
+		"\u00f0\u00f5\u00fb\u00fe\u0104\u010a\u010e\u0112\u0115\u0117\u011b\u0127"+
+		"\u012f\u0132\u0135\u0140\u0144\u014b\u0151\u0154\u0157\u015b\u016a\u0172"+
+		"\u0177\u017e\u018a\u018d\u018f\u0196\u019c\u01a0\u01a3\u01a7\u01b2\u01b8"+
+		"\u01bb\u01be\u01c3\u01cc\u01d6\u01dd\u01e8";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import si.osbeorn.lesslinter.library.ConfigParams;
 
-
 /**
  * 
  * @author Benjamin
@@ -80,17 +79,29 @@ public class ConfigHelper
                     break;
                 
                 case "-s":
-                case "--decl-spaces":
+                case "--decl-spaces-multi":
                     skip = 1;
                     
                     if (i + 1 < args.length)
                     {
                         Integer d = tryParseInteger(args[i + 1]);                    
-                        config.put(ConfigParams.DECL_SPACES, d);
+                        config.put(ConfigParams.DECL_SPACES_MULTI, d);
                     }
                     
                     break;
                 
+                case "-p":
+                case "--decl-spaces-single":
+                    skip = 1;
+                    
+                    if (i + 1 < args.length)
+                    {
+                        Integer d = tryParseInteger(args[i + 1]);                    
+                        config.put(ConfigParams.DECL_SPACES_SINGLE, d);
+                    }
+                    
+                    break;
+                    
                 case "-S":
                 case "--line-span":
                     config.put(ConfigParams.LINE_SPAN, null);
@@ -188,99 +199,77 @@ public class ConfigHelper
                 "%s\n" +
                 "%s\n\n" +
                 "%s\n\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n" +
-                "%-35s%s\n",
+                "%-35s%s\n" + // -h
+                "%-35s%s\n" + // -r
+                "%-35s%s\n" + // -a
+                "%-35s%s\n" + // -D
+                "%-35s%s\n" + // -s
+                "%-35s%s\n" + // -p
+                "%-35s%s\n" + // -S
+                "%-35s%s\n" + // -m
+                "%-35s%s\n" + // -l
+                "%-35s%s\n" + // -c
+                "%-35s%s\n" + // -b
+                "%-35s%s\n" + // -g
+                "%-35s%s\n" + // -i
+                "%-35s%s\n" + // -u
+                "%-35s%s\n" + // -C
+                "%-35s%s\n",  // -N
                   
                 "Usage: java -jar less-linter [options] <file>",
                 "       e.g. java -jar less-linter something.less",
                 "Options:",
                   
                 "-h, --help",
-                "Output usage information",
+                "Output usage information.",
                   
                 "-r, --raw <string>",
-                "Pass in a raw string of LESS",
+                "Pass in a raw string of LESS.",
                   
                 "-a, -all",
-                "When used, all checks will be performed using default values, unless specified differently",
+                "When used, all checks will be performed using their default values. To use a different value use the appropriate switch followed by the value.",
                   
                 "-D, --selector-depth <integer>",
-                "Show warning where selector depth is over the specified limit, default is 4",
+                "Show warning where selector depth is over the specified limit, default is 4.",
                  
-                "-s, --decl-spaces <integer>",
-                "Specify how many spaces should there be preceeding every declaration, default is 4",
+                "-s, --decl-spaces-multi <integer>",
+                "Check and specify how many spaces should there be preceeding every property declaration, default is 4 (4 on 1st level, 8 on 2nd level, etc.).",
+                
+                "-p, --decl-spaces-single <integer>",
+                "Check and specify how many spaces should there be preceeding and following every property declaration in a single line rule statement, default is 1.",
                 
                 "-S, --line-span",
-                "Check ruleset line span based on the property count inside the block",
+                "Check ruleset line span based on the property count inside the block.",
                 
                 "-m, --multi-new-line",
-                "Check if multi line ruleset is followed by a new line",
+                "Check if multi line ruleset is followed by a new line.",
                 
                 "-l, --lowercase",
-                "Check if selectors, properties, etc. are written in lowercase and camel-case format",
+                "Check if selectors, properties, etc. are written in lowercase and camel-case format.",
                 
                 "-c, --colon-spaces",
-                "Check if there is a space after the : in single line rulesets, and if there is a space before and after the : in multi line rulesets",
+                "Check if there is a space after the : in single line rulesets, and if there is a space before and after the : in multi line rulesets.",
                 
                 "-b, --bracket-location",
-                "Check if the { bracket is on the same line as the ruleset preceeded by a space and if the } bracket is on it's own line after the final property",
+                "Check if the { bracket is on the same line as the ruleset preceeded by a space and if the } bracket is on it's own line after the final property.",
                 
                 "-g, --prop-groups",
-                "Check if properties are grouped by type and in correct order",
+                "Check if properties are grouped by type and in correct order.",
                 
                 "-i, --id-styling",
-                "Check if ID selectors are used",
+                "Check if ID selectors are used.",
                 
                 "-u, --underscores",
-                "Check if underscores are used in selector names",
+                "Check if underscores are used in selector names.",
                 
                 "-C, --color-format",
-                "Check if colors are written using the hex 6-digit lowercase format",
+                "Check if colors are written using the hex 6-digit lowercase format.",
                 
                 "-N, --count-selectors",
-                "Counts the following selectors: universal, ID, class, and tag selectors"
+                "Counts the following selectors: universal, ID, class, and tag selectors."
             )
         );
         
         System.exit(0);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

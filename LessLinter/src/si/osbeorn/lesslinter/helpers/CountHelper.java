@@ -5,7 +5,6 @@ import si.osbeorn.lesslinter.antlr.LessParser.SelectorContext;
 
 /**
  * @author Benjamin
- *
  */
 public class CountHelper
 {
@@ -15,6 +14,11 @@ public class CountHelper
     private int classSelectorsCount;
     private int tagSelectorsCount;
     
+    /**
+     * Identify the selector and increment the count.
+     * 
+     * @param ctx Selector context.
+     */
     public void countSelectors(SelectorContext ctx)
     {
         ElementContext elementCtx = ctx.element();
@@ -35,6 +39,9 @@ public class CountHelper
         allSelectorsCount += 1;
     }
     
+    /**
+     * @return A string representation of the counter. 
+     */
     public String getCountReport()
     {
         StringBuilder builder = new StringBuilder();
