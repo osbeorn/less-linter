@@ -59,7 +59,7 @@ public class FormattingHelper
      *  
      * @param ctx The property context.
      */
-    public void checkSingleLinePropertySpaces(PropertyContext ctx)
+    public void checkSingleLinePropertySpaces(PropertyContext ctx, int size)
     {
         BlockContext blockCtx = (BlockContext) ctx.getParent();
         
@@ -73,31 +73,57 @@ public class FormattingHelper
         List<Token> rightTokens = tokens.getHiddenTokensToRight(propertyEndIndex);
         
         if (leftTokens == null || leftTokens.size() < 1)
+        {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
                                                 Messages.WARN_PROPERTY_SPACE_BEFORE));
+        }
+        else
+        {
+            Token tok = leftTokens.get(leftTokens.size() - 1);
+            if (leftTokens.size() > 0)
+            {
+                if (tok.getType() != LessParser.WS)
+                {
+                    addWarning(WarningHelper.getWarning(ctx,
+                                                        tokens,
+                                                        Messages.WARN_PROPERTY_SPACE_BEFORE));
+                }
+                else
+                {
+                    if (tok.getText().length() != size)
+                        addWarning(WarningHelper.getWarning(ctx,
+                                                            tokens,
+                                                            Messages.WARN_PROPERTY_SPACE_WIDTH_BEFORE));
+                }
+            }
+        }
         
         if (rightTokens == null || rightTokens.size() < 1)
+        {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
                                                 Messages.WARN_PROPERTY_SPACE_AFTER));
-        
-        Token tok = leftTokens.get(leftTokens.size() - 1);
-        if (leftTokens.size() > 0)
-        {
-            if (tok.getType() != LessParser.WS)
-                addWarning(WarningHelper.getWarning(ctx,
-                                                    tokens,
-                                                    Messages.WARN_PROPERTY_SPACE_BEFORE));
         }
-        
-        tok = rightTokens.get(0);
-        if (rightTokens.size() > 0)
+        else
         {
-            if (tok.getType() != LessParser.WS)
-                addWarning(WarningHelper.getWarning(ctx,
-                                                    tokens,
-                                                    Messages.WARN_PROPERTY_SPACE_AFTER));            
+            Token tok = rightTokens.get(0);
+            if (rightTokens.size() > 0)
+            {
+                if (tok.getType() != LessParser.WS)
+                {
+                    addWarning(WarningHelper.getWarning(ctx,
+                                                        tokens,
+                                                        Messages.WARN_PROPERTY_SPACE_AFTER));
+                }
+                else
+                {
+                    if (tok.getText().length() != size)
+                        addWarning(WarningHelper.getWarning(ctx,
+                                                            tokens,
+                                                            Messages.WARN_PROPERTY_SPACE_WIDTH_AFTER));
+                }
+            }
         }
     }
     

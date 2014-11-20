@@ -102,4 +102,34 @@ public class ConfigParams
                 config.put(param.getKey(), param.getValue());
         }
     }
+    
+    public static boolean containsFormattingParams(Map<String, Object> config)
+    {
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.SELECTOR_DEPTH) ||
+            config.containsKey(ConfigParams.DECL_SPACES_MULTI) ||
+            config.containsKey(ConfigParams.DECL_SPACES_SINGLE) ||
+            config.containsKey(ConfigParams.LINE_SPAN) ||
+            config.containsKey(ConfigParams.MULTI_NEW_LINE) ||
+            config.containsKey(ConfigParams.LOWERCASE) ||
+            config.containsKey(ConfigParams.COLON_SPACES) ||
+            config.containsKey(ConfigParams.BRACKET_LOCATION) ||
+            config.containsKey(ConfigParams.PROP_GROUPS) ||
+            config.containsKey(ConfigParams.ID_STYLING) ||
+            config.containsKey(ConfigParams.UNDERSCORES) ||
+            config.containsKey(ConfigParams.COLOR_FORMAT))
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public static boolean containsCountingParams(Map<String, Object> config)
+    {
+        if (config.containsKey(ConfigParams.COUNT_SELECTORS))
+            return true;
+        
+        return false;
+    }
 }

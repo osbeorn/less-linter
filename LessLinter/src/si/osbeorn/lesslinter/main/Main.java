@@ -101,10 +101,11 @@ public class Main
                 new LessParserListenerImpl(formattingHelper, countHelper, config);
             walker.walk(listener, stylesheet);
             
-            // output results
-            System.out.print(formattingHelper.getWarnings());
+            // output results (if necessary)
+            if (ConfigParams.containsFormattingParams(config))
+                System.out.print(formattingHelper.getWarnings());
             
-            if (config.containsKey(ConfigParams.COUNT_SELECTORS))
+            if (ConfigParams.containsCountingParams(config))
                 System.out.print(countHelper.getCountReport());
         }
         catch (Exception e)
@@ -183,6 +184,7 @@ public class Main
         catch(Exception e)
         {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 }

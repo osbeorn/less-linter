@@ -10,6 +10,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.PropertyIdentContext;
 import si.osbeorn.lesslinter.antlr.LessParser.RuleStatementContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorsContext;
+import si.osbeorn.lesslinter.antlr.LessParser.VariableNameContext;
 import si.osbeorn.lesslinter.helpers.CountHelper;
 import si.osbeorn.lesslinter.helpers.FormattingHelper;
 import si.osbeorn.lesslinter.library.ConfigParams;
@@ -90,13 +91,17 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.DECL_SPACES_MULTI))
         {
-	        formattingHelper.checkPropertyIndentation(ctx, 4);
+	        int indent = (Integer) config.get(ConfigParams.DECL_SPACES_MULTI);
+	        
+	        formattingHelper.checkPropertyIndentation(ctx, indent);
         }
 	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.DECL_SPACES_SINGLE))
         {
-	        formattingHelper.checkSingleLinePropertySpaces(ctx);
+	        int size = (Integer) config.get(ConfigParams.DECL_SPACES_SINGLE);
+	        
+	        formattingHelper.checkSingleLinePropertySpaces(ctx, size);
         }
 	}
 	
@@ -175,5 +180,22 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	        // lowercase and format check
 	        formattingHelper.checkColorFormat(ctx);
         }
-	}	
+	}
+	
+    @Override
+    public void enterVariableName(VariableNameContext ctx)
+    {
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.LOWERCASE))
+        {
+            formattingHelper.checkLowerCase(ctx.IDENT());
+            formattingHelper.checkCamelCase(ctx.IDENT());
+        }
+            
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.UNDERSCORES))
+        {
+            formattingHelper.checkUnderScore(ctx.IDENT());
+        }
+    }
 }

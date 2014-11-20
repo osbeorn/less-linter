@@ -39,8 +39,10 @@ public class Messages
     public static final String WARN_PROPERTY_INDENT = "There is not enough indentation preceeding the property declaration (%d instead of %dx%d=%d)";
     public static final String WARN_PROPERTY_INDENT_SPACES = "Only spaces (e.g. no tabs) are allowed for indentation.";
     
-    public static final String WARN_PROPERTY_SPACE_BEFORE = "No whitespace before the property declaration.";
-    public static final String WARN_PROPERTY_SPACE_AFTER = "No whitespace after the property declaration.";
+    public static final String WARN_PROPERTY_SPACE_BEFORE = "There is no whitespace before the property declaration.";
+    public static final String WARN_PROPERTY_SPACE_WIDTH_BEFORE = "There is not enough whitespace before the property declaration.";
+    public static final String WARN_PROPERTY_SPACE_AFTER = "There is no whitespace after the property declaration.";
+    public static final String WARN_PROPERTY_SPACE_WIDTH_AFTER = "There is not enough whitespace after the property declaration.";
     
     // error listener messages
     public static final String SYNTAX_ERROR = "Syntax error in detection.";

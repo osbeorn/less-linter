@@ -69,12 +69,8 @@ public class ConfigHelper
                 case "-D":
                 case "--selector-depth":
                     skip = 1;
-                    
-                    if (i + 1 < args.length)
-                    {
-                        Integer d = tryParseInteger(args[i + 1]);                    
-                        config.put(ConfigParams.SELECTOR_DEPTH, d);
-                    }
+                                        
+                    config.put(ConfigParams.SELECTOR_DEPTH, tryParseInteger(args, i + 1));
                     
                     break;
                 
@@ -82,23 +78,15 @@ public class ConfigHelper
                 case "--decl-spaces-multi":
                     skip = 1;
                     
-                    if (i + 1 < args.length)
-                    {
-                        Integer d = tryParseInteger(args[i + 1]);                    
-                        config.put(ConfigParams.DECL_SPACES_MULTI, d);
-                    }
+                    config.put(ConfigParams.DECL_SPACES_MULTI, tryParseInteger(args, i + 1));
                     
                     break;
                 
                 case "-p":
                 case "--decl-spaces-single":
                     skip = 1;
-                    
-                    if (i + 1 < args.length)
-                    {
-                        Integer d = tryParseInteger(args[i + 1]);                    
-                        config.put(ConfigParams.DECL_SPACES_SINGLE, d);
-                    }
+                                        
+                    config.put(ConfigParams.DECL_SPACES_SINGLE, tryParseInteger(args, i + 1));
                     
                     break;
                     
@@ -149,7 +137,8 @@ public class ConfigHelper
             i = i + skip + 1;
         }
         
-        ConfigParams.setDefaultParams(config);
+        if (config.containsKey(ConfigParams.ALL_PARAMS))
+            ConfigParams.setDefaultParams(config);
         
         return config;
     }
@@ -176,16 +165,21 @@ public class ConfigHelper
         return false;
     }
     
-    private static Integer tryParseInteger(String s) {
-        Integer retVal;
+    private static Integer tryParseInteger(String[] s, int pos)
+    {
+        Integer retVal = null;
         
         try
         {
-          retVal = Integer.parseInt(s);
+            if (pos >= s.length)
+                throw new Exception("Error in parsing input arguments.");
+            
+            retVal = Integer.parseInt(s[pos]);
         }
-        catch (NumberFormatException nfe)
+        catch (Exception e)
         {
-          retVal = null;
+            e.printStackTrace();
+            System.exit(1);
         }
         
         return retVal;
