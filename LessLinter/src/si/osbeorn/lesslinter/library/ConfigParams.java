@@ -36,7 +36,7 @@ public class ConfigParams
      */
     public static final String DECL_SPACES_SINGLE = "DECL_SPACES_SINGLE";
     /**
-     * Perform the "" check.
+     * Perform the "rule statement line span" check.
      */
     public static final String LINE_SPAN = "LINE_SPAN";
     /**
@@ -52,9 +52,13 @@ public class ConfigParams
      */
     public static final String COLON_SPACES = "COLON_SPACES";
     /**
-     * Perform the "rule statement opening/closing bracket location" check;
+     * Perform the "rule statement opening bracket location and preceded by spaces" check;
      */
-    public static final String BRACKET_LOCATION = "BRACKET_LOCATION";
+    public static final String BLOCK_START = "BRACKET_START";
+    /**
+     * Perform the "rule statement closing bracket on own line" check;
+     */
+    public static final String BLOCK_END = "BRACKET_END";
     /**
      * Perform the "property groping and order" check;
      */
@@ -87,6 +91,7 @@ public class ConfigParams
         defaultParams.put(SELECTOR_DEPTH, 4);
         defaultParams.put(DECL_SPACES_MULTI, 4);
         defaultParams.put(DECL_SPACES_SINGLE, 1);
+        defaultParams.put(BLOCK_START, 1);
     }
     
     /**
@@ -113,7 +118,7 @@ public class ConfigParams
             config.containsKey(ConfigParams.MULTI_NEW_LINE) ||
             config.containsKey(ConfigParams.LOWERCASE) ||
             config.containsKey(ConfigParams.COLON_SPACES) ||
-            config.containsKey(ConfigParams.BRACKET_LOCATION) ||
+            config.containsKey(ConfigParams.BLOCK_START) ||
             config.containsKey(ConfigParams.PROP_GROUPS) ||
             config.containsKey(ConfigParams.ID_STYLING) ||
             config.containsKey(ConfigParams.UNDERSCORES) ||

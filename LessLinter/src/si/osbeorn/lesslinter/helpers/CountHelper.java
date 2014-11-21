@@ -10,6 +10,7 @@ public class CountHelper
 {
     private int allSelectorsCount;
     private int uniSelectorsCount;
+    private int parentSelectorsCount;
     private int idSelectorsCount;
     private int classSelectorsCount;
     private int tagSelectorsCount;
@@ -26,7 +27,7 @@ public class CountHelper
             return;
         
         if (elementCtx.AND() != null)
-            return;
+            parentSelectorsCount++;
         else if (elementCtx.HASH() != null)
             idSelectorsCount++;
         else if (elementCtx.DOT() != null)
@@ -48,6 +49,7 @@ public class CountHelper
         
         builder.append("Selectors count report:\n");
         builder.append(String.format("# of universal selectors: %d\n", uniSelectorsCount));
+        builder.append(String.format("# of parent selectors: %d\n", parentSelectorsCount));
         builder.append(String.format("# of ID selectors: %d\n", idSelectorsCount));
         builder.append(String.format("# of class selecors: %d\n", classSelectorsCount));
         builder.append(String.format("# of tag selectors: %d\n", tagSelectorsCount));

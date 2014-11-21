@@ -107,8 +107,16 @@ public class ConfigHelper
                     config.put(ConfigParams.COLON_SPACES, null);
                 
                 case "-b":
-                case "--bracket-location":
-                    config.put(ConfigParams.BRACKET_LOCATION, null);
+                case "--block-start":
+                    skip = 1;
+                    
+                    config.put(ConfigParams.BLOCK_START, tryParseInteger(args, i + 1));
+                    
+                    break;
+                
+                case "-k":
+                case "--block-end":
+                    config.put(ConfigParams.BLOCK_END, null);
                     
                 case "-g":
                 case "--prop-groups":
@@ -204,6 +212,7 @@ public class ConfigHelper
                 "%-35s%s\n" + // -l
                 "%-35s%s\n" + // -c
                 "%-35s%s\n" + // -b
+                "%-35s%s\n" + // -k
                 "%-35s%s\n" + // -g
                 "%-35s%s\n" + // -i
                 "%-35s%s\n" + // -u
@@ -244,8 +253,11 @@ public class ConfigHelper
                 "-c, --colon-spaces",
                 "Check if there is a space after the : in single line rulesets, and if there is a space before and after the : in multi line rulesets.",
                 
-                "-b, --bracket-location",
-                "Check if the { bracket is on the same line as the ruleset preceeded by a space and if the } bracket is on it's own line after the final property.",
+                "-b, --block-start <integer>",
+                "Check if the { bracket is on the same line as the ruleset and preceeded by spaces (1 space by default).",
+                
+                "-k, --block-end",
+                "Check if the } is on it's own line after the final property.",
                 
                 "-g, --prop-groups",
                 "Check if properties are grouped by type and in correct order.",
@@ -260,7 +272,7 @@ public class ConfigHelper
                 "Check if colors are written using the hex 6-digit lowercase format.",
                 
                 "-N, --count-selectors",
-                "Counts the following selectors: universal, ID, class, and tag selectors."
+                "Counts the following selectors: universal, parent, ID, class, and tag selectors."
             )
         );
         

@@ -232,6 +232,8 @@ public class FormattingHelper
     }
     
     /**
+     * Check if the closing bracket of a multi line rule is on it's own line after the final
+     * property.
      * 
      * @param ctx
      */
@@ -526,7 +528,7 @@ public class FormattingHelper
      * 
      * @param ctx Block context
      */
-    public void checkBlockOpeningBracketWhiteSpace(BlockContext ctx)
+    public void checkBlockOpeningBracketWhiteSpace(BlockContext ctx, int size)
     {
         int blockStart = ctx.getStart().getTokenIndex();
         List<Token> leftTokens = tokens.getHiddenTokensToLeft(blockStart);
@@ -543,7 +545,7 @@ public class FormattingHelper
         if (white.getType() == LessParser.WS)
         {
             String text = white.getText();
-            if (text.length() != 1)
+            if (text.length() != size)
             {
                 addWarning(WarningHelper.getWarning(ctx,
                                                     tokens,

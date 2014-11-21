@@ -129,10 +129,18 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	public void enterBlock(BlockContext ctx)
 	{
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
-            config.containsKey(ConfigParams.BRACKET_LOCATION))
+            config.containsKey(ConfigParams.BLOCK_START))
         {
-	        formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx);
+	        int size = (Integer) config.get(ConfigParams.BLOCK_START);
+	        
+	        formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx, size);
         }
+	    
+	    //if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+        //    config.containsKey(ConfigParams.BLOCK_END))
+        //{            
+        //    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx, size);
+        //}
 	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.PROP_GROUPS))
@@ -152,9 +160,14 @@ public class LessParserListenerImpl extends LessParserBaseListener
         }
 	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
-            config.containsKey(ConfigParams.BRACKET_LOCATION))
+            config.containsKey(ConfigParams.BLOCK_START))
         {
-	        formattingHelper.checkRuleLinePosition(ctx);
+            formattingHelper.checkRuleLinePosition(ctx);
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.BLOCK_END))
+        {
 	        formattingHelper.checkBlockClosingBracketLocation(ctx);
         }
 	    
