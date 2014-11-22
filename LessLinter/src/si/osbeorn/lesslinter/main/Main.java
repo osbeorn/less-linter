@@ -122,7 +122,7 @@ public class Main
         try
         {           
             // read the test file ...
-            File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\LessLinter\\test\\test.less");
+            File file = new File("E:\\Development\\Eclipse\\FRICeltraChallenge_2014\\project\\LessLinter\\test\\flightboard-types.less");
             FileReader reader = new FileReader(file);
         
             // create an ANTLRInputStream

@@ -26,10 +26,13 @@ public class ConfigHelper
         if (args == null || args.length == 0)
             return null;
         
-        // only input file specified -> default configParams
+        // only input file specified -> all and default configParams
         if (args.length == 1 && !existsSwitch(args))
         {
             config.put(ConfigParams.FILE_INPUT, args[0]);
+            config.put(ConfigParams.ALL_PARAMS, null);
+            ConfigParams.setDefaultParams(config);
+            
             return config;
         }
         
@@ -201,6 +204,7 @@ public class ConfigHelper
                 "%s\n" +
                 "%s\n\n" +
                 "%s\n\n" +
+                "%s\n\n" +
                 "%-35s%s\n" + // -h
                 "%-35s%s\n" + // -r
                 "%-35s%s\n" + // -a
@@ -221,6 +225,7 @@ public class ConfigHelper
                   
                 "Usage: java -jar less-linter [options] <file>",
                 "       e.g. java -jar less-linter something.less",
+                "If only the file is specified, the program will run as if the -a switch had been used.",
                 "Options:",
                   
                 "-h, --help",

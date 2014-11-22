@@ -24,13 +24,13 @@ public class Messages
     public static final String WARN_RULE_MULTI_LINE = "Rule statement should be written in multiple lines.";
     
     public static final String WARN_COLOUR_LOWERCASE = "Colour declaration is not written in lowercase.";
-    public static final String WARN_COLOUR_FORMAT = "Colour declaration is writen using the 6 digit hex format.";
+    public static final String WARN_COLOUR_FORMAT = "Colour declaration is not writen using the 6 digit hex format.";
     
     public static final String WARN_WS_BEFORE_BRACKET = "Opening bracket { is not preceeded by exactly one space.";
     
     public static final String WARN_SELECTOR_DEPTH = "The selector depth is over %d.";
     
-    public static final String WARN_PROPERTY_GROUP_ORDER = "The order of property groups is not correct;";
+    public static final String WARN_PROPERTY_GROUP_ORDER = "The order of property groups is not correct.";
     
     public static final String WARN_LOWERCASE = "Try to use lower case words if possible.";
     public static final String WARN_CAMELCASE = "Avoid using camelCase style to separate words and use hypens instead.";

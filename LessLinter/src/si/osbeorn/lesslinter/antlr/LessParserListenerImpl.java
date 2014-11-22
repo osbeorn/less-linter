@@ -136,12 +136,6 @@ public class LessParserListenerImpl extends LessParserBaseListener
 	        formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx, size);
         }
 	    
-	    //if (config.containsKey(ConfigParams.ALL_PARAMS) ||
-        //    config.containsKey(ConfigParams.BLOCK_END))
-        //{            
-        //    formattingHelper.checkBlockOpeningBracketWhiteSpace(ctx, size);
-        //}
-	    
 	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
             config.containsKey(ConfigParams.PROP_GROUPS))
         {

@@ -389,8 +389,8 @@ public class FormattingHelper
      */
     public void checkNewLineAfterMultiLineStatement(RuleStatementContext ctx)
     {
-        if (!GeneralHelper.isRuleMultiLine(ctx))
-            return;
+        if (!GeneralHelper.isRuleMultiLine(ctx) || GeneralHelper.isLastRule(ctx))
+            return;       
         
         int statementStop = ctx.getStop().getTokenIndex();
         List<Token> rightHiddenTokens = tokens.getHiddenTokensToRight(statementStop);
@@ -421,7 +421,7 @@ public class FormattingHelper
             if (t.getType() == LessParser.WS || t.getType() == LessParser.TAB)
                 continue;
             
-            if (t.getType() != LessParser.NL && t.getType() != LessParser.WS && t.getType() == LessParser.TAB)
+            if (t.getType() != LessParser.NL && t.getType() != LessParser.WS && t.getType() != LessParser.TAB)
                 break;
             
             if (t.getType() == LessParser.NL)
@@ -784,6 +784,7 @@ public class FormattingHelper
     {
         StringBuilder builder = new StringBuilder();
         builder.append("LessLinter report:\n");
+        builder.append("-------------------------------\n");
         
         if (warnings == null || warnings.size() == 0)
         {

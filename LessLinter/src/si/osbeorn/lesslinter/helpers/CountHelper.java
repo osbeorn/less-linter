@@ -48,6 +48,7 @@ public class CountHelper
         StringBuilder builder = new StringBuilder();
         
         builder.append("Selectors count report:\n");
+        builder.append("-------------------------------\n");
         builder.append(String.format("# of universal selectors: %d\n", uniSelectorsCount));
         builder.append(String.format("# of parent selectors: %d\n", parentSelectorsCount));
         builder.append(String.format("# of ID selectors: %d\n", idSelectorsCount));
