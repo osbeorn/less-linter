@@ -763,6 +763,33 @@ public class FormattingHelper
     }
     
     /**
+     * 
+     * @param ctx
+     */
+    public void checkPropertiesAlignment(BlockContext ctx)
+    {
+        List<PropertyContext> propertyCtxList = ctx.property();
+        
+        int colonPosition = Integer.MIN_VALUE;
+        for (PropertyContext propertyCtx : propertyCtxList)
+        {
+            PropertyStatementContext propertyStmtCtx = propertyCtx.propertyStatement();
+            if (propertyStmtCtx == null)
+                continue;
+            
+            if (colonPosition == Integer.MIN_VALUE)
+                colonPosition = propertyStmtCtx.COLON().getSymbol().getCharPositionInLine();
+            else if (colonPosition != propertyStmtCtx.COLON().getSymbol().getCharPositionInLine())
+            {
+                addWarning(WarningHelper.getWarning(ctx,
+                                                    tokens,
+                                                    Messages.WARN_PROPERTIES_NOT_ALIGNED));    
+                return;
+            }
+        }
+    }
+    
+    /**
      * Adds the supplied warning to the {@link #warnings warnings} list.
      * 
      * @param warning The warning to add.

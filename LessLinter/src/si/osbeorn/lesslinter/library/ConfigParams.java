@@ -15,66 +15,92 @@ public class ConfigParams
      * Use all parameters with their default values (if present).
      */
     public static final String ALL_PARAMS = "ALL_PARAMS";
+    
     /**
      * Perform the "max selector depth" check.
      */
     public static final String SELECTOR_DEPTH = "SELECTOR_DEPTH";
+    
     /**
      * Use a string as the source stylesheet.
      */
     public static final String RAW_INPUT = "RAW_INPUT";
+    
     /**
      * Use a file as the source stylesheet. 
      */
     public static final String FILE_INPUT = "FILE_INPUT";
+    
     /**
      * Perform the "declaration indentation size" check.
      */
     public static final String DECL_SPACES_MULTI = "DECL_SPACES_MULTI";
+    
     /**
      * Perform the "single line rule statement property whitespace before and after" check.
      */
     public static final String DECL_SPACES_SINGLE = "DECL_SPACES_SINGLE";
+    
     /**
      * Perform the "rule statement line span" check.
      */
     public static final String LINE_SPAN = "LINE_SPAN";
+    
     /**
      * Perform the "multi line statement followed by a new line" check.
      */
     public static final String MULTI_NEW_LINE = "MULTI_NEW_LINE";
+    
     /**
      * Perform the "selector/property lower case format" check.
      */
     public static final String LOWERCASE = "LOWERCASE";
+    
     /**
-     * Perform the "spaces before/after property colon" check;
+     * Perform the "spaces before/after property colon" check.
      */
     public static final String COLON_SPACES = "COLON_SPACES";
+    
     /**
-     * Perform the "rule statement opening bracket location and preceded by spaces" check;
+     * Perform the "rule statement opening bracket location and preceded by spaces" check.
      */
     public static final String BLOCK_START = "BRACKET_START";
+    
     /**
-     * Perform the "rule statement closing bracket on own line" check;
+     * Perform the "rule statement closing bracket on own line" check.
      */
     public static final String BLOCK_END = "BRACKET_END";
+    
     /**
-     * Perform the "property groping and order" check;
+     * Perform the "property grouping and order" check.
      */
     public static final String PROP_GROUPS = "PROP_GROUPS";
+    
+    /**
+     * Perform the "property alignment" check.
+     */
+    public static final String PROP_ALIGN = "PROP_ALIGN";
+    
     /**
      * Perform the "ID styling" check.
      */
     public static final String ID_STYLING = "ID_SYLING";
+    
     /**
      * Perform the "selectors contain underscore" check.
      */
     public static final String UNDERSCORES = "UNDERSCORES";
+    
     /**
      * Perform the "color format" check.
      */
     public static final String COLOR_FORMAT = "COLOR_FORMAT";
+    
+    /**
+     * Perform the "selector performance" check.
+     */
+    public static final String SELECTOR_PERF = "SELECTOR_PERF";
+    
     /**
      * Count the selectors in the stylesheet.
      */
@@ -84,6 +110,7 @@ public class ConfigParams
      * Config parameters with their default values.
      */
     public static Map<String, Object> defaultParams;
+    
     
     static
     {

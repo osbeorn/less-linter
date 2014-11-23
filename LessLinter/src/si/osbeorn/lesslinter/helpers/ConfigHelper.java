@@ -134,8 +134,16 @@ public class ConfigHelper
                     config.put(ConfigParams.UNDERSCORES, null);
                     
                 case "-C":
-                case "--colot-format":
+                case "--color-format":
                     config.put(ConfigParams.COLOR_FORMAT, null);
+                
+                case "-A":
+                case "--prop-align":
+                    config.put(ConfigParams.PROP_ALIGN, null);
+                
+                //case "-P":
+                //case "--selector-perf":
+                //    config.put(ConfigParams.SELECTOR_PERF, null);
                     
                 case "-N":
                 case "--count-selectors":
@@ -275,6 +283,12 @@ public class ConfigHelper
                 
                 "-C, --color-format",
                 "Check if colors are written using the hex 6-digit lowercase format.",
+                
+                "-A, --prop-align",
+                "Check if properties within a block are aligned (if colons of each property are aligned).",
+                
+                //"-P, --selector-perf",
+                //"Check if a selector could have a high impact on performace.",
                 
                 "-N, --count-selectors",
                 "Counts the following selectors: universal, parent, ID, class, and tag selectors."

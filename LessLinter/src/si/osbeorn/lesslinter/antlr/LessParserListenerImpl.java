@@ -141,6 +141,12 @@ public class LessParserListenerImpl extends LessParserBaseListener
         {
 	        formattingHelper.checkPropertiesGroupOrder(ctx);
         }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.PROP_ALIGN))
+        {
+	        formattingHelper.checkPropertiesAlignment(ctx);
+        }
 	}
 	
 	@Override

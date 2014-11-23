@@ -1,10 +1,26 @@
-.one:not(h1).two .three .four, .one:not(h1).two .three {
-  border  : solid 1px rgba(0, 0, 0, .2);
-    outline : none;
+@import "types";
+
+button.narrower { width: 80px; }        /* One property, one liner */
+button.wider    { width: 120px; }       /* No empty-line in between related rulesets */
+button.widest   { width: 170px; }
+krneki.narrowest   { width: 170px; }
+
+.progressbar(@height: 40px, @padding: 4px) {
+    .border-box;
     
-    > *:not(form) {
-        border           : solid 1px #333;
-        background-color : #99fffF;
+    position         : relative;
+    display : inline-block;
+    width            : 100%;
+    background-color : #000000;
+    border           : 1px solid #333333;
+    text-align       : left;
+    height           : @height;
+    padding          : @padding;
+    
+    & > div {
+        .border-box;
+        display          : block;
+        height           : 100%;
+        background-color : #98d235;
     }
-    &:after { outline: none;}
 }

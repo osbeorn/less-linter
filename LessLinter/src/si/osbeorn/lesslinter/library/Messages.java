@@ -44,6 +44,8 @@ public class Messages
     public static final String WARN_PROPERTY_SPACE_AFTER = "There is no whitespace after the property declaration.";
     public static final String WARN_PROPERTY_SPACE_WIDTH_AFTER = "There is not enough whitespace after the property declaration.";
     
+    public static final String WARN_PROPERTIES_NOT_ALIGNED = "Properties within the block are not aligned (align the colons).";
+    
     // error listener messages
     public static final String SYNTAX_ERROR = "Syntax error in detection.";
     public static final String AMBUGUITY_ERROR = "Ambuiguity error in detection.";

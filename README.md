@@ -27,6 +27,7 @@ Options:
   -i, --id-styling: Check if ID selectors are used.
   -u, --underscores: Check if underscores are used in selector names.
   -C, --color-format: Check if colors are written using the hex 6-digit lowercase format.
+  -A, --prop-align: Check if properties within a block are aligned, i.e. colons of each property are aligned.
   -N, --count-selectors: Counts the following selectors: universal, parent, ID, class, and tag selectors.
 ```
 
