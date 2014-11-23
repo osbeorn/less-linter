@@ -8,6 +8,8 @@ As the name of the project suggests, this is a program for linting LESS files, i
 java -jar less-linter [options] <file>
 e.g. java -jar less-linter something.less
 
+If only the file is specified, the program will run as if the -a switch had been used.
+
 Options:
   -h, --help: Output usage information.
   -r, --raw <string>: Pass in a raw string of LESS.
