@@ -191,12 +191,12 @@ attribRelate
     ;
 
 block
-    : LCURLY (statement | property SEMI*)* RCURLY
+    : LCURLY (statement | property)* RCURLY
     ;
 
 property
-    : mixinCall
-    | propertyStatement
+    : mixinCall SEMI*
+    | propertyStatement SEMI*
     ;
 
 propertyStatement

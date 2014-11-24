@@ -64,4 +64,16 @@ public class Warning
     {
         return String.format("[%d:%d]: %s", line, positionInLine, description);
     }
+    
+    @Override
+    public int hashCode()
+    {
+        return toString().hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        return this.toString().equals(obj.toString());
+    }
 }

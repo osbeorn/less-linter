@@ -1,11 +1,13 @@
 package si.osbeorn.lesslinter.helpers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -29,7 +31,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.StylesheetContext;
 import si.osbeorn.lesslinter.library.Messages;
 import si.osbeorn.lesslinter.library.PropertyGroups;
 import si.osbeorn.lesslinter.library.Warning;
-import si.osbeorn.lesslinter.library.WarningComparator;
+import si.osbeorn.lesslinter.library.WarningOrderComparator;
 
 /**
  * @author Benjamin
@@ -43,9 +45,9 @@ public class FormattingHelper
     private CommonTokenStream tokens;
     
     /**
-     * A list of gathered warnings.
+     * A set of gathered warnings (to avoid possible duplicate warnings).
      */
-    private List<Warning> warnings;
+    private Set<Warning> warnings;
     
     /**
      * Constructor.
@@ -55,7 +57,7 @@ public class FormattingHelper
     public FormattingHelper(CommonTokenStream tokens) {
         this.tokens = tokens;
         
-        this.warnings = new ArrayList<Warning>();
+        this.warnings = new TreeSet<Warning>(new WarningOrderComparator());
     }
     
     /**
@@ -940,7 +942,7 @@ public class FormattingHelper
     {
         if (warnings == null)
             return;
-        
+
         warnings.add(warning);
     }
     
@@ -961,7 +963,6 @@ public class FormattingHelper
             return builder.toString();
         }
         
-        Collections.sort(warnings, new WarningComparator());
         for (Warning warning : warnings)
         {
             builder.append(warning + "\n");
