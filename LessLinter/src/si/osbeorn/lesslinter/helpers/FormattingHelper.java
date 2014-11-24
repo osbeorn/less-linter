@@ -2,12 +2,15 @@ package si.osbeorn.lesslinter.helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import org.antlr.v4.parse.ANTLRParser.block_return;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import si.osbeorn.lesslinter.antlr.LessParser;
@@ -22,6 +25,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.SelectorContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorGroupContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorsContext;
 import si.osbeorn.lesslinter.antlr.LessParser.StatementContext;
+import si.osbeorn.lesslinter.antlr.LessParser.StylesheetContext;
 import si.osbeorn.lesslinter.library.Messages;
 import si.osbeorn.lesslinter.library.PropertyGroups;
 import si.osbeorn.lesslinter.library.Warning;
@@ -94,7 +98,7 @@ public class FormattingHelper
                     if (tok.getText().length() != size)
                         addWarning(WarningHelper.getWarning(ctx,
                                                             tokens,
-                                                            Messages.WARN_PROPERTY_SPACE_WIDTH_BEFORE));
+                                                            String.format(Messages.WARN_PROPERTY_SPACE_WIDTH_BEFORE, size)));
                 }
             }
         }
@@ -121,7 +125,7 @@ public class FormattingHelper
                     if (tok.getText().length() != size)
                         addWarning(WarningHelper.getWarning(ctx,
                                                             tokens,
-                                                            Messages.WARN_PROPERTY_SPACE_WIDTH_AFTER));
+                                                            String.format(Messages.WARN_PROPERTY_SPACE_WIDTH_AFTER, size)));
                 }
             }
         }
@@ -282,7 +286,8 @@ public class FormattingHelper
      * 
      * @param ctx Rule statement context
      */
-    public void checkPropertyColonSpace(RuleStatementContext ctx){
+    public void checkPropertyColonSpace(RuleStatementContext ctx)
+    {
         SelectorsContext selectorsCtx = ctx.selectors();
         if (selectorsCtx == null)
             return;
@@ -537,7 +542,7 @@ public class FormattingHelper
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                Messages.WARN_WS_BEFORE_BRACKET));
+                                                String.format(Messages.WARN_WS_BEFORE_BRACKET, size)));
             return;
         }
         
@@ -549,14 +554,14 @@ public class FormattingHelper
             {
                 addWarning(WarningHelper.getWarning(ctx,
                                                     tokens,
-                                                    Messages.WARN_WS_BEFORE_BRACKET));
+                                                    String.format(Messages.WARN_WS_BEFORE_BRACKET, size)));
             }
         }
         else
         {
             addWarning(WarningHelper.getWarning(ctx,
                                                 tokens,
-                                                Messages.WARN_WS_BEFORE_BRACKET));
+                                                String.format(Messages.WARN_WS_BEFORE_BRACKET, size)));
         }
     }
     
@@ -787,6 +792,143 @@ public class FormattingHelper
                 return;
             }
         }
+    }
+    
+    /**
+     * 
+     * @param ctx
+     */
+    public void checkRuleStatementRelated(StylesheetContext ctx, int prefixLen)
+    {
+        List<StatementContext> stmtnList = ctx.statement();
+        
+        if (stmtnList == null || stmtnList.size() < 1)
+            return;
+        
+        List<RuleStatementContext> ruleStmntCtxList = new ArrayList<RuleStatementContext>();
+        for (StatementContext stmntCtx : stmtnList)
+        {
+            RuleStatementContext ruleStmntCtx = stmntCtx.ruleStatement();
+            
+            if (ruleStmntCtx != null)
+                ruleStmntCtxList.add(ruleStmntCtx);
+        }
+        
+        if (ruleStmntCtxList.size() < 1)
+            return;
+        
+        checkRuleStatementRelated(ruleStmntCtxList, prefixLen);
+    }
+    
+    /**
+     * 
+     * @param ctx
+     */
+    public void checkRuleStatementRelated(BlockContext ctx, int prefixLen)
+    {
+        List<StatementContext> stmtnList = ctx.statement();
+        
+        if (stmtnList == null || stmtnList.size() < 1)
+            return;
+        
+        List<RuleStatementContext> ruleStmntCtxList = new ArrayList<RuleStatementContext>();
+        for (StatementContext stmntCtx : stmtnList)
+        {
+            RuleStatementContext ruleStmntCtx = stmntCtx.ruleStatement();
+            
+            if (ruleStmntCtx != null)
+                ruleStmntCtxList.add(ruleStmntCtx);
+        }
+        
+        if (ruleStmntCtxList.size() < 1)
+            return;
+        
+        checkRuleStatementRelated(ruleStmntCtxList, prefixLen);
+    }
+    
+    /**
+     * 
+     * @param ctx
+     */
+    private void checkRuleStatementRelated(List<RuleStatementContext> ruleStmntCtxList, int prefixLen)
+    {
+        Map<RuleStatementContext, Pair<Integer, Integer>> selectorLineMap = new HashMap<RuleStatementContext, Pair<Integer, Integer>>(); 
+        
+        for (RuleStatementContext ruleStmntCtx : ruleStmntCtxList)
+        {
+            if (GeneralHelper.isRuleSingleLine(ruleStmntCtx))
+                selectorLineMap.put(ruleStmntCtx,
+                                    new Pair<Integer, Integer>(ruleStmntCtx.getStart().getLine(),
+                                                               ruleStmntCtx.getStop().getLine()));
+        }
+        
+        for (Entry<RuleStatementContext, Pair<Integer, Integer>> entry1 : selectorLineMap.entrySet())
+        {
+            //Entry<RuleStatementContext, Pair<Integer, Integer>> closestTop = null, closestBottom = null;            
+            for (Entry<RuleStatementContext, Pair<Integer, Integer>> entry2 : selectorLineMap.entrySet())
+            {
+                if (entry1 == entry2)
+                    continue;
+                
+                if (isRelatedToStatement(entry1.getKey().selectors().getText(),
+                                         entry2.getKey().selectors().getText(),
+                                         prefixLen))
+                {
+                    if (entry2.getValue().a < entry1.getValue().a && entry2.getValue().b + 1 != entry1.getValue().a)
+                    {
+                        // warning
+                        addWarning(WarningHelper.getWarning(entry2.getKey(),
+                                                            tokens,
+                                                            String.format(Messages.WARN_STATEMENTS_RELATED,
+                                                                          entry1.getKey().getStart().getLine(),
+                                                                          entry1.getKey().getStart().getCharPositionInLine())));
+                    }
+                    else if (entry2.getValue().a > entry1.getValue().a && entry2.getValue().a - 1 != entry1.getValue().a)
+                    {
+                        // warning
+                        addWarning(WarningHelper.getWarning(entry2.getKey(),
+                                                            tokens,
+                                                            String.format(Messages.WARN_STATEMENTS_RELATED,
+                                                                          entry1.getKey().getStart().getLine(),
+                                                                          entry1.getKey().getStart().getCharPositionInLine())));                        
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Two statements are related, if they have a common prefix length in selectors of at least prefixLen
+     * 
+     * @param orig Selectors string 1
+     * @param test Selectors string 2
+     * @param prefixLen
+     * @return
+     */
+    private boolean isRelatedToStatement(String s1, String s2, int prefixLen)
+    {
+        String prefix = greatestCommonPrefix(s1, s2);
+        return prefix.length() >= prefixLen;
+    }
+    
+    /**
+     * Get the greatest common prefix.
+     * 
+     * @param a
+     * @param b
+     * @return
+     */
+    private String greatestCommonPrefix(String a, String b)
+    {
+        int minLength = Math.min(a.length(), b.length());
+        
+        for (int i = 0; i < minLength; i++)
+        {
+            if (a.charAt(i) != b.charAt(i))
+                return a.substring(0, i);
+        }
+        
+        return a.substring(0, minLength);
     }
     
     /**

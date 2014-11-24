@@ -30,3 +30,13 @@ local.properties
 .texlipse
 
 /RemoteSystemsTempFiles
+/LessLinter/test/dialog.less
+/LessLinter/test/flightboard-fonts.less
+/LessLinter/test/flightboard-types.less
+/LessLinter/test/flightboard.less
+/LessLinter/test/general.less
+/LessLinter/test/grid.less
+/LessLinter/test/output.css
+/LessLinter/test/reset.less
+/LessLinter/test/simple.less
+/LessLinter/test/types.less

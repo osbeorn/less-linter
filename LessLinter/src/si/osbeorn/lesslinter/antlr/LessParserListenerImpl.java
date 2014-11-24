@@ -10,6 +10,7 @@ import si.osbeorn.lesslinter.antlr.LessParser.PropertyIdentContext;
 import si.osbeorn.lesslinter.antlr.LessParser.RuleStatementContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorContext;
 import si.osbeorn.lesslinter.antlr.LessParser.SelectorsContext;
+import si.osbeorn.lesslinter.antlr.LessParser.StylesheetContext;
 import si.osbeorn.lesslinter.antlr.LessParser.VariableNameContext;
 import si.osbeorn.lesslinter.helpers.CountHelper;
 import si.osbeorn.lesslinter.helpers.FormattingHelper;
@@ -33,6 +34,18 @@ public class LessParserListenerImpl extends LessParserBaseListener
         this.formattingHelper = formattingHelper;
         this.countHelper = countHelper;
         this.config = config;
+    }
+    
+    @Override
+    public void enterStylesheet(StylesheetContext ctx)
+    {
+        if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.RULE_RELATED))
+        {
+            int prefixLen = (Integer) config.get(ConfigParams.RULE_RELATED);
+            
+            formattingHelper.checkRuleStatementRelated(ctx, prefixLen);
+        }
     }
     
     @Override
@@ -146,6 +159,14 @@ public class LessParserListenerImpl extends LessParserBaseListener
             config.containsKey(ConfigParams.PROP_ALIGN))
         {
 	        formattingHelper.checkPropertiesAlignment(ctx);
+        }
+	    
+	    if (config.containsKey(ConfigParams.ALL_PARAMS) ||
+            config.containsKey(ConfigParams.RULE_RELATED))
+        {
+	        int prefixLen = (Integer) config.get(ConfigParams.RULE_RELATED);
+	        
+	        formattingHelper.checkRuleStatementRelated(ctx, prefixLen);
         }
 	}
 	

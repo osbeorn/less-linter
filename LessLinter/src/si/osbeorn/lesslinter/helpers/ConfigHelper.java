@@ -144,6 +144,14 @@ public class ConfigHelper
                 //case "-P":
                 //case "--selector-perf":
                 //    config.put(ConfigParams.SELECTOR_PERF, null);
+
+                case "-R":
+                case "--rule-related":
+                    skip = 1;
+                    
+                    config.put(ConfigParams.RULE_RELATED, tryParseInteger(args, i + 1));
+                    
+                    break;
                     
                 case "-N":
                 case "--count-selectors":
@@ -184,6 +192,13 @@ public class ConfigHelper
         return false;
     }
     
+    /**
+     * Parse an integer argument from a string array at the pos location.
+     * 
+     * @param s String array input
+     * @param pos Position
+     * @return Parsed integer
+     */
     private static Integer tryParseInteger(String[] s, int pos)
     {
         Integer retVal = null;
@@ -289,6 +304,9 @@ public class ConfigHelper
                 
                 //"-P, --selector-perf",
                 //"Check if a selector could have a high impact on performace.",
+                
+                "-R, --rule-related <integer>",
+                "Check for related rules. If they exist check if they are already grouped - if not, show a warning. The integer parameter denotes the minimum length of a common prefix in order for two rules to be considered related (default is 5).",
                 
                 "-N, --count-selectors",
                 "Counts the following selectors: universal, parent, ID, class, and tag selectors."

@@ -107,6 +107,11 @@ public class ConfigParams
     public static final String COUNT_SELECTORS = "COUNT_SELECTORS";
     
     /**
+     * Check if related rule sets are grouped together.
+     */
+    public static final String RULE_RELATED = "RULE_RELATED";
+    
+    /**
      * Config parameters with their default values.
      */
     public static Map<String, Object> defaultParams;
@@ -119,6 +124,7 @@ public class ConfigParams
         defaultParams.put(DECL_SPACES_MULTI, 4);
         defaultParams.put(DECL_SPACES_SINGLE, 1);
         defaultParams.put(BLOCK_START, 1);
+        defaultParams.put(RULE_RELATED, 5);
     }
     
     /**
