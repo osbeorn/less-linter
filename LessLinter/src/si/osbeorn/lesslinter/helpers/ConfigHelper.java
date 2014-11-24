@@ -27,9 +27,20 @@ public class ConfigHelper
             return null;
         
         // only input file specified -> all and default configParams
-        if (args.length == 1 && !existsSwitch(args))
+        if (args.length == 1 && !existAnySwitch(args))
         {
             config.put(ConfigParams.FILE_INPUT, args[0]);
+            config.put(ConfigParams.ALL_PARAMS, null);
+            ConfigParams.setDefaultParams(config);
+            
+            return config;
+        }
+        
+        // only -r/--raw switch present, assume next argument is input
+        // string and all and default configParams requested
+        if (existOnlySwitch(args, "-r") || existOnlySwitch(args, "--raw"))
+        {
+            config.put(ConfigParams.RAW_INPUT, args[1]);
             config.put(ConfigParams.ALL_PARAMS, null);
             ConfigParams.setDefaultParams(config);
             
@@ -181,7 +192,34 @@ public class ConfigHelper
         return false;
     }
     
-    private static boolean existsSwitch(String[] args)
+    private static boolean existOnlySwitch(String[] args, String s)
+    {
+        int count = 0;
+        boolean found = false;
+        for (String arg : args)
+        {
+            if (arg.startsWith("-"))
+                count++;
+            
+            if (arg.equals(s))
+                found = true;
+        }
+        
+        return count == 1 && found;
+    }
+    
+    private static boolean existSwitch(String[] args, String s)
+    {
+        for (String arg : args)
+        {
+            if (arg.equals(s))
+                return true;
+        }
+        
+        return false;
+    }
+    
+    private static boolean existAnySwitch(String[] args)
     {
         for (String arg : args)
         {
@@ -255,7 +293,7 @@ public class ConfigHelper
                 "Output usage information.",
                   
                 "-r, --raw <string>",
-                "Pass in a raw string of LESS.",
+                "Pass in a raw string of LESS (use with caution - better to read from a file).",
                   
                 "-a, -all",
                 "When used, all checks will be performed using their default values. To use a different value use the appropriate switch followed by the value.",

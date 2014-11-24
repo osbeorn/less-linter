@@ -934,7 +934,7 @@ public class FormattingHelper
     }
     
     /**
-     * Adds the supplied warning to the {@link #warnings warnings} list.
+     * Adds the supplied warning to the {@link #warnings warnings} set.
      * 
      * @param warning The warning to add.
      */

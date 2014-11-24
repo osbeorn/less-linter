@@ -12,7 +12,7 @@ If only the file is specified, the program will run as if the -a switch had been
 
 Options:
   -h, --help: Output usage information.
-  -r, --raw <string>: Pass in a raw string of LESS.
+  -r, --raw <string>: Pass in a raw string of LESS (use with caution - better to read from a file).
   -a, -all: When used, all checks will be performed using their default values. To use a different value use the appropriate switch followed by the value.
   -D, --selector-depth <integer>: Show warning where selector depth is over the specified limit, default is 4.
   -s, --decl-spaces-multi <integer> Check and specify how many spaces should there be preceeding every property declaration, default is 4 (4 on 1st level, 8 on 2nd level, etc.).
@@ -28,6 +28,7 @@ Options:
   -u, --underscores: Check if underscores are used in selector names.
   -C, --color-format: Check if colors are written using the hex 6-digit lowercase format.
   -A, --prop-align: Check if properties within a block are aligned, i.e. colons of each property are aligned.
+  -R, --rule-related <integer>: Check for related rules. If they exist check if they are already grouped - if not, show a warning. The integer parameter denotes the minimum length of a common prefix in order for two rules to be considered related (default is 5).
   -N, --count-selectors: Counts the following selectors: universal, parent, ID, class, and tag selectors.
 ```
 
